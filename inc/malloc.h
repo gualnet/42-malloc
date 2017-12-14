@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 14:54:14 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 20:21:53 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,25 @@ void			*malloc(size_t size);
 void			*check_meta_data(t_vault *vault, size_t size);
 t_meta_type		size_to_zone_type(size_t size);
 t_meta_size		size_to_zone_size(size_t size);
-void			meta_set_new_size(t_meta_data meta_block, size_t size);
-
+t_meta_type		size_to_subz_type(size_t size);
+void			meta_set_new_size(t_vault *vault, t_meta_data meta_block,\
+size_t size);
+t_meta_data		*get_free_meta_block(t_vault *vault);
 
 //vault
 void			*create_tab_meta(t_vault *vault);
 
 //zone
-int				check_meta_find_space(t_vault *vault, size_t size);
+void			*check_meta_find_space(t_vault *vault, size_t size);
 void			*find_zone_space(t_vault *vault, size_t size);
 
 //subz
 void			*find_free_subz(t_vault *vault, size_t size);
 
 //map
-void			*map_new_zone(t_meta_data meta_block, size_t size);
+void			*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size);
 void			*map_tiny_zone(t_vault *vault);
 
 //dev
-void			printAllTabMetaInfo(t_vault *vault, int interMax);
+void	printAllTabMetaInfo(t_vault *vault, int interMax);
+void	printBlockMetaInfo(t_meta_data *block);

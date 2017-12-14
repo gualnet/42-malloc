@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
-#    Updated: 2017/12/14 14:57:19 by galy             ###   ########.fr        #
+#    Updated: 2017/12/14 18:15:41 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,9 @@ CUR_CLR		=	\033[K
 SRC			=	\
 				malloc.c			dev_funcs.c			\
 				vault_funcs.c		meta_data_funcs.c	\
-				find_zone.c			\
+				find_zone.c			map_zone_funcs.c	\
 				# find_subz.c\
-				# map_subz_funcs.c	map_zone_funcs.c\
+				# map_subz_funcs.c	\
 				
 
 

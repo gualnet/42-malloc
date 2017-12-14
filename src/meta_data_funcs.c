@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 15:31:04 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 20:16:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_meta_type	size_to_subz_type(size_t size)
 /*
 ** return an empty struct to store meta infos
 */
-t_meta_data	get_free_meta_store(t_vault *vault)
+t_meta_data	*get_free_meta_block(t_vault *vault)
 {
 	int i;
 
@@ -68,13 +68,38 @@ t_meta_data	get_free_meta_store(t_vault *vault)
 	{
 		if(vault->tab_meta[i].meta_type == FREE_BLOCK)
 			break;
+		i++;
 	}
 	if(vault->tab_meta[i].meta_type != FREE_BLOCK &&\
 	i == (vault->meta_items_max - 1))
 	{
 		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
 	}
-	return vault->tab_meta[i];
+	ft_printf("(get free meta block)return: ");
+	printBlockMetaInfo(&vault->tab_meta[i]);
+	return (&(vault->tab_meta[i]));
+}
+
+/*
+** set a meta-block-size to the new assigned size
+*/
+void	meta_set_new_size(t_vault *vault, t_meta_data meta_block, size_t size)
+{
+	int 		old_size;
+	t_meta_data	*free_block;
+	
+	ft_printf("CALL META_SET_NEW_SIZE\n");
+	ft_printf("old block data: ");
+	printBlockMetaInfo(&meta_block);
+	old_size = meta_block.size;
+	meta_block.meta_size = size;
+	// --------------------
+	//à verifier..
+	free_block = get_free_meta_block(vault);
+	free_block->adr = meta_block.adr + meta_block.meta_size + 1;////////////////////////////
+	free_block->meta_type = meta_block.meta_type;
+	free_block->meta_size = old_size - meta_block.meta_size;
+	//-----------------..
 }
 
 void		*check_meta_data(t_vault *vault, size_t size)
@@ -95,10 +120,4 @@ void		*check_meta_data(t_vault *vault, size_t size)
 
 	// return find_free_subz(vault, size);
 	return vault;
-}
-
-void	meta_set_new_size(t_meta_data meta_block, size_t size)
-{
-	meta_block.size = meta_block.size;
-	ft_printf("useless", size);
 }

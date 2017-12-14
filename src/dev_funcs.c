@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:41:19 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 15:09:06 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 19:00:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	printAllTabMetaInfo(t_vault *vault, int interMax)
 
 	while (i < interMax - 1)
 	{
-		ft_printf("\ntab_meta[%d] : ", i);
+		ft_printf("[%p]tab_meta[%d] : adr:%p - ", &vault->tab_meta[i], i, vault->tab_meta[i].adr);
 		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
 		ft_printf("Type: FREE_BLOCK - ");
 		if (vault->tab_meta[i].meta_type == TINY_ZONE)
@@ -38,9 +38,19 @@ void	printAllTabMetaInfo(t_vault *vault, int interMax)
 		if (vault->tab_meta[i].meta_type == LARGE_SUBZ)
 		ft_printf("Type: LARGE_SUBZ - ");
 
-		ft_printf("MetaSize: %d", vault->tab_meta[i].meta_size);
+		ft_printf("MetaSize: %d\n", vault->tab_meta[i].meta_size);
 
 		i++;
 	}
-	ft_printf("************* END Of dev func *************");
+	ft_printf("\n************* END Of dev func *************");
+}
+
+
+void	printBlockMetaInfo(t_meta_data *block)
+{
+	ft_printf("Block Info {%p}: ", block);
+	ft_printf("adr{%p} | ", block->adr);
+	ft_printf("type{%d} | ", block->meta_type);
+	ft_printf("size{%d} | ", block->meta_size);
+	ft_printf("\n****************\n");
 }

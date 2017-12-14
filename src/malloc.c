@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 15:42:53 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 19:32:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void    *ft_malloc(size_t size)
 {
-	ft_printf("\n\nft_malloc: %d\n", size);
+	ft_printf("\n\t***CALL ft_malloc(size=%d)***\n", size);
 	pthread_mutex_t mutex_lock; //??
 	void			*adr;
 	static t_vault	vault;
@@ -26,23 +26,18 @@ void    *ft_malloc(size_t size)
 		return (NULL);
 	pthread_mutex_lock(&mutex_lock); //??
 
-	ft_printf("000\n");
 	if(check_meta_data(&vault, size) == NULL) // check/create meta-data tab
 		return (NULL);
+	ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
 // ---------------------
 	ft_printf("001\n");
-	int i = -1;
-	i = check_meta_find_space(&vault, size);
+	adr = check_meta_find_space(&vault, size);
 	ft_printf("002\n");
-	if (i != -1)
-		return (vault.tab_meta[i].adr);
-	if (i == -1)
-		return (NULL);
-	ft_printf("003\n");
 // ---------------------
 	
 	// pthread_mutex_unlock(&mutex_lock); //??
-
+	printAllTabMetaInfo(&vault, 10);
+	ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
 	return adr;
 }
 
@@ -50,11 +45,14 @@ int main()
 {
 	char *str;
 	
-	ft_printf("(getpagesize(%d) * nbrPages(%d)) / t_meta_data(%d) = %d\n", getpagesize(), META_INCRE_ALLOC_PAGE, sizeof(t_meta_data), getpagesize() * META_INCRE_ALLOC_PAGE / sizeof(t_meta_data));
+	ft_printf("(getpagesize(%d) * nbrPages(%d)) / t_meta_data(%d) = %d\n",\
+	getpagesize(), META_INCRE_ALLOC_PAGE, sizeof(t_meta_data),\
+	getpagesize() * META_INCRE_ALLOC_PAGE / sizeof(t_meta_data));
 
 	str = ft_malloc(1);
-	ft_printf("adr: %p", str);
+	ft_printf("\t-->\tmain adr: %p\n\n", str);
 	// str = ft_malloc(60);
+	// ft_printf("\n\t-->\tmain adr: %p\n\n", str);
 	// str = ft_malloc(64);
 	// str = ft_malloc(65);
 	// str = ft_malloc(3000);
