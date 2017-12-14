@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 21:18:20 by galy              #+#    #+#             */
-/*   Updated: 2017/12/13 20:00:12 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 15:42:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Check in meta data if there is a subzone avalaible
 ** Return the index of the mata data stuct, or -1
 */
-int		check_meta_if_space_avalaible(t_vault *vault, size_t size)
+int		check_meta_find_space(t_vault *vault, size_t size)
 {
 	int			i;
 	t_meta_type want_type;
@@ -30,6 +30,7 @@ int		check_meta_if_space_avalaible(t_vault *vault, size_t size)
 		vault->tab_meta[i].meta_size == size)
 		{
 			//si le type et la taille matchent..je renvoi l'index
+			ft_printf("find space cas 1");
 			return (i);
 		}
 		else if (vault->tab_meta[i].meta_type == want_type &&\
@@ -37,11 +38,13 @@ int		check_meta_if_space_avalaible(t_vault *vault, size_t size)
 		{
 			// si la taille de la subz est > que la taille demandee
 			//je reduis la capacity dans le meta_block et je renvoi l'index
+			ft_printf("find space cas 2");
 			meta_set_new_size(vault->tab_meta[i], size);
 		}
-		// ft_printf("vault->tab_meta[%d]: %ld\n", i, vault->tab_meta[i].meta_type);
+		ft_printf("vault->tab_meta[%d]: %ld\n", i, vault->tab_meta[i].meta_type);
 		i++;
 	}
+	ft_printf("find space cas 3");
 	return (-1);
 }
 /*

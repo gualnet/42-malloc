@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/13 20:04:39 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 14:54:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ void			meta_set_new_size(t_meta_data meta_block, size_t size);
 
 
 //vault
-void			*create_vault(t_vault *vault);
+void			*create_tab_meta(t_vault *vault);
 
 //zone
-int				check_meta_if_space_avalaible(t_vault *vault, size_t size);
+int				check_meta_find_space(t_vault *vault, size_t size);
 void			*find_zone_space(t_vault *vault, size_t size);
 
 //subz
@@ -93,3 +93,5 @@ void			*find_free_subz(t_vault *vault, size_t size);
 void			*map_new_zone(t_meta_data meta_block, size_t size);
 void			*map_tiny_zone(t_vault *vault);
 
+//dev
+void			printAllTabMetaInfo(t_vault *vault, int interMax);

@@ -6,30 +6,37 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 15:09:58 by galy              #+#    #+#             */
-/*   Updated: 2017/12/13 20:01:33 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 15:31:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/malloc.h"
 
-void	*create_vault(t_vault *vault)
+void	*create_tab_meta(t_vault *vault)
 {
 	int i;
 
 	i = 0;
-	vault = mmap(NULL, getpagesize(), PROT_READ | PROT_WRITE,\
+	vault->tab_meta = mmap(NULL, (getpagesize() * META_INCRE_ALLOC_PAGE), PROT_READ | PROT_WRITE,\
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	vault->tab_meta = mmap(NULL, (getpagesize() * 4), PROT_READ | PROT_WRITE,\
-	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	if (vault->tab_meta == MAP_FAILED)
+		return NULL;
 	vault->tab_meta_npage = META_INCRE_ALLOC_PAGE;
 	vault->meta_items_max = \
 	(getpagesize() * vault->tab_meta_npage) / sizeof(t_meta_data);
-	vault->tab_meta[0].meta_type = FREE_BLOCK;
-	vault->tab_meta[0].meta_size = NULL_SIZE;
+	ft_printf("Max items: %d\n", vault->meta_items_max);
+	while (i < vault->meta_items_max)
+	{
+		vault->tab_meta[i].meta_type = FREE_BLOCK;
+		vault->tab_meta[i].meta_size = NULL_SIZE;
+		i++;
+	}
+	// ft_printf("MONVAULT: %p\n", vault);
+	// printAllTabMetaInfo(vault, 0);
 	return vault;
 }
 
-void	extend_vault(t_vault *vault)
+void	extend_tab_meta(t_vault *vault)
 {
 	int		cur_npage;
 	void	*curtab;

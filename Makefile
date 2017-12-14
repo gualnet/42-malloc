@@ -6,14 +6,14 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
-#    Updated: 2017/12/08 21:21:20 by galy             ###   ########.fr        #
+#    Updated: 2017/12/14 14:57:19 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	ft_malloc
 CC			=	gcc
-# CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
+# CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFLAG		=	-L./libft -lftall
 
@@ -47,10 +47,11 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				malloc.c\
-				find_subz.c			find_zone.c\
-				vault_funcs.c		meta_data_funcs.c\
-				map_subz_funcs.c	map_zone_funcs.c\
+				malloc.c			dev_funcs.c			\
+				vault_funcs.c		meta_data_funcs.c	\
+				find_zone.c			\
+				# find_subz.c\
+				# map_subz_funcs.c	map_zone_funcs.c\
 				
 
 

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/13 20:07:44 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/14 15:31:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_meta_type	size_to_subz_type(size_t size)
 		return SMALL_SUBZ;
 	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
 		return LARGE_SUBZ;
+	return CUSTOM_ZONE;
 }
 
 /*
@@ -80,12 +81,12 @@ void		*check_meta_data(t_vault *vault, size_t size)
 {
 	ft_printf("check_meta_data - size: %d\n", size);
 	
-	if (vault == NULL)
+	if (vault->tab_meta == NULL)
 	{
 		// ft_printf("*************\n");
 		// ft_printf("std1 &vault: %p | std1 vault: %p\n", &vault, vault);
 		// ft_printf("*************\n");
-		vault = create_vault(vault);
+		vault = create_tab_meta(vault);
 		// ft_printf("std2 &vault: %p | std2 vault: %p\n", &vault, vault);
 		// ft_printf("*************\n\n");
 	}
@@ -99,4 +100,5 @@ void		*check_meta_data(t_vault *vault, size_t size)
 void	meta_set_new_size(t_meta_data meta_block, size_t size)
 {
 	meta_block.size = meta_block.size;
+	ft_printf("useless", size);
 }
