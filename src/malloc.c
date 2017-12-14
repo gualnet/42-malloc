@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/08 21:50:41 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/13 19:54:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 // mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 
-
 void    *ft_malloc(size_t size)
 {
 	ft_printf("\n\nft_malloc: %d\n", size);
 	pthread_mutex_t mutex_lock; //??
 	void			*adr;
 	static t_vault	*vault;
-
+	
+	adr = NULL;
 	if(size <= 0)
 		return NULL;
 	pthread_mutex_lock(&mutex_lock); //??
 
 	if(check_meta_data(vault, size) == NULL) // check/create meta-data tab
 		return NULL;
-
-	find_zone_space(vault, size);
+// ---------------------
+	int i = -1;
+	i = check_meta_if_space_avalaible(vault, size);
+	if (i != -1)
+		return (vault->tab_meta[i].adr);
+	if (i == -1)
+		return (NULL);
+// ---------------------
 	
 	pthread_mutex_unlock(&mutex_lock); //??
 

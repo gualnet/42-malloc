@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/08 21:16:11 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/13 20:04:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #include "../inc/get_next_line.h"
 #include "../inc/libft.h"
 
-
+#define META_INCRE_ALLOC_PAGE 4 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
-	FREE_SPACE,
+	FREE_BLOCK,
 	TINY_ZONE,
 	SMALL_ZONE,
 	LARGE_ZONE,
@@ -31,7 +31,7 @@ typedef enum			e_meta_type
 	TINY_SUBZ,
 	SMALL_SUBZ,
 	LARGE_SUBZ,
-	CUSTOM_SUBZ
+	// CUSTOM_SUBZ
 }						t_meta_type;
 
 typedef enum			e_meta_size
@@ -57,7 +57,8 @@ typedef struct			s_meta_data
 {
 	void				*adr;
 	t_meta_type			meta_type;
-	t_meta_size			meta_size; 
+	t_meta_size			meta_size;
+	size_t				size;
 }						t_meta_data;
 
 typedef struct			s_vault
@@ -75,14 +76,20 @@ void			*malloc(size_t size);
 void			*check_meta_data(t_vault *vault, size_t size);
 t_meta_type		size_to_zone_type(size_t size);
 t_meta_size		size_to_zone_size(size_t size);
+void			meta_set_new_size(t_meta_data meta_block, size_t size);
 
 
 //vault
 void			*create_vault(t_vault *vault);
 
+//zone
+int				check_meta_if_space_avalaible(t_vault *vault, size_t size);
+void			*find_zone_space(t_vault *vault, size_t size);
+
 //subz
 void			*find_free_subz(t_vault *vault, size_t size);
 
 //map
-void			*map_new_zone(t_vault *vault, size_t size);
+void			*map_new_zone(t_meta_data meta_block, size_t size);
 void			*map_tiny_zone(t_vault *vault);
+

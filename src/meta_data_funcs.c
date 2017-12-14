@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   meta_data_func.c                                   :+:      :+:    :+:   */
+/*   meta_data_funcs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/08 21:15:52 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/13 20:07:44 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,20 @@ t_meta_size	size_to_zone_size(size_t size)
 	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
 		return LARGE_ZONE_SIZE;
 	else
-		return CUSTOM_ZONE;
+		return CUSTOM_SIZE;
+}
+
+/*
+** Return the defined subz-type which will contain the data.
+*/
+t_meta_type	size_to_subz_type(size_t size)
+{
+	if(size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+		return TINY_SUBZ;
+	else if(size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+		return SMALL_SUBZ;
+	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
+		return LARGE_SUBZ;
 }
 
 /*
@@ -52,10 +65,10 @@ t_meta_data	get_free_meta_store(t_vault *vault)
 	i = 0;
 	while(i < vault->meta_items_max)
 	{
-		if(vault->tab_meta[i].meta_type == FREE_SPACE)
+		if(vault->tab_meta[i].meta_type == FREE_BLOCK)
 			break;
 	}
-	if(vault->tab_meta[i].meta_type != FREE_SPACE &&\
+	if(vault->tab_meta[i].meta_type != FREE_BLOCK &&\
 	i == (vault->meta_items_max - 1))
 	{
 		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
@@ -67,15 +80,12 @@ void		*check_meta_data(t_vault *vault, size_t size)
 {
 	ft_printf("check_meta_data - size: %d\n", size);
 	
-	
 	if (vault == NULL)
 	{
 		// ft_printf("*************\n");
 		// ft_printf("std1 &vault: %p | std1 vault: %p\n", &vault, vault);
 		// ft_printf("*************\n");
-		if((vault = create_vault(vault)) == NULL)
-			return NULL;
-		
+		vault = create_vault(vault);
 		// ft_printf("std2 &vault: %p | std2 vault: %p\n", &vault, vault);
 		// ft_printf("*************\n\n");
 	}
@@ -84,4 +94,9 @@ void		*check_meta_data(t_vault *vault, size_t size)
 
 	// return find_free_subz(vault, size);
 	return vault;
+}
+
+void	meta_set_new_size(t_meta_data meta_block, size_t size)
+{
+	meta_block.size = meta_block.size;
 }
