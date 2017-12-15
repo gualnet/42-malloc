@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 19:32:56 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/15 11:27:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ void    *ft_malloc(size_t size)
 	ft_printf("002\n");
 // ---------------------
 	
-	// pthread_mutex_unlock(&mutex_lock); //??
+	pthread_mutex_unlock(&mutex_lock); //??
 	printAllTabMetaInfo(&vault, 10);
-	ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
 	return adr;
 }
 

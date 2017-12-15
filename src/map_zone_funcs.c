@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 20:30:14 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/15 11:36:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	subz_meta_block->meta_type = size_to_subz_type(size);
 	subz_meta_block->size = size_to_zone_size(size);
 	ft_printf("\n****NEW ZONE ALLOC****\n");
-	ft_printf("adr: %p - TYPE: %d - SIZE: %d\n", meta_block->adr, meta_block->meta_type, meta_block->meta_size);
-	ft_printf("\n****NEW ZONE ALLOC subz meta-data****\n");
-	ft_printf("adr: %p - TYPE: %d - SIZE: %d\n", subz_meta_block->adr, subz_meta_block->meta_type, subz_meta_block->size);
+	ft_printf("*-zone meta-data-*\n");
+	ft_printf("adr: %p - TYPE: %d - METASIZE: %d - SIZE\n", meta_block->adr, meta_block->meta_type, meta_block->meta_size);
+	ft_printf("*-subz meta-data-*\n");
+	ft_printf("adr: %p - TYPE: %d - METASIZE: %d\n", subz_meta_block->adr, subz_meta_block->meta_type, subz_meta_block->size);
 	ft_printf("**********************\n\n");
 	return (1);
 }

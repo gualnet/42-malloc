@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:41:19 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 19:00:29 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/15 11:39:02 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	printAllTabMetaInfo(t_vault *vault, int interMax)
 {
+	ft_printf("\n****META TABLE INFO****\n");
 	int i = 0;
 	if (interMax == 0)
 		interMax = vault->meta_items_max;
@@ -38,11 +39,13 @@ void	printAllTabMetaInfo(t_vault *vault, int interMax)
 		if (vault->tab_meta[i].meta_type == LARGE_SUBZ)
 		ft_printf("Type: LARGE_SUBZ - ");
 
-		ft_printf("MetaSize: %d\n", vault->tab_meta[i].meta_size);
+		ft_printf("MetaSize: %d", vault->tab_meta[i].meta_size);
+		ft_printf(" - Size: %d\n", vault->tab_meta[i].size);
 
 		i++;
 	}
-	ft_printf("\n************* END Of dev func *************");
+	ft_printf("\t****************\t****************\t****************\n\n");
+	// ft_printf("\n************* END Of dev func *************\n");
 }
 
 
