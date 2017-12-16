@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 20:16:33 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/16 21:40:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,26 @@ t_meta_size	size_to_zone_size(size_t size)
 /*
 ** Return the defined subz-type which will contain the data.
 */
-t_meta_type	size_to_subz_type(size_t size)
+t_meta_type	size_to_subz_type(size_t size, int flag_free)
 {
 	if(size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+	{
+		if(flag_free == 1)
+			return TINY_SUBZ_FREE;
 		return TINY_SUBZ;
+	}
 	else if(size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+	{
+		if(flag_free == 1)
+			return SMALL_SUBZ_FREE;
 		return SMALL_SUBZ;
+	}
 	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
+	{
+		if(flag_free == 1)
+			return LARGE_SUBZ_FREE;
 		return LARGE_SUBZ;
+	}
 	return CUSTOM_ZONE;
 }
 
@@ -83,22 +95,28 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 /*
 ** set a meta-block-size to the new assigned size
 */
-void	meta_set_new_size(t_vault *vault, t_meta_data meta_block, size_t size)
+void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
 	int 		old_size;
 	t_meta_data	*free_block;
+
 	
-	ft_printf("CALL META_SET_NEW_SIZE\n");
-	ft_printf("old block data: ");
-	printBlockMetaInfo(&meta_block);
-	old_size = meta_block.size;
-	meta_block.meta_size = size;
+	ft_printf("\n\tCALL META_SET_NEW_SIZE\n");
+	ft_printf("bf old block data: ");
+	printBlockMetaInfo(meta_block);
+	old_size = meta_block->size;
+	meta_block->size = size;
+	meta_block->meta_type = size_to_subz_type(size, 0);
+	ft_printf("af old block data: ");
+	printBlockMetaInfo(meta_block);
 	// --------------------
 	//à verifier..
 	free_block = get_free_meta_block(vault);
-	free_block->adr = meta_block.adr + meta_block.meta_size + 1;////////////////////////////
-	free_block->meta_type = meta_block.meta_type;
-	free_block->meta_size = old_size - meta_block.meta_size;
+	free_block->adr = meta_block->adr + meta_block->size + 1;////////////////////////////
+	free_block->meta_type = size_to_subz_type(size, 1);
+	free_block->size = old_size - meta_block->size;
+	// ft_printf("af old block data: ");
+	// printBlockMetaInfo(free_block);
 	//-----------------..
 }
 

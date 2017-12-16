@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 20:21:53 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/16 21:59:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ typedef enum			e_meta_type
 	SMALL_ZONE,
 	LARGE_ZONE,
 	CUSTOM_ZONE,
+	TINY_SUBZ_FREE,
 	TINY_SUBZ,
+	SMALL_SUBZ_FREE,
 	SMALL_SUBZ,
+	LARGE_SUBZ_FREE,
 	LARGE_SUBZ,
 	// CUSTOM_SUBZ
 }						t_meta_type;
@@ -40,7 +43,7 @@ typedef enum			e_meta_size
 	TINY_ALLOC_MIN		= 1,
 	TINY_ALLOC_MAX		= 393216, //(75% of zone size -> 384ko)
 	TINY_ZONE_SIZE		= 524288, //(128 * 4096 -> 512ko)
-	SMALL_ALLOC_MIN		= 8388609,
+	SMALL_ALLOC_MIN		= 393217,
 	SMALL_ALLOC_MAX		= 1572864, //(75% of zone size->1.5mo)
 	SMALL_ZONE_SIZE		= 2097152, //(128 * 16384 -> 2mo)
 	LARGE_ALLOC_MIN		= 1572865,
@@ -76,8 +79,8 @@ void			*malloc(size_t size);
 void			*check_meta_data(t_vault *vault, size_t size);
 t_meta_type		size_to_zone_type(size_t size);
 t_meta_size		size_to_zone_size(size_t size);
-t_meta_type		size_to_subz_type(size_t size);
-void			meta_set_new_size(t_vault *vault, t_meta_data meta_block,\
+t_meta_type		size_to_subz_type(size_t size, int flag_free);
+void			meta_set_new_size(t_vault *vault, t_meta_data *meta_block,\
 size_t size);
 t_meta_data		*get_free_meta_block(t_vault *vault);
 

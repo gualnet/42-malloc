@@ -6,13 +6,14 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/16 19:35:28 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/16 21:11:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/malloc.h"
 
 int		map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size);
+void	*subdiv_subz(t_vault *vault, t_meta_data *meta_block, size_t size);
 
 void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
@@ -23,14 +24,31 @@ void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 		ret = map_non_custom_zone(vault, meta_block, size);
 	if (ret == -1)
 	{
-		ft_printf("map non cust cas 1: ");
+		ft_printf("map non cust cas 1: \n");
 		// printBlockMetaInfo(meta_block);
 		return (NULL);
 	}
-	ft_printf("map non cust cas 2: ");
+	ft_printf("map non cust cas 2: %d - %d\n", meta_block->size, size);
+	if(meta_block->size > size)
+	{
+		ft_printf("INFO: taille de block plus grand que size -> subdiv_subz()\n");
+		subdiv_subz(vault, meta_block, size);
+	}
 	// printBlockMetaInfo(meta_block);
 	return (meta_block);
 
+}
+
+/*
+**	split a subz
+**	return the adress of the subz at the requested size
+*/
+void	*subdiv_subz(t_vault *vault, t_meta_data *meta_block, size_t size)
+{
+	ft_printf("vault: %p\n", vault);
+	ft_printf("meta_block: %p\n", meta_block);
+	ft_printf("size: %d\n", size);
+	return NULL;
 }
 
 int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
@@ -54,7 +72,7 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	subz_meta_block = get_free_meta_block(vault);
 	// printBlockMetaInfo(subz_meta_block);
 	subz_meta_block->adr = new_zone;
-	subz_meta_block->meta_type = size_to_subz_type(size);
+	subz_meta_block->meta_type = size_to_subz_type(size, 1);
 	subz_meta_block->size = size_to_zone_size(size);
 	ft_printf("\n****NEW ZONE ALLOC****\n");
 	ft_printf("*-zone meta-data-*\n");
