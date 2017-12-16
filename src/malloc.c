@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/15 11:27:22 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/16 19:30:43 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ void    *ft_malloc(size_t size)
 
 	if(check_meta_data(&vault, size) == NULL) // check/create meta-data tab
 		return (NULL);
-	ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
+	// ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
 // ---------------------
-	ft_printf("001\n");
 	adr = check_meta_find_space(&vault, size);
-	ft_printf("002\n");
 // ---------------------
 	
 	pthread_mutex_unlock(&mutex_lock); //??

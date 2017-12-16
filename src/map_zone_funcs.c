@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/15 11:36:26 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/16 19:35:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	meta_block->meta_type = size_to_zone_type(size);
 	meta_block->meta_size = size_to_zone_size(size);
 	subz_meta_block = get_free_meta_block(vault);
-	ft_printf("\nPART2\n");
 	// printBlockMetaInfo(subz_meta_block);
 	subz_meta_block->adr = new_zone;
 	subz_meta_block->meta_type = size_to_subz_type(size);

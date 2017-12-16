@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 21:18:20 by galy              #+#    #+#             */
-/*   Updated: 2017/12/14 19:56:36 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/16 19:34:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,10 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 	}
 	//Pas de subz assez grande en stock -> je map une nouvelle zone
 	ft_printf("find space cas 3\n");
-	ft_printf("++Adr de tab_meta [%p]\n", &(vault->tab_meta));
-	ft_printf("++Adr de tab_meta[0] [%p]\n", &(vault->tab_meta[0]));
+	ft_printf("\nInfo:\tTAB_META Begin at: [%p]\n", &(vault->tab_meta[0]));
 	meta_block = get_free_meta_block(vault);
 	ft_printf("++Adr de meta_block [%p]\n", meta_block);
 	map_new_zone(vault, meta_block, size);
-	ft_printf("LAAAAAA: %p\n", meta_block->adr);
 	return (meta_block->adr);
 }
 
