@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:04 by galy              #+#    #+#             */
-/*   Updated: 2017/12/13 19:59:40 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/20 15:04:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 // 	i = 0;
 // 	// while(i <= 2)
-// 	if(vault->tab_meta[0].meta_type == FREE_BLOCK)
+// 	if (vault->tab_meta[0].meta_type == FREE_BLOCK)
 // 	{
 // 		return get_new_subz(vault, size);
 // 	}

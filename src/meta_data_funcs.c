@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/16 21:40:33 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/20 15:05:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 */
 t_meta_type	size_to_zone_type(size_t size)
 {
-	if(size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+	if (size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
 		return TINY_ZONE;
-	else if(size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+	else if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 		return SMALL_ZONE;
-	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
+	else if (size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
 		return LARGE_ZONE;
 	else
 		return CUSTOM_ZONE;
@@ -32,11 +32,11 @@ t_meta_type	size_to_zone_type(size_t size)
 */
 t_meta_size	size_to_zone_size(size_t size)
 {
-	if(size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+	if (size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
 		return TINY_ZONE_SIZE;
-	else if(size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+	else if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 		return SMALL_ZONE_SIZE;
-	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
+	else if (size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
 		return LARGE_ZONE_SIZE;
 	else
 		return CUSTOM_SIZE;
@@ -47,21 +47,21 @@ t_meta_size	size_to_zone_size(size_t size)
 */
 t_meta_type	size_to_subz_type(size_t size, int flag_free)
 {
-	if(size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+	if (size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
 	{
-		if(flag_free == 1)
+		if (flag_free == 1)
 			return TINY_SUBZ_FREE;
 		return TINY_SUBZ;
 	}
-	else if(size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+	else if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 	{
-		if(flag_free == 1)
+		if (flag_free == 1)
 			return SMALL_SUBZ_FREE;
 		return SMALL_SUBZ;
 	}
-	else if(size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
+	else if (size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
 	{
-		if(flag_free == 1)
+		if (flag_free == 1)
 			return LARGE_SUBZ_FREE;
 		return LARGE_SUBZ;
 	}
@@ -78,11 +78,11 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 	i = 0;
 	while(i < vault->meta_items_max)
 	{
-		if(vault->tab_meta[i].meta_type == FREE_BLOCK)
+		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
 			break;
 		i++;
 	}
-	if(vault->tab_meta[i].meta_type != FREE_BLOCK &&\
+	if (vault->tab_meta[i].meta_type != FREE_BLOCK &&\
 	i == (vault->meta_items_max - 1))
 	{
 		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
