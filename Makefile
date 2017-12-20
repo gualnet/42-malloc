@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
-#    Updated: 2017/12/14 18:15:41 by galy             ###   ########.fr        #
+#    Updated: 2017/12/17 17:59:11 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,8 +88,11 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
 	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD ASM OBJECTS : $<$(CRESET)$(CUR_CLR)"
 
-make_lib :
+make_lib	:
 	@make -C $(LIBDIR)
 
 OBJD		:
 	@mkdir -p $(OBJDIR)
+
+test		:
+	$(CC) $(CFLAGS) -I$(INCDIR) -c 

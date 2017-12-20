@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/16 22:04:42 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/17 10:56:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ int main()
 	// ft_printf("\n\t-->\ttest malloc (TINY_ALLOC_MAX)\nmain adr: %p\n\n", str);
 
 	//>>SMALL TESTS<<
-	str = ft_malloc(SMALL_ALLOC_MIN);
-	ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MIN)\nmain adr: %p\n\n", str);
-	str = ft_malloc(SMALL_ALLOC_MAX);
-	ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MAX)\nmain adr: %p\n\n", str);
-	str = ft_malloc(TINY_ALLOC_MAX);
-	ft_printf("\n\t-->\ttest malloc (TINY_ALLOC_MAX)\nmain adr: %p\n\n", str);
-	str = ft_malloc(SMALL_ALLOC_MIN + 910);
-	ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MIN + 911)\nmain adr: %p\n\n", str);
-	str = ft_malloc(SMALL_ALLOC_MAX);
-	ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MAX)\nmain adr: %p\n\n", str);
+	// str = ft_malloc(SMALL_ALLOC_MIN);
+	// ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MIN)\nmain adr: %p\n\n", str);
+	// str = ft_malloc(SMALL_ALLOC_MAX);
+	// ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MAX)\nmain adr: %p\n\n", str);
+	// str = ft_malloc(TINY_ALLOC_MAX);
+	// ft_printf("\n\t-->\ttest malloc (TINY_ALLOC_MAX)\nmain adr: %p\n\n", str);
+	// str = ft_malloc(SMALL_ALLOC_MIN + 910);
+	// ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MIN + 911)\nmain adr: %p\n\n", str);
+	// str = ft_malloc(SMALL_ALLOC_MAX);
+	// ft_printf("\n\t-->\ttest malloc (SMALL_ALLOC_MAX)\nmain adr: %p\n\n", str);
 	
 
 	// str = ft_malloc(TINY_ALLOC_MAX + 1);

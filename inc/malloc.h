@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/16 21:59:04 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/17 17:53:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct			s_vault
 
 
 //main
-void			*malloc(size_t size);
+void			*ft_malloc(size_t size);
 
 //meta_data
 void			*check_meta_data(t_vault *vault, size_t size);
