@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
-#    Updated: 2017/12/17 17:59:11 by galy             ###   ########.fr        #
+#    Updated: 2017/12/21 18:38:22 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,12 @@ SRC			=	\
 				malloc.c			dev_funcs.c			\
 				vault_funcs.c		meta_data_funcs.c	\
 				find_zone.c			map_zone_funcs.c	\
-				# find_subz.c\
+				free.c				tab_free_funcs.c	\
+				\
+				test0.c		test1.c						\
+				test1_1.c								\
+
+				# find_subz.c \
 				# map_subz_funcs.c	\
 				
 

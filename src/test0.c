@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 
-int main()
+int test0()
 {
 	printf("\ttest0_0 -> built-in malloc\n\n");
 	//-----#-----#-----#-----//

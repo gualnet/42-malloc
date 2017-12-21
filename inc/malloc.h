@@ -6,14 +6,18 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/17 17:53:28 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/21 18:41:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MALLOC_H
+# define MALLOC_H
 
 #include <stdlib.h>
 #include <sys/mman.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <limits.h>
 
 #include "../inc/ft_printf.h"
 #include "../inc/get_next_line.h"
@@ -64,13 +68,25 @@ typedef struct			s_meta_data
 	size_t				size;
 }						t_meta_data;
 
+typedef struct			s_free_block
+{
+	int					metadata_num;
+	void				*adr;
+	t_meta_type			meta_type;
+	size_t				size;
+}						t_free_block;
+
 typedef struct			s_vault
 {
 	t_meta_data			*tab_meta;
 	int					tab_meta_npage;
 	int					meta_items_max;
+	t_free_block		*tab_free;
+	int					tabfree_items_max;
 }						t_vault;
 
+//global
+extern t_vault	vault;
 
 //main
 void			*ft_malloc(size_t size);
@@ -98,6 +114,22 @@ void			*find_free_subz(t_vault *vault, size_t size);
 void			*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size);
 void			*map_tiny_zone(t_vault *vault);
 
+//free
+void			ft_free(void *ptr);
+
+//tab_free
+t_free_block	*get_tabfree_free_block(void);
+
 //dev
 void	printAllTabMetaInfo(t_vault *vault, int interMax);
 void	printBlockMetaInfo(t_meta_data *block);
+void	printTabFree(int interMax);
+void	printFreeBlockInfo(t_free_block block);
+
+//tests
+int test0();
+int test1();
+int test1_1();
+
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/20 15:05:30 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/21 18:44:06 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 		i++;
 	}
 	if (vault->tab_meta[i].meta_type != FREE_BLOCK &&\
-	i == (vault->meta_items_max - 1))
+	i == vault->meta_items_max)
 	{
 		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
 	}

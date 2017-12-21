@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/16 21:11:22 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/20 15:06:59 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	int			ret;
 	
 	ret = 0;
-	if(size_to_zone_type(size) != CUSTOM_ZONE)
+	if (size_to_zone_type(size) != CUSTOM_ZONE)
 		ret = map_non_custom_zone(vault, meta_block, size);
 	if (ret == -1)
 	{
@@ -29,7 +29,7 @@ void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 		return (NULL);
 	}
 	ft_printf("map non cust cas 2: %d - %d\n", meta_block->size, size);
-	if(meta_block->size > size)
+	if (meta_block->size > size)
 	{
 		ft_printf("INFO: taille de block plus grand que size -> subdiv_subz()\n");
 		subdiv_subz(vault, meta_block, size);
@@ -61,7 +61,7 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	i = 0;
 	new_zone = mmap(NULL, size_to_zone_type(size), PROT_READ | PROT_WRITE,\
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	if(new_zone == MAP_FAILED)
+	if (new_zone == MAP_FAILED)
 	{
 		ft_printf("err[mzf000]: mmap failure\n");
 		return (-1);
@@ -92,7 +92,7 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 // 	new_zone = mmap(NULL, TINY_ZONE_SIZE, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 // 	while(i < vault->meta_items_max)
 // 	{
-// 		if(vault->tab_meta[i].meta_type == FREE_BLOCK)
+// 		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
 // 			break;
 // 		i++;
 // 	}

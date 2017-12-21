@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
+int test1()
 {
 	printf("\ttest1 -> built-in malloc\n\n");
 	//-----#-----#-----#-----//
