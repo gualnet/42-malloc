@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/21 18:44:06 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 11:37:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 	{
 		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
 	}
-	ft_printf("(get free meta block)return: ");
-	printBlockMetaInfo(&vault->tab_meta[i]);
+	// ft_printf("(get free meta block)return: ");
+	// printBlockMetaInfo(&vault->tab_meta[i]);
 	return (&(vault->tab_meta[i]));
 }
 
@@ -102,12 +102,12 @@ void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 
 	
 	ft_printf("\n\tCALL META_SET_NEW_SIZE\n");
-	ft_printf("bf old block data: ");
+	// ft_printf("bf old block data: ");
 	printBlockMetaInfo(meta_block);
 	old_size = meta_block->size;
 	meta_block->size = size;
 	meta_block->meta_type = size_to_subz_type(size, 0);
-	ft_printf("af old block data: ");
+	// ft_printf("af old block data: ");
 	printBlockMetaInfo(meta_block);
 	// --------------------
 	//à verifier..

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/21 19:08:50 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 11:35:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,11 @@ int main(int argc, char **argv)
 		ft_printf("\n\t-->\ttest malloc (1111)\nmain adr: %p\n\n", str);
 		str2 = ft_malloc(1234);
 		ft_printf("\n\t-->\ttest malloc (1234)\nmain adr: %p\n\n", str);
-		ft_free(str);
-		ft_free(str2);
+		// ft_free(str);
+		// ft_free(str2);
+		// str = ft_malloc(2222);
+		// ft_printf("\n\t-->\ttest malloc (1234)\nmain adr: %p\n\n", str);
+		// ft_free(str);
 
 	}
 	else

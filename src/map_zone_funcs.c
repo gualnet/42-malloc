@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/20 15:06:59 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 11:36:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	*subdiv_subz(t_vault *vault, t_meta_data *meta_block, size_t size)
 
 int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
-	ft_printf("CALL map_non_custom_zone()\n");
+	// ft_printf("CALL map_non_custom_zone()\n");
 	int			i;
 	void		*new_zone;
 	t_meta_data	*subz_meta_block;
@@ -74,12 +74,12 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	subz_meta_block->adr = new_zone;
 	subz_meta_block->meta_type = size_to_subz_type(size, 1);
 	subz_meta_block->size = size_to_zone_size(size);
-	ft_printf("\n****NEW ZONE ALLOC****\n");
-	ft_printf("*-zone meta-data-*\n");
-	ft_printf("adr: %p - TYPE: %d - METASIZE: %d - SIZE\n", meta_block->adr, meta_block->meta_type, meta_block->meta_size);
-	ft_printf("*-subz meta-data-*\n");
-	ft_printf("adr: %p - TYPE: %d - METASIZE: %d\n", subz_meta_block->adr, subz_meta_block->meta_type, subz_meta_block->size);
-	ft_printf("**********************\n\n");
+	// ft_printf("\n****NEW ZONE ALLOC****\n");
+	// ft_printf("*-zone meta-data-*\n");
+	// ft_printf("adr: %p - TYPE: %d - METASIZE: %d - SIZE\n", meta_block->adr, meta_block->meta_type, meta_block->meta_size);
+	// ft_printf("*-subz meta-data-*\n");
+	// ft_printf("adr: %p - TYPE: %d - METASIZE: %d\n", subz_meta_block->adr, subz_meta_block->meta_type, subz_meta_block->size);
+	// ft_printf("**********************\n\n");
 	return (1);
 }
 

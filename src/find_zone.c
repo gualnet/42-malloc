@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 21:18:20 by galy              #+#    #+#             */
-/*   Updated: 2017/12/16 21:36:06 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 11:36:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 	i = 0;
 	// wanted_type = size_to_zone_type(size);
 	wanted_type = size_to_subz_type(size, 1);
-	ft_printf("--------->want type: %d\n", wanted_type);
+	// ft_printf("--------->want type: %d\n", wanted_type);
 	//si wanted_type == CUSTOM -> map_custom_zone()
 	while(1)
 	{
@@ -35,7 +35,7 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 			vault->tab_meta[i].size == size)
 			{
 				//si le type et la taille matchent..je renvoi l'index
-				ft_printf("find space cas 1\n");
+				// ft_printf("find space cas 1\n");
 				return (vault->tab_meta[i].adr);
 			}
 			else if (vault->tab_meta[i].meta_type == wanted_type &&\
@@ -43,7 +43,7 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 			{
 				// si la taille de la subz est > que la taille demandee
 				//je reduis la capacity dans le meta_block et je renvoi l'index
-				ft_printf("find space cas 2\n");
+				// ft_printf("find space cas 2\n");
 				meta_set_new_size(vault, &vault->tab_meta[i], size);
 				return (vault->tab_meta[i].adr);
 			}
@@ -51,10 +51,10 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 			i++;
 		}
 		//Pas de subz assez grande en stock -> je map une nouvelle zone
-		ft_printf("find space cas 3\n");
-		ft_printf("\nInfo:\tTAB_META Begin at: [%p]\n", &(vault->tab_meta[0]));
+		// ft_printf("find space cas 3\n");
+		// ft_printf("\nInfo:\tTAB_META Begin at: [%p]\n", &(vault->tab_meta[0]));
 		meta_block = get_free_meta_block(vault);
-		ft_printf("++Adr de meta_block [%p]\n", meta_block);
+		// ft_printf("++Adr de meta_block [%p]\n", meta_block);
 		map_new_zone(vault, meta_block, size);
 		// meta_set_new_size(vault, meta_block, size);
 		// return (meta_block->adr);
