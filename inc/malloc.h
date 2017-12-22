@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/21 18:41:04 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 16:40:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ typedef struct			s_meta_data
 
 typedef struct			s_free_block
 {
-	int					metadata_num;
-	void				*adr;
-	t_meta_type			meta_type;
-	size_t				size;
+	// int					metadata_num;
+	// void				*adr;
+	// t_meta_type			meta_type;
+	// size_t				size;
+	t_meta_data			*ptr;
 }						t_free_block;
 
 typedef struct			s_vault
@@ -116,9 +117,10 @@ void			*map_tiny_zone(t_vault *vault);
 
 //free
 void			ft_free(void *ptr);
+void			create_tab_free(void);
 
 //tab_free
-t_free_block	*get_tabfree_free_block(void);
+int				get_tabfree_free_block(void);
 
 //dev
 void	printAllTabMetaInfo(t_vault *vault, int interMax);

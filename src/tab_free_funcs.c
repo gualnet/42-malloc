@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 18:22:53 by galy              #+#    #+#             */
-/*   Updated: 2017/12/21 18:52:57 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 16:40:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc.h"
+#include "../inc/malloc.h"
 
-t_free_block	*get_tabfree_free_block(void)
+int		get_tabfree_free_block(void)
 {
 	int i;
 
@@ -20,16 +20,16 @@ t_free_block	*get_tabfree_free_block(void)
 	while (i < vault.tabfree_items_max)
 	{
 		ft_printf("recherche...");
-		if (vault.tab_free[i].meta_type == FREE_BLOCK)
-			break;
+		// ft_printf("%p\n", vault.tab_free[i].ptr);
+		if (vault.tab_free[i].ptr == NULL)
+		{
+			ft_printf("(get tab free block)return i[%d]: ", i);
+			return (i);
+		}
 		i++;
 	}
-	if (vault.tab_free[i].meta_type != FREE_BLOCK &&\
-	i == (vault.tabfree_items_max))
-	{
-		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
-	}
-	ft_printf("(get tab free block)return i[%d]: ", i);
-	printFreeBlockInfo(vault.tab_free[i]);
-	return (&vault.tab_free[i]);
+	ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
+	// printFreeBlockInfo(vault.tab_free[i]);
+	// return (&vault.tab_free[i]);
+	return (-1);
 }

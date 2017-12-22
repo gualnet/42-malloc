@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 11:37:14 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 15:07:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 	if (vault->tab_meta[i].meta_type != FREE_BLOCK &&\
 	i == vault->meta_items_max)
 	{
-		ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
+		ft_printf("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_\n\n");
 	}
 	// ft_printf("(get free meta block)return: ");
 	// printBlockMetaInfo(&vault->tab_meta[i]);
@@ -99,6 +99,7 @@ void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
 	int 		old_size;
 	t_meta_data	*free_block;
+	// t_free_block	*tabfree_block;
 
 	
 	ft_printf("\n\tCALL META_SET_NEW_SIZE\n");
@@ -115,6 +116,13 @@ void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 	free_block->adr = meta_block->adr + meta_block->size + 1;////////////////////////////
 	free_block->meta_type = size_to_subz_type(size, 1);
 	free_block->size = old_size - meta_block->size;
+
+	// tabfree_block = get_tabfree_free_block();
+	// tabfree_block->adr = free_block->adr;
+	// tabfree_block->size = free_block->size;
+	// tabfree_block->meta_type = free_block->meta_type;
+	// printAllTabMetaInfo(vault, 8);
+	// printTabFree(8);
 	// ft_printf("af old block data: ");
 	// printBlockMetaInfo(free_block);
 	//-----------------..
@@ -132,6 +140,8 @@ void		*check_meta_data(t_vault *vault, size_t size)
 		vault = create_tab_meta(vault);
 		// ft_printf("std2 &vault: %p | std2 vault: %p\n", &vault, vault);
 		// ft_printf("*************\n\n");
+		if (vault->tab_free == NULL)
+			create_tab_free();
 	}
 	// ft_printf("std3 &vault: %p | std3 vault: %p\n", &vault, vault);
 	// ft_printf("*************\n\n");

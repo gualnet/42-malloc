@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 21:18:20 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 11:36:04 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/22 12:03:40 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,37 +61,3 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 		i = 0;
 	}
 }
-
-/*
-** return a ptr on a zone matching the type needed
-** 
-*/
-// void	*find_zone_space(t_vault *vault, size_t size)
-// {
-	
-// 	//si j'arrive ici je refais une passe pour trouver 
-// 	//un emplacement de meta libre ou etendre mon espace de meta data.
-// 	if ((i = parse_step_2(vault, size)) != -1)
-		
-// 	return NULL;
-// }
-
-/*
-** Look for free meta data block
-** return the index of a free meta data block or -1 if no block is free
-*/
-// int		parse_step_2(t_vault *vault, size_t size)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < vault->meta_items_max)
-// 	{
-// 		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
-// 		{
-// 			map_new_zone(vault->tab_meta[i], size);
-// 			return (i);
-// 		}
-// 	}
-// 	return (-1);
-// }
