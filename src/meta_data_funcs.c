@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 15:07:11 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 11:03:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
 	int 		old_size;
 	t_meta_data	*free_block;
-	// t_free_block	*tabfree_block;
+	t_free_block	*tabfree_block;
 
 	
 	ft_printf("\n\tCALL META_SET_NEW_SIZE\n");
@@ -117,10 +117,8 @@ void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 	free_block->meta_type = size_to_subz_type(size, 1);
 	free_block->size = old_size - meta_block->size;
 
-	// tabfree_block = get_tabfree_free_block();
-	// tabfree_block->adr = free_block->adr;
-	// tabfree_block->size = free_block->size;
-	// tabfree_block->meta_type = free_block->meta_type;
+	tabfree_block = &vault->tab_free[get_tabfree_free_block()];
+	tabfree_block->ptr = free_block;
 	// printAllTabMetaInfo(vault, 8);
 	// printTabFree(8);
 	// ft_printf("af old block data: ");
