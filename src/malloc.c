@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 11:09:16 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 12:45:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void    *ft_malloc(size_t size)
 	// ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
 // ---------------------
 	adr = check_meta_find_space(&vault, size);
-	// adr = check_meta_find_space(&vault, size);
-// ---------------------
 	
+// ---------------------
+	tab_free_cleaner();
+// ---------------------
 	pthread_mutex_unlock(&mutex_lock); //??
 	printAllTabMetaInfo(&vault, 12);
+	printTabFree(6);
 	// printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
 	return adr;
 }
@@ -46,7 +48,7 @@ void    *ft_malloc(size_t size)
 int main(int argc, char **argv)
 {
 	char	*str;
-	// char	*str2;
+	char	*str2;
 	int		i;
 	
 	// ft_printf("(getpagesize(%d) * nbrPages(%d)) / t_meta_data(%d) = %d\n",\
@@ -103,11 +105,11 @@ int main(int argc, char **argv)
 		// TEST FREE
 		str = ft_malloc(1111);
 		ft_printf("\n\t-->\ttest malloc (1111)\nmain adr: %p\n\n", str);
-		// str2 = ft_malloc(1234);
-		// ft_printf("\n\t-->\ttest malloc (1234)\nmain adr: %p\n\n", str);
-		// ft_free(str2);
+		str2 = ft_malloc(1234);
+		ft_printf("\n\t-->\ttest malloc (1234)\nmain adr: %p\n\n", str);
+		ft_free(str2);
 		ft_free(str);
-		// str = ft_malloc(2222);
+		// str2 = ft_malloc(2222);
 		// ft_printf("\n\t-->\ttest malloc (1234)\nmain adr: %p\n\n", str);
 		// ft_free(str);
 

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:43:59 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 16:48:39 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 12:44:43 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		verif_ptr_validity(void *ptr)
 		 vault.tab_meta[i].meta_type == SMALL_SUBZ ||\
 		 vault.tab_meta[i].meta_type == LARGE_SUBZ))
 		{
-			ft_printf("bingo\n");
+			// ft_printf("bingo\n");
 			return (i);
 		}
 		i++;
@@ -45,22 +45,19 @@ int check_defrag(int index)
 
 	i = 0;
 	index = 0 + index;
-	// while (i < vault.tabfree_items_max)
-	// {
-	// 	// ft_printf("\tDEFRAG LOOP[%d]: [%d]+[%d]=[%d]\n",\
-	// 	// i, vault.tab_free[i].adr, vault.tab_free[i].size, vault.tab_meta[index].adr);
-	// 	if (vault.tab_free[i].adr + vault.tab_free[i].size + 1 == vault.tab_meta[index].adr)
-	// 	{
-	// 		vault.tab_free[i].size += vault.tab_meta[index].size;
-	// 		vault.tab_meta[vault.tab_free[i].metadata_num].size = vault.tab_free[i].size;
-	// 		vault.tab_meta[index].adr = NULL;
-	// 		vault.tab_meta[index].meta_type = FREE_BLOCK;
-	// 		vault.tab_meta[index].meta_size = NULL_SIZE;
-	// 		vault.tab_meta[index].size = 0;
-	// 		return (1);
-	// 	}
-	// 	i++;
-	// }
+	while (i < vault.tabfree_items_max)
+	{
+		// ft_printf("\tDEFRAG LOOP[%d]: [%d]+[%d]=[%d]\n",\
+		// vault.tab_free[i].ptr.adr);
+		if (vault.tab_free[i].ptr != NULL &&\
+		(vault.tab_free[i].ptr->adr == vault.tab_meta[index].adr + vault.tab_meta[index].size + 1))
+		{
+			ft_printf("defrag bingoooooooooo\n");
+			merge_free_subz(i, index);
+			return (1);
+		}
+		i++;
+	}
 	return -1;
 }
 
@@ -117,14 +114,13 @@ void	ft_free(void *ptr)
 			return ;
 		// ft_printf("\nAV:");
 		// printAllTabMetaInfo(&vault, 8);
-		printTabFree(8);
+		// printTabFree(8);
 		change_metadata_status(index);
 
+		tab_free_cleaner();
 	}
 	// ft_printf("\n\nAP:");
-	// printAllTabMetaInfo(&vault, 8);
+	printAllTabMetaInfo(&vault, 8);
 	printTabFree(8);
 	ft_printf("\n\tEND FREEE ptr[%p]\n", ptr);
 }
-
-

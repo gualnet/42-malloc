@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 16:40:55 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 12:01:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ void			create_tab_free(void);
 
 //tab_free
 int				get_tabfree_free_block(void);
+void			tab_free_cleaner();
+void			merge_free_subz(int free_idx, int meta_idx);
 
 //dev
 void	printAllTabMetaInfo(t_vault *vault, int interMax);
