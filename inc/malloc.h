@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 12:01:09 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 16:13:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include "../inc/get_next_line.h"
 #include "../inc/libft.h"
 
-#define META_INCRE_ALLOC_PAGE 4 //size tab-meta = META_ALLOC_STEP * pagesize
+#define META_INCRE_ALLOC_PAGE 2 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
@@ -31,30 +31,38 @@ typedef enum			e_meta_type
 	TINY_ZONE,
 	SMALL_ZONE,
 	LARGE_ZONE,
-	CUSTOM_ZONE,
 	TINY_SUBZ_FREE,
 	TINY_SUBZ,
 	SMALL_SUBZ_FREE,
 	SMALL_SUBZ,
-	LARGE_SUBZ_FREE,
-	LARGE_SUBZ,
+	// LARGE_SUBZ_FREE,
+	// LARGE_SUBZ,
+	// CUSTOM_ZONE,
 	// CUSTOM_SUBZ
 }						t_meta_type;
 
-typedef enum			e_meta_size
+typedef enum			e_meta_size //from osx implem
 {
 	NULL_SIZE			= 0,
 	TINY_ALLOC_MIN		= 1,
-	TINY_ALLOC_MAX		= 393216, //(75% of zone size -> 384ko)
-	TINY_ZONE_SIZE		= 524288, //(128 * 4096 -> 512ko)
-	SMALL_ALLOC_MIN		= 393217,
-	SMALL_ALLOC_MAX		= 1572864, //(75% of zone size->1.5mo)
-	SMALL_ZONE_SIZE		= 2097152, //(128 * 16384 -> 2mo)
+	TINY_ALLOC_MAX		= 992, //(xx% of zone size -> 992o)
+	TINY_ZONE_SIZE		= 2097152, //(256 * 4096 -> 2mo)
+	SMALL_ALLOC_MIN		= 993,
+	SMALL_ALLOC_MAX		= 130048, //(xx% of zone size->127ko)
+	SMALL_ZONE_SIZE		= 16777216, //(128 * 16384 -> 16mo)
 	LARGE_ALLOC_MIN		= 1572865,
-	LARGE_ALLOC_MAX		= 10485760, //(80% of zone size->8mo)
-	LARGE_ZONE_SIZE		= 10485760, //(128 *  -> 10mo)
-	CUSTOM_SIZE,
 }						t_meta_size;
+// typedef enum			e_meta_size
+// {
+// 	NULL_SIZE			= 0,
+// 	TINY_ALLOC_MIN		= 1,
+// 	TINY_ALLOC_MAX		= 393216, //(75% of zone size -> 384ko)
+// 	TINY_ZONE_SIZE		= 524288, //(128 * 4096 -> 512ko)
+// 	SMALL_ALLOC_MIN		= 393217,
+// 	SMALL_ALLOC_MAX		= 1572864, //(75% of zone size->1.5mo)
+// 	SMALL_ZONE_SIZE		= 2097152, //(128 * 16384 -> 2mo)
+// 	LARGE_ALLOC_MIN		= 1572865,
+// }						t_meta_size;
 
 
 /*

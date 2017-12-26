@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 15:07:16 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 16:16:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	int			ret;
 	
 	ret = 0;
-	if (size_to_zone_type(size) != CUSTOM_ZONE)
+	if (size_to_zone_type(size) != LARGE_ZONE)
 		ret = map_non_custom_zone(vault, meta_block, size);
 	if (ret == -1)
 	{

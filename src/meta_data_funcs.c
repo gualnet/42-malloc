@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 11:38:04 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/26 16:19:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ t_meta_type	size_to_zone_type(size_t size)
 		return TINY_ZONE;
 	else if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 		return SMALL_ZONE;
-	else if (size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
+	else if (size >= LARGE_ALLOC_MIN)
 		return LARGE_ZONE;
-	else
-		return CUSTOM_ZONE;
 }
 
 /*
@@ -36,10 +34,8 @@ t_meta_size	size_to_zone_size(size_t size)
 		return TINY_ZONE_SIZE;
 	else if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 		return SMALL_ZONE_SIZE;
-	else if (size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
-		return LARGE_ZONE_SIZE;
-	else
-		return CUSTOM_SIZE;
+	// else if (size >= LARGE_ALLOC_MIN)
+	// 	return LARGE_ZONE_SIZE;
 }
 
 /*
@@ -59,13 +55,8 @@ t_meta_type	size_to_subz_type(size_t size, int flag_free)
 			return SMALL_SUBZ_FREE;
 		return SMALL_SUBZ;
 	}
-	else if (size >= LARGE_ALLOC_MIN && size <= LARGE_ALLOC_MAX)
-	{
-		if (flag_free == 1)
-			return LARGE_SUBZ_FREE;
-		return LARGE_SUBZ;
-	}
-	return CUSTOM_ZONE;
+	else
+		return LARGE_ZONE;
 }
 
 /*
