@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:43:59 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 12:44:43 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 17:44:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int		verif_ptr_validity(void *ptr)
 		// ft_printf("vault.tab_meta[%d].adr [%p] -- ptr [%p]\n", i, vault.tab_meta[i].adr, ptr);
 		if (vault.tab_meta[i].adr == ptr &&\
 		(vault.tab_meta[i].meta_type == TINY_SUBZ ||\
-		 vault.tab_meta[i].meta_type == SMALL_SUBZ ||\
-		 vault.tab_meta[i].meta_type == LARGE_SUBZ))
+		 vault.tab_meta[i].meta_type == SMALL_SUBZ))
 		{
 			// ft_printf("bingo\n");
 			return (i);

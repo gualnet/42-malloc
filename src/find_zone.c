@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 21:18:20 by galy              #+#    #+#             */
-/*   Updated: 2017/12/22 12:03:40 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 18:13:05 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Check in meta data if there is a subzone avalaible
 ** Return the index of the mata data stuct, or -1
 */
-void	*check_meta_find_space(t_vault *vault, size_t size)
+void	*check_meta_find_subz(t_vault *vault, size_t size)
 {
 	int			i;
 	t_meta_type	wanted_type;
@@ -60,4 +60,13 @@ void	*check_meta_find_space(t_vault *vault, size_t size)
 		// return (meta_block->adr);
 		i = 0;
 	}
+}
+
+void	*check_meta_find_custom(size_t size)
+{
+	void	*adr;
+
+	adr = map_large_zone(&vault, size);
+
+	return (adr);
 }

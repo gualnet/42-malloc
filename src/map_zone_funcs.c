@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 16:16:31 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 18:15:21 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	int				i;
 	void			*new_zone;
 	t_meta_data		*subz_meta_block;
-	// t_free_block	*tabfree_block;
 
 	i = 0;
 	new_zone = mmap(NULL, size_to_zone_type(size), PROT_READ | PROT_WRITE,\
@@ -75,39 +74,27 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	subz_meta_block->meta_type = size_to_subz_type(size, 1);
 	subz_meta_block->size = size_to_zone_size(size);
 	
-	// printBlockMetaInfo(subz_meta_block);
-	// tabfree_block = get_tabfree_free_block();
-	// tabfree_block->adr = subz_meta_block->adr;
-	// tabfree_block->size = subz_meta_block->size;
-	// tabfree_block->meta_type = subz_meta_block->meta_type;
-
-	// ft_printf("\n****NEW ZONE ALLOC****\n");
-	// ft_printf("*-zone meta-data-*\n");
-	// ft_printf("adr: %p - TYPE: %d - METASIZE: %d - SIZE\n", meta_block->adr, meta_block->meta_type, meta_block->meta_size);
-	// ft_printf("*-subz meta-data-*\n");
-	// ft_printf("adr: %p - TYPE: %d - METASIZE: %d\n", subz_meta_block->adr, subz_meta_block->meta_type, subz_meta_block->size);
-	// ft_printf("**********************\n\n");
 	return (1);
 }
 
-// void	*map_custom_zone(t_vault *vault)
-// {
-// 	void	*new_zone;
-// 	int		i;
+void	*map_large_zone(t_vault *vault, size_t size)
+{
+	void	*new_zone;
+	int		i;
 
-// 	i = 0;
-// 	new_zone = mmap(NULL, TINY_ZONE_SIZE, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-// 	while(i < vault->meta_items_max)
-// 	{
-// 		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
-// 			break;
-// 		i++;
-// 	}
-// 	vault->tab_meta[i].adr = new_zone;
-// 	vault->tab_meta[i].meta_type = TINY_ZONE;
-// 	vault->tab_meta[i].meta_size = TINY_ZONE_SIZE;
-// 	ft_printf("\n****NEW TINY ALLOC****\n");
-// 	ft_printf("adr: %p - TYPE: TINY - SIZE: %d\n", new_zone, TINY_ZONE_SIZE);
-// 	ft_printf("**********************\n\n");
-// 	return new_zone;
-// }
+	i = 0;
+	new_zone = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	while(i < vault->meta_items_max)
+	{
+		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
+			break;
+		i++;
+	}
+	vault->tab_meta[i].adr = new_zone;
+	vault->tab_meta[i].meta_type = LARGE_ZONE;
+	vault->tab_meta[i].size = size;
+	ft_printf("\n****NEW TINY ALLOC****\n");
+	ft_printf("adr: %p - TYPE: LARGE_ZONE - SIZE: %d\n", vault->tab_meta[i].adr, vault->tab_meta[i].size);
+	ft_printf("**********************\n\n");
+	return new_zone;
+}

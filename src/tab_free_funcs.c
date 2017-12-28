@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 18:22:53 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 12:48:56 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 17:44:49 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	tab_free_cleaner()
 		// ft_printf("check %p\n", vault.tab_free[i].ptr);
 		if (vault.tab_free[i].ptr != NULL &&\
 		(vault.tab_free[i].ptr->meta_type !=  TINY_SUBZ_FREE &&\
-		 vault.tab_free[i].ptr->meta_type !=  SMALL_SUBZ_FREE &&\
-		 vault.tab_free[i].ptr->meta_type !=  LARGE_SUBZ_FREE))
+		 vault.tab_free[i].ptr->meta_type !=  SMALL_SUBZ_FREE))
 		{
 			ft_printf("VUUUUUU %p\n", vault.tab_free[i].ptr);
 			vault.tab_free[i].ptr = NULL;

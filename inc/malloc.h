@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 16:13:28 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 18:03:45 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ typedef enum			e_meta_type
 	TINY_SUBZ,
 	SMALL_SUBZ_FREE,
 	SMALL_SUBZ,
-	// LARGE_SUBZ_FREE,
-	// LARGE_SUBZ,
-	// CUSTOM_ZONE,
-	// CUSTOM_SUBZ
 }						t_meta_type;
 
 typedef enum			e_meta_size //from osx implem
@@ -52,6 +48,7 @@ typedef enum			e_meta_size //from osx implem
 	SMALL_ZONE_SIZE		= 16777216, //(128 * 16384 -> 16mo)
 	LARGE_ALLOC_MIN		= 1572865,
 }						t_meta_size;
+
 // typedef enum			e_meta_size
 // {
 // 	NULL_SIZE			= 0,
@@ -113,7 +110,8 @@ t_meta_data		*get_free_meta_block(t_vault *vault);
 void			*create_tab_meta(t_vault *vault);
 
 //zone
-void			*check_meta_find_space(t_vault *vault, size_t size);
+void			*check_meta_find_subz(t_vault *vault, size_t size);
+void			*check_meta_find_custom(size_t size);
 void			*find_zone_space(t_vault *vault, size_t size);
 
 //subz
@@ -121,7 +119,8 @@ void			*find_free_subz(t_vault *vault, size_t size);
 
 //map
 void			*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size);
-void			*map_tiny_zone(t_vault *vault);
+// void			*map_tiny_zone(t_vault *vault);
+void			*map_large_zone(t_vault *vault, size_t size);
 
 //free
 void			ft_free(void *ptr);
