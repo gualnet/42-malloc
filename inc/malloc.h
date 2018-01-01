@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 18:03:45 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 19:50:37 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ extern t_vault	vault;
 void			*ft_malloc(size_t size);
 
 //meta_data
-void			*check_meta_data(t_vault *vault, size_t size);
+void			*check_meta_data(t_vault *vault);
 t_meta_type		size_to_zone_type(size_t size);
 t_meta_size		size_to_zone_size(size_t size);
 t_meta_type		size_to_subz_type(size_t size, int flag_free);
@@ -119,8 +119,8 @@ void			*find_free_subz(t_vault *vault, size_t size);
 
 //map
 void			*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size);
-// void			*map_tiny_zone(t_vault *vault);
 void			*map_large_zone(t_vault *vault, size_t size);
+void			*subdiv_subz(t_vault *vault, t_meta_data *meta_block, size_t size);
 
 //free
 void			ft_free(void *ptr);

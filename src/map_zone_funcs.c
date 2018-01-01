@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 18:15:21 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 19:50:44 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 		ret = map_non_custom_zone(vault, meta_block, size);
 	if (ret == -1)
 	{
-		ft_printf("map non cust cas 1: \n");
+		// ft_printf("map non cust cas 1: \n");
 		// printBlockMetaInfo(meta_block);
 		return (NULL);
 	}
-	ft_printf("map non cust cas 2: %d - %d\n", meta_block->size, size);
+	// ft_printf("map non cust cas 2: %d - %d\n", meta_block->size, size);
 	if (meta_block->size > size)
 	{
-		ft_printf("INFO: taille de block plus grand que size -> subdiv_subz()\n");
+		// ft_printf("INFO: taille de block plus grand que size -> subdiv_subz()\n");
 		subdiv_subz(vault, meta_block, size);
 	}
 	// printBlockMetaInfo(meta_block);
@@ -44,6 +44,7 @@ void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 */
 void	*subdiv_subz(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
+	ft_printf("\n\n\t========SUBDIV NEEDED=========\n\n");
 	ft_printf("vault: %p\n", vault);
 	ft_printf("meta_block: %p\n", meta_block);
 	ft_printf("size: %d\n", size);
@@ -62,7 +63,7 @@ int 	map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (new_zone == MAP_FAILED)
 	{
-		ft_printf("err[mzf000]: mmap failure\n");
+		// ft_printf("err[mzf000]: mmap failure\n");
 		return (-1);
 	}
 	meta_block->adr = new_zone;
@@ -93,8 +94,8 @@ void	*map_large_zone(t_vault *vault, size_t size)
 	vault->tab_meta[i].adr = new_zone;
 	vault->tab_meta[i].meta_type = LARGE_ZONE;
 	vault->tab_meta[i].size = size;
-	ft_printf("\n****NEW TINY ALLOC****\n");
-	ft_printf("adr: %p - TYPE: LARGE_ZONE - SIZE: %d\n", vault->tab_meta[i].adr, vault->tab_meta[i].size);
-	ft_printf("**********************\n\n");
+	// ft_printf("\n****NEW TINY ALLOC****\n");
+	// ft_printf("adr: %p - TYPE: LARGE_ZONE - SIZE: %d\n", vault->tab_meta[i].adr, vault->tab_meta[i].size);
+	// ft_printf("**********************\n\n");
 	return new_zone;
 }

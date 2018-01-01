@@ -6,14 +6,14 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
-#    Updated: 2017/12/21 18:38:22 by galy             ###   ########.fr        #
+#    Updated: 2017/12/29 13:59:08 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	ft_malloc
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-# CFLAGS		=	-Wall -Werror -Wextra
+# CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFLAG		=	-L./libft -lftall
 
@@ -25,7 +25,7 @@ DIRFTPRINTF	=	./ft_printf
 
 SRCDIR		=	src
 OBJDIR		=	objs
-INCDIR		=	inc
+INCDIR		=	./inc
 LIBDIR		=	libft
 
 ####COLOR-SET####
@@ -52,8 +52,8 @@ SRC			=	\
 				find_zone.c			map_zone_funcs.c	\
 				free.c				tab_free_funcs.c	\
 				\
-				test0.c		test1.c						\
-				test1_1.c								\
+				# test0.c		test1.c						\
+				# test1_1.c								\
 
 				# find_subz.c \
 				# map_subz_funcs.c	\
@@ -68,10 +68,10 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 ####RULEZ####
 
-all			:	make_lib OBJD  $(NAME)
+all			:	make_lib OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
-	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./src/test_perso.c $^ -o $(NAME)
 	@printf "$(CUR_RST)$(CGREEN)BUILD $(NAME) : SUCCESS$(CRESET)$(CUR_CLR)\n"
 
 clean		:
@@ -87,6 +87,7 @@ fclean		: clean
 
 re			: fclean all
 
+
 ####MORE_RULEZ####
 
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
@@ -99,5 +100,24 @@ make_lib	:
 OBJD		:
 	@mkdir -p $(OBJDIR)
 
-test		:
-	$(CC) $(CFLAGS) -I$(INCDIR) -c 
+
+####TEST_RULEZ####
+
+# test1_1		:	$(OBJP)
+test1_1		:	make_lib OBJD $(OBJP)
+	$(CC) $(CFLAGS) $(LIBFLAG) -I$(INCDIR) ./src/test1_1.c $^ -o $(NAME)
+
+test0		:
+	@make make_lib
+	@make OBJD
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./src/test0.c $^ -o $(NAME)
+
+test1		:
+	@make make_lib
+	@make OBJD
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./src/test1.c $^ -o $(NAME)
+
+
+test_perso	:
+	@make make_lib
+	@make OBJD

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 18:22:53 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 17:44:49 by galy             ###   ########.fr       */
+/*   Updated: 2017/12/28 19:40:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		get_tabfree_free_block(void)
 	i = 0;
 	while (i < vault.tabfree_items_max)
 	{
-		ft_printf("recherche...");
+		// ft_printf("recherche...");
 		// ft_printf("%p\n", vault.tab_free[i].ptr);
 		if (vault.tab_free[i].ptr == NULL)
 		{
@@ -28,7 +28,7 @@ int		get_tabfree_free_block(void)
 		}
 		i++;
 	}
-	ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
+	// ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
 	// printFreeBlockInfo(vault.tab_free[i]);
 	// return (&vault.tab_free[i]);
 	return (-1);
@@ -46,7 +46,7 @@ void	tab_free_cleaner()
 		(vault.tab_free[i].ptr->meta_type !=  TINY_SUBZ_FREE &&\
 		 vault.tab_free[i].ptr->meta_type !=  SMALL_SUBZ_FREE))
 		{
-			ft_printf("VUUUUUU %p\n", vault.tab_free[i].ptr);
+			// ft_printf("VUUUUUU %p\n", vault.tab_free[i].ptr);
 			vault.tab_free[i].ptr = NULL;
 		}
 		i++;
