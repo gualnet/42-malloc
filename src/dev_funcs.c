@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 11:41:19 by galy              #+#    #+#             */
-/*   Updated: 2017/12/26 16:16:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 21:06:01 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,43 @@
 
 void	printAllTabMetaInfo(t_vault *vault, int interMax)
 {
-	ft_printf("\n****META TABLE INFO****\n");
+	// printf("\n****META TABLE INFO****\n");
 	int i = 0;
 	if (interMax == 0)
 		interMax = vault->meta_items_max;
 
 	while (i < interMax - 1)
 	{
-		ft_printf("[%p]tab_meta[%d] : adr:%p - ", &vault->tab_meta[i], i, vault->tab_meta[i].adr);
+		// printf("[%p]tab_meta[%d] : adr:%p - ", &vault->tab_meta[i], i, vault->tab_meta[i].adr);
 		if (vault->tab_meta[i].meta_type == FREE_BLOCK)
-		ft_printf("Type: FREE_BLOCK - ");
+		// printf("Type: FREE_BLOCK - ");
 		if (vault->tab_meta[i].meta_type == TINY_ZONE)
-		ft_printf("Type: TINY_ZONE - ");
+		// printf("Type: TINY_ZONE - ");
 		if (vault->tab_meta[i].meta_type == SMALL_ZONE)
-		ft_printf("Type: SMALL_ZONE - ");
+		// printf("Type: SMALL_ZONE - ");
 		if (vault->tab_meta[i].meta_type == LARGE_ZONE)
-		ft_printf("Type: LARGE_ZONE - ");
+		// printf("Type: LARGE_ZONE - ");
 		if (vault->tab_meta[i].meta_type == TINY_SUBZ_FREE)
-		ft_printf("Type: TINY_SUBZ_FREE - ");
+		// printf("Type: TINY_SUBZ_FREE - ");
 		if (vault->tab_meta[i].meta_type == TINY_SUBZ)
-		ft_printf("Type: TINY_SUBZ - ");
+		// printf("Type: TINY_SUBZ - ");
 		if (vault->tab_meta[i].meta_type == SMALL_SUBZ_FREE)
-		ft_printf("Type: SMALL_SUBZ_FREE - ");
+		// printf("Type: SMALL_SUBZ_FREE - ");
 		if (vault->tab_meta[i].meta_type == SMALL_SUBZ)
-		ft_printf("Type: SMALL_SUBZ - ");
+		// printf("Type: SMALL_SUBZ - ");
 
-		ft_printf("MetaSize: %d", vault->tab_meta[i].meta_size);
-		ft_printf(" - Size: %d\n", vault->tab_meta[i].size);
+		// printf("MetaSize: %u", vault->tab_meta[i].meta_size);
+		// printf(" - Size: %zu\n", vault->tab_meta[i].size);
 
 		i++;
 	}
-	ft_printf("\t****************\t****************\t****************\n\n");
-	// ft_printf("\n************* END Of dev func *************\n");
+	// printf("\t****************\t****************\t****************\n\n");
+	// // printf("\n************* END Of dev func *************\n");
 }
 
 void	printTabFree(int interMax)
 {
-	ft_printf("\n****TAB FREE INFO****\n");
+	// printf("\n****TAB FREE INFO****\n");
 	int i;
 
 	i = 0;
@@ -59,79 +59,81 @@ void	printTabFree(int interMax)
 	
 	while (i < interMax)
 	{
-		ft_printf("[%p]tab_free[%i] - ", &vault.tab_free[i], i);
-		ft_printf("ptr [%p] - ", vault.tab_free[i].ptr);
+		// printf("[%p]tab_free[%i] - ", &vault.tab_free[i], i);
+		// printf("ptr [%p] - ", vault.tab_free[i].ptr);
 		if (vault.tab_free[i].ptr != NULL)
 		{
-			ft_printf("adr-ptr [%p] - ", vault.tab_free[i].ptr->adr);
-			if (vault.tab_free[i].ptr->meta_type == FREE_BLOCK)
-			ft_printf("Type: FREE_BLOCK - ");
-			if (vault.tab_free[i].ptr->meta_type == TINY_ZONE)
-			ft_printf("Type: TINY_ZONE - ");
-			if (vault.tab_free[i].ptr->meta_type == SMALL_ZONE)
-			ft_printf("Type: SMALL_ZONE - ");
-			if (vault.tab_free[i].ptr->meta_type == LARGE_ZONE)
-			ft_printf("Type: LARGE_ZONE - ");
-			if (vault.tab_free[i].ptr->meta_type == TINY_SUBZ_FREE)
-			ft_printf("Type: TINY_SUBZ_FREE - ");
-			if (vault.tab_free[i].ptr->meta_type == TINY_SUBZ)
-			ft_printf("Type: TINY_SUBZ - ");
-			if (vault.tab_free[i].ptr->meta_type == SMALL_SUBZ_FREE)
-			ft_printf("Type: SMALL_SUBZ_FREE - ");
-			if (vault.tab_free[i].ptr->meta_type == SMALL_SUBZ)
-			ft_printf("Type: SMALL_SUBZ - ");
-			ft_printf("size [%d]", vault.tab_free[i].ptr->size);
+			// printf("adr-ptr [%p] - ", vault.tab_free[i].ptr->adr);
+			// if (vault.tab_free[i].ptr->meta_type == FREE_BLOCK)
+			// printf("Type: FREE_BLOCK - ");
+			// if (vault.tab_free[i].ptr->meta_type == TINY_ZONE)
+			// printf("Type: TINY_ZONE - ");
+			// if (vault.tab_free[i].ptr->meta_type == SMALL_ZONE)
+			// printf("Type: SMALL_ZONE - ");
+			// if (vault.tab_free[i].ptr->meta_type == LARGE_ZONE)
+			// printf("Type: LARGE_ZONE - ");
+			// if (vault.tab_free[i].ptr->meta_type == TINY_SUBZ_FREE)
+			// printf("Type: TINY_SUBZ_FREE - ");
+			// if (vault.tab_free[i].ptr->meta_type == TINY_SUBZ)
+			// printf("Type: TINY_SUBZ - ");
+			// if (vault.tab_free[i].ptr->meta_type == SMALL_SUBZ_FREE)
+			// printf("Type: SMALL_SUBZ_FREE - ");
+			// if (vault.tab_free[i].ptr->meta_type == SMALL_SUBZ)
+			// printf("Type: SMALL_SUBZ - ");
+			// printf("size [%zu]", vault.tab_free[i].ptr->size);
 		}
-		ft_printf("\n");
+		// printf("\n");
 		i++;
 	}
 }
 
 void	printBlockMetaInfo(t_meta_data *block)
 {
-	ft_printf("Block Info {%p}: ", block);
-	ft_printf("adr{%p} | ", block->adr);
-	if (block->meta_type == FREE_BLOCK)
-		ft_printf("Type: FREE_BLOCK | ");
-	if (block->meta_type == TINY_ZONE)
-		ft_printf("Type: TINY_ZONE | ");
-	if (block->meta_type == SMALL_ZONE)
-		ft_printf("Type: SMALL_ZONE | ");
-	if (block->meta_type == LARGE_ZONE)
-		ft_printf("Type: LARGE_ZONE | ");
-	if (block->meta_type == TINY_SUBZ)
-		ft_printf("Type: TINY_SUBZ | ");
-	if (block->meta_type == TINY_SUBZ_FREE)
-		ft_printf("Type: TINY_SUBZ_FREE | ");
-	if (block->meta_type == SMALL_SUBZ)
-		ft_printf("Type: SMALL_SUBZ | ");
-	if (block->meta_type == SMALL_SUBZ_FREE)
-		ft_printf("Type: SMALL_SUBZ_FREE | ");
-	// ft_printf("type{%d} | ", block->meta_type);
-	ft_printf("metasize{%d} | ", block->meta_size);
-	ft_printf("size{%d}", block->size);
-	ft_printf("\n****************\n");
+	block = NULL;
+	// printf("Block Info {%p}: ", block);
+	// printf("adr{%p} | ", block->adr);
+	// if (block->meta_type == FREE_BLOCK)
+		// printf("Type: FREE_BLOCK | ");
+	// if (block->meta_type == TINY_ZONE)
+		// printf("Type: TINY_ZONE | ");
+	// if (block->meta_type == SMALL_ZONE)
+		// printf("Type: SMALL_ZONE | ");
+	// if (block->meta_type == LARGE_ZONE)
+		// printf("Type: LARGE_ZONE | ");
+	// if (block->meta_type == TINY_SUBZ)
+		// printf("Type: TINY_SUBZ | ");
+	// if (block->meta_type == TINY_SUBZ_FREE)
+		// printf("Type: TINY_SUBZ_FREE | ");
+	// if (block->meta_type == SMALL_SUBZ)
+		// printf("Type: SMALL_SUBZ | ");
+	// if (block->meta_type == SMALL_SUBZ_FREE)
+		// printf("Type: SMALL_SUBZ_FREE | ");
+	// // printf("type{%d} | ", block->meta_type);
+	// printf("metasize{%d} | ", block->meta_size);
+	// printf("size{%zu}", block->size);
+	// printf("\n****************\n");
 }
 
-void	printFreeBlockInfo(t_free_block block)
+void	printfreeBlockInfo(t_free_block block)
 {
-	ft_printf("Block Info {%p}: ", block);
-	// ft_printf("metadata_num{%p} | ", block.metadata_num);
-	// ft_printf("adr{%p} | ", block.adr);
+	(void)block;
+	// printf("Block Info {%p}: ", &block);
+	// // printf("metadata_num{%p} | ", block.metadata_num);
+	// // printf("adr{%p} | ", block.adr);
 	// if (block.meta_type == FREE_BLOCK)
-	// 	ft_printf("Type: FREE_BLOCK | ");
+	// 	// printf("Type: FREE_BLOCK | ");
 	// if (block.meta_type == TINY_ZONE)
-	// 	ft_printf("Type: TINY_ZONE | ");
+	// 	// printf("Type: TINY_ZONE | ");
 	// if (block.meta_type == SMALL_ZONE)
-	// 	ft_printf("Type: SMALL_ZONE | ");
+	// 	// printf("Type: SMALL_ZONE | ");
 	// if (block.meta_type == LARGE_ZONE)
-	// 	ft_printf("Type: LARGE_ZONE | ");
+	// 	// printf("Type: LARGE_ZONE | ");
 	// if (block.meta_type == TINY_SUBZ)
-	// 	ft_printf("Type: TINY_SUBZ | ");
+	// 	// printf("Type: TINY_SUBZ | ");
 	// if (block.meta_type == SMALL_SUBZ)
-	// 	ft_printf("Type: SMALL_SUBZ | ");
-	// // ft_printf("type{%d} | ", block->meta_type);
-	// ft_printf("size{%d}", block.size);
-	ft_printf("\n****************\n");
+	// 	// printf("Type: SMALL_SUBZ | ");
+	// // // printf("type{%d} | ", block->meta_type);
+	// // printf("size{%d}", block.size);
+	// printf("\n****************\n");
 }
 

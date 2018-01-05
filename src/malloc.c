@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 19:45:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 21:00:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 t_vault vault = {};
 
 // mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-void    *ft_malloc(size_t size)
+void    *malloc(size_t size)
 {
-	// ft_printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
+	puts("plop");
+	// // printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
+	// // printf("PERSO\n");
+	// // printf("PERSO\n");
 	pthread_mutex_t mutex_lock; //??
 	void			*adr;
-	
 	
 	adr = NULL;
 	if (size <= 0)
@@ -31,7 +33,7 @@ void    *ft_malloc(size_t size)
 		return (NULL);
 	if (vault.meta_items_max == INT_MAX - 1)
 		return NULL;
-	// ft_printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
+	// // printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
 // ---------------------
 	if (size <= SMALL_ALLOC_MAX)
 		adr = check_meta_find_subz(&vault, size);
@@ -44,6 +46,6 @@ void    *ft_malloc(size_t size)
 	pthread_mutex_unlock(&mutex_lock); //??
 	// printAllTabMetaInfo(&vault, 12);
 	// printTabFree(6);
-	// printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
+	// // printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
 	return adr;
 }

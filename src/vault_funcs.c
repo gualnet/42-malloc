@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 15:09:58 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 19:41:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 21:00:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	*create_tab_meta(t_vault *vault)
 	vault->tab_meta_npage = META_INCRE_ALLOC_PAGE;
 	vault->meta_items_max = \
 	(getpagesize() * vault->tab_meta_npage) / sizeof(t_meta_data);
-	// ft_printf("Max items: %d\n", vault->meta_items_max);
+	// // printf("Max items: %d\n", vault->meta_items_max);
 	while (i < vault->meta_items_max)
 	{
 		vault->tab_meta[i].meta_type = FREE_BLOCK;
 		vault->tab_meta[i].meta_size = NULL_SIZE;
 		i++;
 	}
-	// ft_printf("MONVAULT: %p\n", vault);
+	// // printf("MONVAULT: %p\n", vault);
 	// printAllTabMetaInfo(vault, 0);
 	return vault;
 }

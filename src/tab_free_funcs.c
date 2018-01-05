@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 18:22:53 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 19:40:10 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 21:00:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int		get_tabfree_free_block(void)
 	i = 0;
 	while (i < vault.tabfree_items_max)
 	{
-		// ft_printf("recherche...");
-		// ft_printf("%p\n", vault.tab_free[i].ptr);
+		// // printf("recherche...");
+		// // printf("%p\n", vault.tab_free[i].ptr);
 		if (vault.tab_free[i].ptr == NULL)
 		{
-			ft_printf("(get tab free block)return i[%d]: ", i);
+			// printf("(get tab free block)return i[%d]: ", i);
 			return (i);
 		}
 		i++;
 	}
-	// ft_printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
-	// printFreeBlockInfo(vault.tab_free[i]);
+	// // printf("+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_");
+	// // printfreeBlockInfo(vault.tab_free[i]);
 	// return (&vault.tab_free[i]);
 	return (-1);
 }
@@ -41,12 +41,12 @@ void	tab_free_cleaner()
 	i = 0;
 	while (i < vault.tabfree_items_max)
 	{
-		// ft_printf("check %p\n", vault.tab_free[i].ptr);
+		// // printf("check %p\n", vault.tab_free[i].ptr);
 		if (vault.tab_free[i].ptr != NULL &&\
 		(vault.tab_free[i].ptr->meta_type !=  TINY_SUBZ_FREE &&\
 		 vault.tab_free[i].ptr->meta_type !=  SMALL_SUBZ_FREE))
 		{
-			// ft_printf("VUUUUUU %p\n", vault.tab_free[i].ptr);
+			// // printf("VUUUUUU %p\n", vault.tab_free[i].ptr);
 			vault.tab_free[i].ptr = NULL;
 		}
 		i++;
@@ -61,7 +61,7 @@ void	merge_free_subz(int free_idx, int meta_idx)
 	
 	if (vault.tab_free[free_idx].ptr->adr < vault.tab_meta[meta_idx].adr)
 	{
-		ft_printf("DEFRAG MERGIN CAS 1\n");
+		// printf("DEFRAG MERGIN CAS 1\n");
 		blksrc = vault.tab_free[free_idx].ptr;
 		blkdst = &vault.tab_meta[meta_idx];
 
@@ -75,7 +75,7 @@ void	merge_free_subz(int free_idx, int meta_idx)
 	}
 	else
 	{
-		ft_printf("DEFRAG MERGIN CAS 2\n");
+		// printf("DEFRAG MERGIN CAS 2\n");
 		blksrc = &vault.tab_meta[meta_idx];
 		blkdst = vault.tab_free[free_idx].ptr;
 

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:04 by galy              #+#    #+#             */
-/*   Updated: 2017/12/20 15:04:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 21:00:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // 	}
 // 	while(i < vault->meta_items_max)
 // 	{
-// 		ft_printf("vault->tab_meta[%d]: %ld\n", i, vault->tab_meta[i].meta_type);
+// 		// printf("vault->tab_meta[%d]: %ld\n", i, vault->tab_meta[i].meta_type);
 		
 // 		i++;
 // 	}

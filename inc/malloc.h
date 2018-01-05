@@ -6,14 +6,14 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:54 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 19:50:37 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 19:31:45 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
 
-#include <stdlib.h>
+// #include <stdlib.h>
 #include <sys/mman.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -95,7 +95,7 @@ typedef struct			s_vault
 extern t_vault	vault;
 
 //main
-void			*ft_malloc(size_t size);
+void			*malloc(size_t size);
 
 //meta_data
 void			*check_meta_data(t_vault *vault);

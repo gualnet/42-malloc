@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2017/12/28 19:44:50 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/04 21:00:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 	if (vault->tab_meta[i].meta_type != FREE_BLOCK &&\
 	i == vault->meta_items_max)
 	{
-		// ft_printf("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_\n\n");
+		// printf("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_\n\n");
 	}
-	// ft_printf("(get free meta block)return: ");
+	// // printf("(get free meta block)return: ");
 	// printBlockMetaInfo(&vault->tab_meta[i]);
 	return (&(vault->tab_meta[i]));
 }
@@ -88,18 +88,20 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 */
 void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
+	// printf("meta set\n");
+	sleep(1);
 	int 		old_size;
 	t_meta_data	*free_block;
 	t_free_block	*tabfree_block;
 
 	
-	// ft_printf("\n\tCALL META_SET_NEW_SIZE\n");
-	// ft_printf("bf old block data: ");
+	// // printf("\n\tCALL META_SET_NEW_SIZE\n");
+	// // printf("bf old block data: ");
 	// printBlockMetaInfo(meta_block);
 	old_size = meta_block->size;
 	meta_block->size = size;
 	meta_block->meta_type = size_to_subz_type(size, 0);
-	// ft_printf("af old block data: ");
+	// // printf("af old block data: ");
 	// printBlockMetaInfo(meta_block);
 	// --------------------
 	//à verifier..
@@ -112,28 +114,28 @@ void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 	tabfree_block->ptr = free_block;
 	// printAllTabMetaInfo(vault, 8);
 	// printTabFree(8);
-	// ft_printf("af old block data: ");
+	// // printf("af old block data: ");
 	// printBlockMetaInfo(free_block);
 	//-----------------..
 }
 
 void		*check_meta_data(t_vault *vault)
 {
-	// ft_printf("check_meta_data - size: %d\n", size);
+	// // printf("check_meta_data - size: %d\n", size);
 	
 	if (vault->tab_meta == NULL)
 	{
-		// ft_printf("*************\n");
-		// ft_printf("std1 &vault: %p | std1 vault: %p\n", &vault, vault);
-		// ft_printf("*************\n");
+		// // printf("*************\n");
+		// // printf("std1 &vault: %p | std1 vault: %p\n", &vault, vault);
+		// // printf("*************\n");
 		vault = create_tab_meta(vault);
-		// ft_printf("std2 &vault: %p | std2 vault: %p\n", &vault, vault);
-		// ft_printf("*************\n\n");
+		// // printf("std2 &vault: %p | std2 vault: %p\n", &vault, vault);
+		// // printf("*************\n\n");
 		if (vault->tab_free == NULL)
 			create_tab_free();
 	}
-	// ft_printf("std3 &vault: %p | std3 vault: %p\n", &vault, vault);
-	// ft_printf("*************\n\n");
+	// // printf("std3 &vault: %p | std3 vault: %p\n", &vault, vault);
+	// // printf("*************\n\n");
 
 	// return find_free_subz(vault, size);
 	return vault;
