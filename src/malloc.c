@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/04 21:00:34 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/05 15:29:25 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ t_vault vault = {};
 // mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 void    *malloc(size_t size)
 {
+	ft_putchar('A');
+	
+	// printAllTabMetaInfo(&vault, 12);
 	puts("plop");
 	// // printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
 	// // printf("PERSO\n");
@@ -44,7 +47,6 @@ void    *malloc(size_t size)
 	tab_free_cleaner();
 // ---------------------
 	pthread_mutex_unlock(&mutex_lock); //??
-	// printAllTabMetaInfo(&vault, 12);
 	// printTabFree(6);
 	// // printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
 	return adr;

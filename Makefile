@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
-#    Updated: 2018/01/04 21:00:44 by galy             ###   ########.fr        #
+#    Updated: 2018/01/05 11:38:14 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYMLINK		=	libft_malloc.so
 CC			=	gcc
 
 # CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-CFLAGS		=	-Wall -Werror -Wextra
+# CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFLAG		=	-L./libft -lftall
 
