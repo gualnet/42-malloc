@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:52:42 by galy              #+#    #+#             */
-/*   Updated: 2018/01/11 18:36:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/11 19:36:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	printCreateMetaTabCR()
 	ft_printf("taille de mata struct[%d]\n", sizeof(t_meta_data));
 	ft_printf("(getpagesize()[%d] * vault.tab_meta_npage[%d]) / sizeof(t_meta_data)[%d]\n", getpagesize(), vault.tab_meta_npage, sizeof(t_meta_data));
 	ft_printf("Nombre d'items max[%d]\n", vault.meta_items_max);
-
 }
 
 void	printCreateFreeTabCR()

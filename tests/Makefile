@@ -12,17 +12,38 @@ DIRFTPRINTF	=	../ft_printf
 ####DIRECTORY####
 
 SRCDIR		=	../src
-OBJDIR		=	objs
+OBJDIR		=	testobjs
 INCDIR		=	../inc
 LIBDIR		=	../libft
 
 
-all		:
+####FUNC####
+
+OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+
+
+all		: OBJD tests
+
+tests	:
+#./unit_test_malloc.c ../src/malloc.c ../src/meta_data_init.c ../src/dev_func.c ../src/request_tiny_small.c
 	@$(CC) $(CFLAGS) -o test0 ./test0.c
 	@$(CC) $(CFLAGS) -o test1 ./test1.c
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_meta_data_initializer.c ../src/meta_data_init.c ../src/dev_func.c -o unit_test_meta_data_initializer
-	
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_malloc.c ../src/malloc.c ../src/meta_data_init.c ../src/dev_func.c ../src/request_tiny_small.c -o unit_test_malloc
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_malloc.c ../src/malloc.c ../src/meta_data_init.c ../src/dev_func.c ../src/request_tiny_small.c -o unit_test_request_tiny_small
 
 fclean	:
-	rm test0
-	rm test1
+	rm -rf $(OBJDIR)
+	@rm test0
+	@rm test1
+	@rm unit_test_meta_data_initializer
+	@rm unit_test_malloc
+
+####MORE_RULEZ####
+
+$(OBJDIR)/%.o	:	$(SRCDIR)/%.c
+	@$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD ASM OBJECTS : $<$(CRESET)$(CUR_CLR)"
+
+OBJD		:
+	@mkdir -p $(OBJDIR)

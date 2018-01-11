@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/11 18:32:26 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/11 20:32:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,13 @@ void    *malloc(size_t size);
 
 //meta_data_init.c
 int		meta_data_initializer();
-int		create_tab_meta(void);
-int		create_tab_free(void);
+int		create_tab_meta(void);	//interne - test
+int		create_tab_free(void);	//interne - test
+
+//request_tiny_small.c
+int		request_tiny_small(size_t size);
+
+
 
 //dev_func.c
 void	printCreateMetaTabCR();

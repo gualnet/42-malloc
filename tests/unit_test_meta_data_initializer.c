@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:24:29 by galy              #+#    #+#             */
-/*   Updated: 2018/01/11 18:27:23 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/11 19:31:51 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int main()
 // test1: appel de create_tab_meta()
 int test1()
 {
+	
 	//params dinitialisaton du test
 	vault.tab_meta = NULL;
 		//------//
@@ -62,6 +63,7 @@ int test1()
 	if (DEBUG_MALLOC)
 		printCreateMetaTabCR();
 	// ft_printf("tab adress : %p\n", vault.tab_meta);
+	
 	return (1);
 }
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
-/*       ;                                                                     */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adr.c                                           :+:      :+:    :+:   */
+/*   adr.c                                           	:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../inc/malloc.h"
 
-t_vault vault = {};
+// t_vault vault = {};
 
 void    *malloc(size_t size)
 {
@@ -20,9 +20,8 @@ void    *malloc(size_t size)
 	void			*adr;
 
 	adr = NULL;
-	if (pthread_mutex_init(&mutex, 0) != 0 || size > 0)
+	if (pthread_mutex_init(&mutex, 0) != 0 || size <= 0)
 		return (adr);
-
 //----------//----------//----------//----------//
 	pthread_mutex_lock(&mutex);
 //----------//----------//----------//----------//
@@ -33,6 +32,7 @@ void    *malloc(size_t size)
 	if (size <= SMALL_ALLOC_MAX)
 	{
 		// goto tiny / small zone + subzone mapping
+		request_tiny_small();
 	}
 	else
 	{
