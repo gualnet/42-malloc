@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*       ;                                                                     */
 /*                                                        :::      ::::::::   */
-/*   malloc.c                                           :+:      :+:    :+:   */
+/*   adr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/07 10:45:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/05 15:29:25 by galy             ###   ########.fr       */
+/*   Created: 2018/01/11 13:14:26 by galy              #+#    #+#             */
+/*   Updated: 2018/01/11 14:57:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,33 @@
 
 t_vault vault = {};
 
-// mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 void    *malloc(size_t size)
 {
-	ft_putchar('A');
-	
-	// printAllTabMetaInfo(&vault, 12);
-	puts("plop");
-	// // printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
-	// // printf("PERSO\n");
-	// // printf("PERSO\n");
-	pthread_mutex_t mutex_lock; //??
+	pthread_mutex_t	mutex;
 	void			*adr;
-	
-	adr = NULL;
-	if (size <= 0)
-		return (NULL);
-	pthread_mutex_lock(&mutex_lock); //??
 
-	if (check_meta_data(&vault) == NULL) // check/create meta-data tab
-		return (NULL);
-	if (vault.meta_items_max == INT_MAX - 1)
-		return NULL;
-	// // printf("Adr de tab_meta [%p]\n", &(vault.tab_meta));
-// ---------------------
+	adr = NULL;
+	if (pthread_mutex_init(&mutex, 0) != 0 || size > 0)
+		return (adr);
+
+//----------//----------//----------//----------//
+	pthread_mutex_lock(&mutex);
+//----------//----------//----------//----------//
+	//meta data create
+	meta_data_initializer();
+//----------//----------//----------//----------//
 	if (size <= SMALL_ALLOC_MAX)
-		adr = check_meta_find_subz(&vault, size);
+	{
+		// goto tiny / small zone + subzone mapping
+	}
 	else
-		adr = check_meta_find_custom(size);
-	
-// ---------------------
-	tab_free_cleaner();
-// ---------------------
-	pthread_mutex_unlock(&mutex_lock); //??
-	// printTabFree(6);
-	// // printf("\n\t***CALL ft_malloc(size=%zu)*** vault=>%p\n", size, &vault);
+	{
+		//goto large zone mapping
+	}
+//----------//----------//----------//----------//
+	//free cleaner pass
+//----------//----------//----------//----------//
+	// pthread unlock
+//----------//----------//----------//----------//
 	return adr;
 }

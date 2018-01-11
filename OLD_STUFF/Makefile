@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/01/11 16:39:58 by galy             ###   ########.fr        #
+#    Created: 2017/12/07 10:01:02 by galy              #+#    #+#              #
+#    Updated: 2018/01/05 11:38:14 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,11 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				malloc.c		meta_data_init.c
-
+				malloc.c			dev_funcs.c			\
+				vault_funcs.c		meta_data_funcs.c	\
+				find_zone.c			map_zone_funcs.c	\
+				free.c				tab_free_funcs.c	\
+				
 
 ####FUNC####
 
