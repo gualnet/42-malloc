@@ -27,7 +27,8 @@ void    *malloc(size_t size)
 	pthread_mutex_lock(&mutex);
 //----------//----------//----------//----------//
 	//meta data create
-	meta_data_initializer();
+	if (meta_data_initializer() != 1)
+		return (NULL);
 //----------//----------//----------//----------//
 	if (size <= SMALL_ALLOC_MAX)
 	{

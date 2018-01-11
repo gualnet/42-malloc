@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/11 17:00:09 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/11 18:32:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #include "../inc/get_next_line.h"
 #include "../inc/libft.h"
 
+
+#define DEBUG_MALLOC 1
 #define META_INCRE_ALLOC_PAGE 2 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
@@ -71,7 +73,8 @@ typedef struct			s_vault
 	t_free_block		*tab_free;
 	unsigned int		tab_meta_npage;
 	unsigned int		meta_items_max;
-	unsigned int		tabfree_items_max;
+	unsigned int		tab_free_npage;
+	unsigned int		free_items_max;
 }						t_vault;
 
 //global
@@ -81,11 +84,13 @@ extern t_vault	vault;
 void    *malloc(size_t size);
 
 //meta_data_init.c
-void	meta_data_initializer();
-void	*create_tab_meta(void);
+int		meta_data_initializer();
+int		create_tab_meta(void);
+int		create_tab_free(void);
 
 //dev_func.c
-void	printCreateTabCR();
+void	printCreateMetaTabCR();
+void	printCreateFreeTabCR();
 
 
 #endif
