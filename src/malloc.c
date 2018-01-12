@@ -18,8 +18,10 @@ void    *malloc(size_t size)
 {
 	pthread_mutex_t	mutex;
 	void			*adr;
+	int				idx;
 
 	adr = NULL;
+	idx = 0;
 	if (pthread_mutex_init(&mutex, 0) != 0 || size <= 0)
 		return (adr);
 //----------//----------//----------//----------//
@@ -32,7 +34,9 @@ void    *malloc(size_t size)
 	if (size <= SMALL_ALLOC_MAX)
 	{
 		// goto tiny / small zone + subzone mapping
-		adr = vault.tab_meta[request_tiny_small(size)].adr;
+		if ((idx = request_tiny_small(size)) == -1)
+			return (NULL);
+		adr = vault.tab_meta[idx].adr;
 	}
 	else
 	{

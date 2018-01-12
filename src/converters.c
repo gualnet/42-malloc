@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:33:26 by galy              #+#    #+#             */
-/*   Updated: 2018/01/12 14:23:30 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 15:26:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,29 @@ t_meta_type	size_to_zone_type(size_t size)
 	else if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 		return SMALL_ZONE;
 	return LARGE_ZONE;
+}
+
+/*
+** Return the defined zone-size which will contain the new sub-zone.
+*/
+t_meta_size	size_to_zone_size(size_t size)
+{
+	if (size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+		return TINY_ZONE_SIZE;
+	if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+        return SMALL_ZONE_SIZE;
+    return NULL_SIZE;
+}
+
+
+size_t	    size_to_subz_size(size)
+{
+    if (size >= TINY_ALLOC_MIN && size <= TINY_ALLOC_MAX)
+		return ((size_t)TINY_ZONE_SIZE);//2097152
+    if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
+		return ((size_t)SMALL_ZONE_SIZE);//16777216
+    if (DEBUG_MALLOC)
+        ft_putstr("\n\n\033[31mError convert size_to_subz_size\033[0m\n\n");
+    exit(-1);
+    return (0);
 }

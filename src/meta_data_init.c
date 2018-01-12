@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/01/11 20:55:09 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 15:21:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,27 @@ int		meta_data_initializer()
 			return (-1);
 	}	
 	return (1);
+}
+
+/*
+** return an empty struct to store meta infos
+*/
+int		get_free_meta_block()
+{
+	int i;
+
+	i = 0;
+	while (i < vault.meta_items_max)
+	{
+		if (vault.tab_meta[i].type == FREE_BLOCK)
+			break;
+		i++;
+	}
+	if (vault.tab_meta[i].type != FREE_BLOCK && \
+	i == vault.meta_items_max)
+	{
+		ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE +_+_+_+_+_\n\n");
+		exit(0);
+	}
+	return (i);
 }
