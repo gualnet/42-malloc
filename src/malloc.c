@@ -32,7 +32,7 @@ void    *malloc(size_t size)
 	if (size <= SMALL_ALLOC_MAX)
 	{
 		// goto tiny / small zone + subzone mapping
-		request_tiny_small(size);
+		adr = vault.tab_meta[request_tiny_small(size)].adr;
 	}
 	else
 	{

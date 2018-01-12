@@ -34,10 +34,11 @@ tests	:
 
 fclean	:
 	rm -rf $(OBJDIR)
-	@rm test0
-	@rm test1
-	@rm unit_test_meta_data_initializer
-	@rm unit_test_malloc
+	@rm test0 test1 unit_test_meta_data_initializer unit_test_malloc unit_test_request_tiny_small
+#	@rm test1
+#	@rm unit_test_meta_data_initializer
+#	@rm unit_test_malloc
+#	@rm unit_test_request_tiny_small
 
 ####MORE_RULEZ####
 

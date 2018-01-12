@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:40:08 by galy              #+#    #+#             */
-/*   Updated: 2018/01/04 21:07:20 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 14:32:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		map_non_custom_zone(t_vault *vault, t_meta_data *meta_block, size_t size);
 void	*subdiv_subz(t_vault *vault, t_meta_data *meta_block, size_t size);
-
+ 
 void	*map_new_zone(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
 	int			ret;

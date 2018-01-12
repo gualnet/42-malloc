@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/11 20:32:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 14:26:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ int		create_tab_free(void);	//interne - test
 //request_tiny_small.c
 int		request_tiny_small(size_t size);
 
-
+//converter.c
+t_meta_type	size_to_subz_type(size_t size, int flag_free);
+t_meta_type	size_to_zone_type(size_t size);
 
 //dev_func.c
 void	printCreateMetaTabCR();

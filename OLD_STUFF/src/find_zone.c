@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 21:18:20 by galy              #+#    #+#             */
-/*   Updated: 2018/01/04 21:00:34 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 14:06:03 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	*check_meta_find_subz(t_vault *vault, size_t size)
 				//si le type et la taille matchent..je renvoi l'index
 				// // printf("find space cas 1\n");
 				// printf("return 001\n");
-				sleep(1);
 				return (vault->tab_meta[i].adr);
 			}
 			else if (vault->tab_meta[i].meta_type == wanted_type &&\
