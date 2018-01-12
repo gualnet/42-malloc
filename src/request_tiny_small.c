@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/12 15:27:35 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 19:23:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 int		map_new_zone(size_t size)
 {
+	ft_putstr("MAP NEW ZONE\n");
 	int		i;
 	int		zone_bloc_idx;
 	int		subz_bloc_idx;
 	void	*new_zone;
 
 	i = 0;
-	new_zone = mmap(NULL, req_zone_size(size), PROT_READ | PROT_WRITE,\
+	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (new_zone == MAP_FAILED)
 	{
@@ -34,16 +35,21 @@ int		map_new_zone(size_t size)
 	vault.tab_meta[zone_bloc_idx].type = size_to_zone_type(size);
 	vault.tab_meta[zone_bloc_idx].capacity = size_to_zone_size(size);
 	vault.tab_meta[zone_bloc_idx].size = 0;
-	
 	subz_bloc_idx = get_free_meta_block();
 	vault.tab_meta[subz_bloc_idx].adr = new_zone;
 	vault.tab_meta[subz_bloc_idx].type = size_to_subz_type(size, 1);
 	vault.tab_meta[subz_bloc_idx].capacity = NULL_SIZE;
 	vault.tab_meta[subz_bloc_idx].size = size_to_subz_size(size);
+
+	sleep(2);
+	printAllTabMetaInfo(0);
+	printMetaBlocInfo(zone_bloc_idx);
+	printMetaBlocInfo(subz_bloc_idx);
+	sleep(2);
 	return (1);
 }
 
-int		request_tiny_small(size_t size)
+unsigned int	request_tiny_small(size_t size)
 {
 	unsigned int	i;
 	t_meta_type		req_type;
@@ -55,7 +61,7 @@ int		request_tiny_small(size_t size)
 		i = 0;
 		while (i < vault.meta_items_max)
 		{
-			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size = size)
+			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size == size)
 			{
 				//si une subzone du bon type est libre et d'une taille egale
 				// a la taille demandee.
@@ -66,13 +72,14 @@ int		request_tiny_small(size_t size)
 			{
 				//si une subzone du bon type est libre et d'une taille plus grande
 				// que la taille demandee.
-				ft_putstr("recherche de zone cas 2\n");
-				exit (0); // replace return (i);
+				// ft_printf("i = %d - recherche de zone cas 2\n", i);
+				i = split_subz(i, size);
+				return (i);
 			}
 			i++;
 		}
-		if (map_new_zone() == -1)
+		if (map_new_zone(size) == -1)
 			return (-1);
 	}
-	return (1);
+	return (-1);
 }

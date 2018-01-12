@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:39:55 by galy              #+#    #+#             */
-/*   Updated: 2018/01/04 21:00:26 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 17:36:43 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ t_meta_data	*get_free_meta_block(t_vault *vault)
 void	meta_set_new_size(t_vault *vault, t_meta_data *meta_block, size_t size)
 {
 	// printf("meta set\n");
-	sleep(1);
 	int 		old_size;
 	t_meta_data	*free_block;
 	t_free_block	*tabfree_block;

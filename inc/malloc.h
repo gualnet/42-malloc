@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/12 14:59:59 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/12 18:14:35 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,24 +81,33 @@ typedef struct			s_vault
 extern t_vault	vault;
 
 //malloc.c
-void    *malloc(size_t size);
+void    *ft_malloc(size_t size);
 
 //meta_data_init.c
 int		meta_data_initializer();
 int		create_tab_meta(void);	//interne - test
 int		create_tab_free(void);	//interne - test
-int		get_free_meta_block();
+unsigned int	get_free_meta_block();
 
 //request_tiny_small.c
-int		request_tiny_small(size_t size);
+unsigned int	request_tiny_small(size_t size);
 
 //converter.c
 t_meta_type	size_to_subz_type(size_t size, int flag_free);
 t_meta_type	size_to_zone_type(size_t size);
+t_meta_size	size_to_zone_size(size_t size);
+size_t	    size_to_subz_size(size_t size);
+
+//subz_func.c
+unsigned int	split_subz(unsigned int idx_1, size_t size);
+
+
 
 //dev_func.c
 void	printCreateMetaTabCR();
 void	printCreateFreeTabCR();
+void	printMetaBlocInfo(unsigned int id);
+void	printAllTabMetaInfo(unsigned int interMax);
 
 
 #endif
