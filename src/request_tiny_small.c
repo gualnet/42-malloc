@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/15 11:42:34 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/16 19:31:17 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 int		map_new_zone(size_t size)
 {
 	ft_putstr("MAP NEW ZONE\n");
-	int		i;
-	int		zone_bloc_idx;
-	int		subz_bloc_idx;
-	void	*new_zone;
+	unsigned int	zone_bloc_idx;
+	unsigned int	subz_bloc_idx;
+	unsigned int	free_subz_bloc_idx;
+	void			*new_zone;
 
-	i = 0;
 	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (new_zone == MAP_FAILED)
@@ -39,12 +38,16 @@ int		map_new_zone(size_t size)
 	vault.tab_meta[subz_bloc_idx].adr = new_zone;
 	vault.tab_meta[subz_bloc_idx].type = size_to_subz_type(size, 1);
 	vault.tab_meta[subz_bloc_idx].capacity = NULL_SIZE;
+	
 	vault.tab_meta[subz_bloc_idx].size = size_to_subz_size(size);
-
+	free_subz_bloc_idx = get_free_free_block();
+	vault.tab_free[free_subz_bloc_idx].ptr = &vault.tab_meta[subz_bloc_idx];
+	// printFreeBlocInfo(free_subz_bloc_idx);
+	// ft_printf("idx = %d", free_subz_bloc_idx);
 	// sleep(2);
-	printAllTabMetaInfo(0);
-	printMetaBlocInfo(zone_bloc_idx);
-	printMetaBlocInfo(subz_bloc_idx);
+	// printAllTabMetaInfo(0);
+	// printMetaBlocInfo(zone_bloc_idx);
+	// printMetaBlocInfo(subz_bloc_idx);
 	// sleep(2);
 	return (1);
 }
@@ -66,6 +69,7 @@ unsigned int	request_tiny_small(size_t size)
 				//si une subzone du bon type est libre et d'une taille egale
 				// a la taille demandee.
 				ft_putstr("recherche de zone cas 1\n");
+				//virer la zone de tab_free
 				return (i);
 			}
 			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size > size)

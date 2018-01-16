@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/16 11:59:55 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/16 19:01:13 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,16 @@ int		search_and_erase(void *ptr)
 
 void	ft_free(void *ptr)
 {
-	ft_putstr("call ft_free");
+	ft_putstr("call ft_free\n");
 	if (ptr == NULL)
 		return;
-	
 	if (vault.tab_free == NULL)
 	{
-		ft_printf("Before:\nvault.tab_free == [%p] && vault.tab_meta == [%p]", vault.tab_free, vault.tab_meta);
+		// ft_printf("Before:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
 		meta_data_initializer();
-		ft_printf("After:\nvault.tab_free == [%p] && vault.tab_meta == [%p]", vault.tab_free, vault.tab_meta);
+		// ft_printf("After:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
 	}
-
-
+	printAllTabFreeInfo(5);
 
 	if (search_and_erase(ptr) != 1)
 	{
@@ -51,7 +49,7 @@ void	ft_free(void *ptr)
 		exit(-1);
 	}
 
-
-
+	
+	printAllTabFreeInfo(5);
 	
 }

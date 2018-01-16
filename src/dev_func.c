@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:52:42 by galy              #+#    #+#             */
-/*   Updated: 2018/01/12 18:08:14 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/16 19:30:00 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,35 @@ void	printMetaBlocInfo(unsigned int id)
 	ft_printf("size [%d]\n", vault.tab_meta[id].size);
 }
 
+void	printFreeBlocInfo(unsigned int id)
+{
+	ft_printf("\nFree Bloc id: %d\n", id);
+	if (vault.tab_free[id].ptr != NULL)
+	{
+		ft_printf("ptr [%p] - ", vault.tab_free[id].ptr->adr);
+		if (vault.tab_free[id].ptr->type == FREE_BLOCK)
+			ft_printf("Type: FREE_BLOCK - ");
+		if (vault.tab_free[id].ptr->type == TINY_ZONE)
+			ft_printf("Type: TINY_ZONE - ");
+		if (vault.tab_free[id].ptr->type == SMALL_ZONE)
+			ft_printf("Type: SMALL_ZONE - ");
+		if (vault.tab_free[id].ptr->type == LARGE_ZONE)
+			ft_printf("Type: LARGE_ZONE - ");
+		if (vault.tab_free[id].ptr->type == TINY_SUBZ_FREE)
+			ft_printf("Type: TINY_SUBZ_FREE - ");
+		if (vault.tab_free[id].ptr->type == TINY_SUBZ)
+			ft_printf("Type: TINY_SUBZ - ");
+		if (vault.tab_free[id].ptr->type == SMALL_SUBZ_FREE)
+			ft_printf("Type: SMALL_SUBZ_FREE - ");
+		if (vault.tab_free[id].ptr->type == SMALL_SUBZ)
+			ft_printf("Type: SMALL_SUBZ - ");
+
+		ft_printf("capacity [%d] - ", vault.tab_free[id].ptr->capacity);
+		ft_printf("size [%d]\n", vault.tab_free[id].ptr->size);
+	}
+	
+}
+
 void	printAllTabMetaInfo(unsigned int interMax)
 {
 	printf("\n****META TABLE INFO****\n");
@@ -92,4 +121,44 @@ void	printAllTabMetaInfo(unsigned int interMax)
 	}
 	// printf("\t****************\t****************\t****************\n\n");
 	// // printf("\n************* END Of dev func *************\n");
+}
+
+void	printAllTabFreeInfo(unsigned int interMax)
+{
+	printf("\n****META FREE INFO****\n");
+	unsigned int i = 0;
+	if (interMax == 0)
+		interMax = vault.free_items_max;
+
+	while (i < interMax - 1)
+	{
+		ft_printf("[%p]tab_free[%d] : ptr:%p - ", &vault.tab_free[i], i, vault.tab_free[i].ptr);
+		if (vault.tab_free[i].ptr != NULL)
+		{
+			if (vault.tab_free[i].ptr->type == FREE_BLOCK)
+				ft_printf("Type: FREE_BLOCK - ");
+			if (vault.tab_free[i].ptr->type == TINY_ZONE)
+				ft_printf("Type: TINY_ZONE - ");
+			if (vault.tab_free[i].ptr->type == SMALL_ZONE)
+				ft_printf("Type: SMALL_ZONE - ");
+			if (vault.tab_free[i].ptr->type == LARGE_ZONE)
+				ft_printf("Type: LARGE_ZONE - ");
+			if (vault.tab_free[i].ptr->type == TINY_SUBZ_FREE)
+				ft_printf("Type: TINY_SUBZ_FREE - ");
+			if (vault.tab_free[i].ptr->type == TINY_SUBZ)
+				ft_printf("Type: TINY_SUBZ - ");
+			if (vault.tab_free[i].ptr->type == SMALL_SUBZ_FREE)
+				ft_printf("Type: SMALL_SUBZ_FREE - ");
+			if (vault.tab_free[i].ptr->type == SMALL_SUBZ)
+				ft_printf("Type: SMALL_SUBZ - ");
+
+			printf("Capacity: %u", vault.tab_free[i].ptr->capacity);
+			printf(" - Size: %zu\n", vault.tab_free[i].ptr->size);
+		}
+		else
+			printf("No Info\n");
+		i++;
+	}
+	printf("\t****************\t****************\t****************\n\n");
+	// printf("\n************* END Of dev func *************\n");
 }

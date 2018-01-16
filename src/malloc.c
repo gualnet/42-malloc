@@ -47,5 +47,6 @@ void    *ft_malloc(size_t size)
 //----------//----------//----------//----------//
 	// pthread unlock
 //----------//----------//----------//----------//
+	printAllTabMetaInfo(5);
 	return adr;
 }

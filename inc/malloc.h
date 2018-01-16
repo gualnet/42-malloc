@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/15 11:51:19 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/16 19:19:29 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int		meta_data_initializer();
 int		create_tab_meta(void);	//interne - test
 int		create_tab_free(void);	//interne - test
 unsigned int	get_free_meta_block();
+int		resize_free_data();
+unsigned int	get_free_free_block();
 
 //request_tiny_small.c
 unsigned int	request_tiny_small(size_t size);
@@ -102,7 +104,7 @@ size_t	    size_to_subz_size(size_t size);
 unsigned int	split_subz(unsigned int idx_1, size_t size);
 
 //free.c
-void	free(void *ptr);
+void	ft_free(void *ptr);
 
 
 
@@ -111,6 +113,8 @@ void	printCreateMetaTabCR();
 void	printCreateFreeTabCR();
 void	printMetaBlocInfo(unsigned int id);
 void	printAllTabMetaInfo(unsigned int interMax);
+void	printAllTabFreeInfo(unsigned int interMax);
+void	printFreeBlocInfo(unsigned int id);
 
 
 #endif
