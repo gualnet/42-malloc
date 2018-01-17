@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/16 19:19:29 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/17 19:11:51 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ unsigned int	split_subz(unsigned int idx_1, size_t size);
 
 //free.c
 void	ft_free(void *ptr);
+void	tab_free_cleaner(void);
+int		search_and_free_subz(void *ptr);
 
 
 

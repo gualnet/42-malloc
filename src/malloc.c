@@ -43,10 +43,10 @@ void    *ft_malloc(size_t size)
 		//goto large zone mapping
 	}
 //----------//----------//----------//----------//
-	//free cleaner pass
+	tab_free_cleaner();
 //----------//----------//----------//----------//
 	// pthread unlock
 //----------//----------//----------//----------//
-	printAllTabMetaInfo(5);
+	// printAllTabMetaInfo(5);
 	return adr;
 }
