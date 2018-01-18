@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/17 19:11:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/18 19:26:20 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 
 #define DEBUG_MALLOC 1
-#define META_INCRE_ALLOC_PAGE 2 //size tab-meta = META_ALLOC_STEP * pagesize
+#define META_INCRE_ALLOC_PAGE 1 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
@@ -81,7 +81,7 @@ typedef struct			s_vault
 extern t_vault	vault;
 
 //malloc.c
-void    *ft_malloc(size_t size);
+void    *malloc(size_t size);
 
 //meta_data_init.c
 int		meta_data_initializer();
@@ -104,7 +104,7 @@ size_t	    size_to_subz_size(size_t size);
 unsigned int	split_subz(unsigned int idx_1, size_t size);
 
 //free.c
-void	ft_free(void *ptr);
+void	free(void *ptr);
 void	tab_free_cleaner(void);
 int		search_and_free_subz(void *ptr);
 

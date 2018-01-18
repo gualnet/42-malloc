@@ -4,18 +4,16 @@
 
 int main(void)
 {
-	// int		i;
-	// char	*adr;
-	// char	c;
-	// c = 'a';
-	// write(1, &c, 1);
-	// i = 0;
-	// while(i < 1024)
-	// {
-	// 	adr = (char*)malloc(3);
-	// 	// printf("i{%d}\n", i);
-	// 	adr[0] = 42;
-	// 	i++;
-	// }
+	int		i;
+	char	*adr;
+	
+	i = 0;
+	while(i < 1024)
+	{
+		// ft_putchar('a');
+		adr = (char*)malloc(1024);
+		adr[0] = 42;
+		i++;
+	}
 	return (0);
 }

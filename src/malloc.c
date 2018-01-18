@@ -12,9 +12,9 @@
 
 #include "../inc/malloc.h"
 
-// t_vault vault = {};
+t_vault vault = {};
 
-void    *ft_malloc(size_t size)
+void    *malloc(size_t size)
 {
 	pthread_mutex_t	mutex;
 	void			*adr;

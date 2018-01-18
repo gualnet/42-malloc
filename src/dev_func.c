@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:52:42 by galy              #+#    #+#             */
-/*   Updated: 2018/01/16 19:30:00 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/18 18:12:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ void	printAllTabMetaInfo(unsigned int interMax)
 
 	while (i < interMax - 1)
 	{
-		printf("[%p]tab_meta[%d] : adr:%p - ", &vault.tab_meta[i], i, vault.tab_meta[i].adr);
+		if (vault.tab_meta[i].adr == NULL)
+			printf("[%p]tab_meta[%d] : adr:0x000000000 - ", &vault.tab_meta[i], i);
+		else
+			printf("[%p]tab_meta[%d] : adr:%p - ", &vault.tab_meta[i], i, vault.tab_meta[i].adr);
 		if (vault.tab_meta[i].type == FREE_BLOCK)
 		printf("Type: FREE_BLOCK - ");
 		if (vault.tab_meta[i].type == TINY_ZONE)
@@ -116,11 +119,10 @@ void	printAllTabMetaInfo(unsigned int interMax)
 
 		printf("Capacity: %u", vault.tab_meta[i].capacity);
 		printf(" - Size: %zu\n", vault.tab_meta[i].size);
-
 		i++;
 	}
 	// printf("\t****************\t****************\t****************\n\n");
-	// // printf("\n************* END Of dev func *************\n");
+	// printf("\n************* END Of dev func *************\n");
 }
 
 void	printAllTabFreeInfo(unsigned int interMax)
@@ -132,9 +134,12 @@ void	printAllTabFreeInfo(unsigned int interMax)
 
 	while (i < interMax - 1)
 	{
-		ft_printf("[%p]tab_free[%d] : ptr:%p - ", &vault.tab_free[i], i, vault.tab_free[i].ptr);
+		if (vault.tab_free[i].ptr == NULL)
+		ft_printf("[%p]tab_free[%d] : ptr:0x000000000 > 0x000000000 - ", &vault.tab_free[i], i);
 		if (vault.tab_free[i].ptr != NULL)
 		{
+			ft_printf("[%p]tab_free[%d] : ptr:%p > %p - ", &vault.tab_free[i], i, \
+			vault.tab_free[i].ptr, vault.tab_free[i].ptr->adr);
 			if (vault.tab_free[i].ptr->type == FREE_BLOCK)
 				ft_printf("Type: FREE_BLOCK - ");
 			if (vault.tab_free[i].ptr->type == TINY_ZONE)

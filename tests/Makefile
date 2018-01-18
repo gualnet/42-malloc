@@ -27,8 +27,8 @@ all		: OBJD tests
 tests	:
 #	./unit_test_XXXXXX.c ../src/malloc.c ../src/meta_data_init.c ../src/dev_func.c \
 ../src/request_tiny_small.c ../src/converters.c
-#	@$(CC) $(CFLAGS) -o test0 ./test0.c
-#	@$(CC) $(CFLAGS) -o test1 ./test1.c
+	@$(CC) $(CFLAGS) -o test0 ./test0.c
+	@$(CC) $(CFLAGS) -o test1 ./test1.c
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_meta_data_initializer.c \
 ../src/meta_data_init.c ../src/dev_func.c -o unit_test_meta_data_initializer
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_malloc.c ../src/malloc.c \
@@ -36,7 +36,7 @@ tests	:
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_request_tiny_small.c \
 ../src/malloc.c ../src/meta_data_init.c ../src/dev_func.c ../src/converters.c \
 ../src/request_tiny_small.c ../src/subz_func.c -o unit_test_request_tiny_small
-	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_free.c ../src/malloc.c \
+#	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_free.c ../src/malloc.c \
 	../src/meta_data_init.c ../src/dev_func.c ../src/converters.c ../src/request_tiny_small.c \
 	../src/subz_func.c ../src/free.c -o unit_test_free
 

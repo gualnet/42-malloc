@@ -6,13 +6,28 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/17 19:11:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/18 19:12:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/malloc.h"
 
-void	defrag(void)
+void	defrag_merge_bf_subz(unsigned int m_id, unsigned int f_id)
+{
+	vault.tab_free[f_id].ptr->size += vault.tab_meta[m_id].size;
+	vault.tab_meta[m_id].size = 0;
+	vault.tab_meta[m_id].type = FREE_BLOCK;
+	vault.tab_meta[m_id].adr = NULL;
+}
+
+void	defrag_merge_af_subz(unsigned int m_id, unsigned int f_id)
+{
+	vault.tab_meta[m_id].size += vault.tab_free[f_id].ptr->size;
+	vault.tab_free[f_id].ptr->size = 0;
+	vault.tab_free[f_id].ptr->type = FREE_BLOCK;
+}
+
+void	defrag(unsigned int m_id)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -21,7 +36,18 @@ void	defrag(void)
 	j = 0;
 	while (i < vault.free_items_max)
 	{
-
+		if (vault.tab_free[i].ptr != NULL && \
+		vault.tab_free[i].ptr->adr + vault.tab_free[i].ptr->size == vault.tab_meta[m_id].adr)
+		{
+			ft_printf("DEFRAG BINGO before\n");
+			defrag_merge_bf_subz(m_id, i);
+		}
+		if (vault.tab_free[i].ptr != NULL && \
+		vault.tab_free[i].ptr->adr - vault.tab_meta[m_id].size == vault.tab_meta[m_id].adr)
+		{
+			ft_printf("DEFRAG BINGO after\n");
+			defrag_merge_af_subz(m_id, i);
+		}
 		i++;
 	}
 }
@@ -49,22 +75,30 @@ int		search_and_free_subz(void *ptr)
 	i = 0;
 	while (i < vault.meta_items_max)
 	{
-		if (vault.tab_meta[i].adr == ptr)
+		if (vault.tab_meta[i].adr == ptr && \
+		vault.tab_meta[i].type != TINY_ZONE && \
+		vault.tab_meta[i].type != SMALL_ZONE && \
+		vault.tab_meta[i].type != LARGE_ZONE)
 		{
 			if (vault.tab_meta[i].type == TINY_SUBZ)
+			{
 				vault.tab_meta[i].type = TINY_SUBZ_FREE;
+				vault.tab_free[get_free_free_block()].ptr = &vault.tab_meta[i];
+			}
 			else if (vault.tab_meta[i].type == SMALL_SUBZ)
+			{
 				vault.tab_meta[i].type = SMALL_SUBZ_FREE;
-			vault.tab_free[get_free_free_block()].ptr = & vault.tab_meta[i];
+				vault.tab_free[get_free_free_block()].ptr = &vault.tab_meta[i];
+			}
+			defrag(i);
 			return (1);
 		}
 		i++;
 	}
 	return (-1);
-
 }
 
-void	ft_free(void *ptr)
+void	free(void *ptr)
 {
 	ft_putstr("call ft_free\n");
 	if (ptr == NULL)
@@ -81,5 +115,5 @@ void	ft_free(void *ptr)
 		ft_printf("Error for object [%p]: pointer being freed was not allocated\n", ptr);
 		exit(-1);
 	}
-	
+	tab_free_cleaner();
 }

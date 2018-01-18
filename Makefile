@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/01/11 19:33:33 by galy             ###   ########.fr        #
+#    Updated: 2018/01/18 19:07:47 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,9 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				malloc.c		meta_data_init.c		dev_func
+				malloc.c				free.c\
+				converters.c			meta_data_init.c	subz_func.c\
+				request_tiny_small.c 	tab_free.c
 
 
 ####FUNC####

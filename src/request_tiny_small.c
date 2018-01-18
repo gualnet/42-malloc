@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/16 19:31:17 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/18 16:22:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ int		map_new_zone(size_t size)
 	vault.tab_meta[subz_bloc_idx].size = size_to_subz_size(size);
 	free_subz_bloc_idx = get_free_free_block();
 	vault.tab_free[free_subz_bloc_idx].ptr = &vault.tab_meta[subz_bloc_idx];
-	// printFreeBlocInfo(free_subz_bloc_idx);
-	// ft_printf("idx = %d", free_subz_bloc_idx);
-	// sleep(2);
-	// printAllTabMetaInfo(0);
-	// printMetaBlocInfo(zone_bloc_idx);
-	// printMetaBlocInfo(subz_bloc_idx);
-	// sleep(2);
 	return (1);
 }
 
