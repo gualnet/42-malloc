@@ -41,6 +41,7 @@ void    *malloc(size_t size)
 	else
 	{
 		//goto large zone mapping
+		adr = request_large(size);
 	}
 //----------//----------//----------//----------//
 	tab_free_cleaner();

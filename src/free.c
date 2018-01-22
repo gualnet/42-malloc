@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/18 19:12:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/22 18:37:06 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,11 @@ void	free(void *ptr)
 	if (vault.tab_free == NULL)
 	{
 		// ft_printf("Before:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
-		meta_data_initializer();
+		// meta_data_initializer();
 		// ft_printf("After:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
+		return;
 	}
-
-	if (search_and_free_subz(ptr) != 1)
+	if (search_and_free_subz(ptr) != 1) 
 	{
 		ft_printf("Error for object [%p]: pointer being freed was not allocated\n", ptr);
 		exit(-1);
