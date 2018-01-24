@@ -19,11 +19,11 @@ void    *malloc(size_t size)
 	pthread_mutex_t	mutex;
 	void			*adr;
 	int				idx;
-
 	adr = NULL;
 	idx = 0;
 	if (pthread_mutex_init(&mutex, 0) != 0 || size <= 0)
 		return (adr);
+
 //----------//----------//----------//----------//
 	pthread_mutex_lock(&mutex);
 //----------//----------//----------//----------//

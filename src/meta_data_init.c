@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/01/16 19:31:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/24 19:08:48 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		resize_meta_data()
 	vault.tab_meta_npage += META_INCRE_ALLOC_PAGE;
 	vault.meta_items_max = \
 	(getpagesize() * vault.tab_meta_npage) / sizeof(t_meta_data);
-	ft_printf("New max meta items[%d]\n", vault.meta_items_max);
+	// ft_printf("New max meta items[%d]\n", vault.meta_items_max);
 	return (1);
 }
 
@@ -144,7 +144,7 @@ int		resize_free_data()
 	vault.tab_meta_npage += META_INCRE_ALLOC_PAGE;
 	vault.free_items_max = \
 	(getpagesize() * vault.tab_free_npage) / sizeof(t_free_block);
-	ft_printf("New max free items[%d]\n", vault.meta_items_max);
+	// ft_printf("New max free items[%d]\n", vault.meta_items_max);
 	return (1);
 }
 
@@ -162,7 +162,7 @@ unsigned int	get_free_free_block()
 	}
 	if (i != 0 && i == vault.free_items_max && vault.tab_free[i - 1].ptr != NULL && vault.tab_free[i - 1].ptr->type != FREE_BLOCK)
 	{
-		ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
+		// ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
 		if (resize_free_data() != 1)
 			return (-1);
 		if (vault.tab_meta[i + 1].type == FREE_BLOCK)

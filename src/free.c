@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/22 18:37:06 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/24 19:09:54 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	defrag(unsigned int m_id)
 		if (vault.tab_free[i].ptr != NULL && \
 		vault.tab_free[i].ptr->adr + vault.tab_free[i].ptr->size == vault.tab_meta[m_id].adr)
 		{
-			ft_printf("DEFRAG BINGO before\n");
+			// ft_printf("DEFRAG BINGO before\n");
 			defrag_merge_bf_subz(m_id, i);
 		}
 		if (vault.tab_free[i].ptr != NULL && \
 		vault.tab_free[i].ptr->adr - vault.tab_meta[m_id].size == vault.tab_meta[m_id].adr)
 		{
-			ft_printf("DEFRAG BINGO after\n");
+			// ft_printf("DEFRAG BINGO after\n");
 			defrag_merge_af_subz(m_id, i);
 		}
 		i++;
@@ -112,7 +112,8 @@ void	free(void *ptr)
 	}
 	if (search_and_free_subz(ptr) != 1) 
 	{
-		ft_printf("Error for object [%p]: pointer being freed was not allocated\n", ptr);
+		ft_putstr("0000\n");
+		// ft_printf("Error for object [%p]: pointer being freed was not allocated\n", ptr);
 		exit(-1);
 	}
 	tab_free_cleaner();

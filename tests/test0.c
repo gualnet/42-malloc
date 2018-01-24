@@ -1,7 +1,6 @@
-// #include
-# include <dlfcn.h>
 # include <unistd.h>
 # include <stdio.h>
+
 int main()
 {
 	int		i;

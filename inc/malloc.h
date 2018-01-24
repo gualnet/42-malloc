@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/22 18:34:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/24 19:09:11 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include "../inc/libft.h"
 
 
-#define DEBUG_MALLOC 1
+#define DEBUG_MALLOC 0
 #define META_INCRE_ALLOC_PAGE 1 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
@@ -104,7 +104,7 @@ size_t	    size_to_subz_size(size_t size);
 unsigned int	split_subz(unsigned int idx_1, size_t size);
 
 //request_large.c
-unsigned int	request_large(size_t size);
+void	*request_large(size_t size);
 
 
 //free.c

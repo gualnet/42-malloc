@@ -1,6 +1,5 @@
 #include "stdlib.h"
 #include "unistd.h"
-// #include "../inc/malloc.h"
 
 int main(void)
 {
@@ -10,7 +9,6 @@ int main(void)
 	i = 0;
 	while(i < 1024)
 	{
-		// ft_putchar('a');
 		adr = (char*)malloc(1024);
 		adr[0] = 42;
 		i++;

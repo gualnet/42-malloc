@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/01/18 19:07:47 by galy             ###   ########.fr        #
+#    Updated: 2018/01/24 19:54:37 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYMLINK		=	libft_malloc.so
 CC			=	gcc
 
 # CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-# CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFLAG		=	-L./libft -lftall
 
@@ -53,9 +53,9 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				malloc.c				free.c\
+				malloc.c				free.c				realloc.c\
 				converters.c			meta_data_init.c	subz_func.c\
-				request_tiny_small.c 	tab_free.c
+				request_tiny_small.c 	tab_free.c			request_large.c
 
 
 ####FUNC####

@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:34:17 by galy              #+#    #+#             */
-/*   Updated: 2018/01/22 19:24:34 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/24 19:24:38 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/malloc.h"
 
-unsigned int	get_ptr_info(ptr)
+unsigned int	get_ptr_idx(void *ptr)
 {
 	unsigned int i;
 
@@ -28,39 +28,40 @@ unsigned int	get_ptr_info(ptr)
 	return (-1);
 }
 
-void			*go_realloc(size_t size, void *old_ptr, size_t old_size)
+void			*go_realloc(size_t size, unsigned int old_idx)
 {
 	void	*new_ptr;
 	
-	if (old_ptr.size < size)
+	if (vault.tab_meta[old_idx].size < size)
 	{
 		if ((new_ptr = malloc(size)) == NULL)
 			return (NULL);
-		ft_memcpy(new_ptr, old_ptr, size);
+		ft_memcpy(new_ptr, vault.tab_meta[old_idx].adr, size);
 	}
-	else (old_ptr.size > size)
+	else if (vault.tab_meta[old_idx].size > size)
 	{
 		if ((new_ptr = malloc(size)) == NULL)
 			return (NULL);
-		ft_memcpy(new_ptr, old_ptr, old_size);
+		ft_memcpy(new_ptr, vault.tab_meta[old_idx].adr, vault.tab_meta[old_idx].size);
 	}
-	free(old_ptr);
+	else
+		new_ptr = NULL;
+	free(vault.tab_meta[old_idx].adr);
 	return (new_ptr);
 }
 
 void			*realloc(void *ptr, size_t size)
 {
-	ft_putstr("CALL REALLOC\n");
+	// ft_putstr("CALL REALLOC\n");
 
 	unsigned int	old_idx;
-	void			*old_ptr;
+	// void			*old_ptr;
 	
-	old_idx = get_ptr_info(ptr);
-	if (old_idx == -1)
+	if ((long long)(old_idx = get_ptr_idx(ptr)) == -1)
 		return (NULL);
-	old_ptr = vault.tab_meta[old_idx].adr;
-	if (old_ptr.size == size)
+	// old_ptr = vault.tab_meta[old_idx].adr;
+	if (vault.tab_meta[old_idx].size == size)
 		return (ptr);
 	else
-		return (go_realloc(size, old_ptr, vault.tab_meta[old_idx].size));
+		return (go_realloc(size, old_idx));
 }

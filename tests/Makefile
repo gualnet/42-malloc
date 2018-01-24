@@ -25,8 +25,12 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 all		: OBJD tests
 
 tests	:
-#	./unit_test_XXXXXX.c ../src/malloc.c ../src/meta_data_init.c ../src/dev_func.c \
-../src/request_tiny_small.c ../src/converters.c
+
+# ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c\
+../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c\
+../src/tab_free.c ../src/request_large.c
+
+
 	@$(CC) $(CFLAGS) -o test0 ./test0.c
 	@$(CC) $(CFLAGS) -o test1 ./test1.c
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_meta_data_initializer.c \
@@ -39,11 +43,15 @@ tests	:
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_free.c ../src/malloc.c \
 	../src/meta_data_init.c ../src/dev_func.c ../src/converters.c ../src/request_tiny_small.c \
 	../src/subz_func.c ../src/free.c -o unit_test_free
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_request_large.c \
+	../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
+	../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
+	../src/tab_free.c ../src/request_large.c -o unit_test_request_large2
 
 fclean	:
 	rm -rf $(OBJDIR)
-	@rm test0 test1 unit_test_meta_data_initializer unit_test_malloc \
-	unit_test_request_tiny_small unit_test_free
+	@rm		test0		test1		unit_test_meta_data_initializer		unit_test_malloc \
+	unit_test_request_tiny_small		unit_test_free		unit_test_request_large
 
 ####MORE_RULEZ####
 

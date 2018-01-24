@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/18 16:22:42 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/24 19:00:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		map_new_zone(size_t size)
 {
-	ft_putstr("MAP NEW ZONE\n");
+	// ft_putstr("MAP NEW ZONE\n");
 	unsigned int	zone_bloc_idx;
 	unsigned int	subz_bloc_idx;
 	unsigned int	free_subz_bloc_idx;
@@ -61,7 +61,7 @@ unsigned int	request_tiny_small(size_t size)
 			{
 				//si une subzone du bon type est libre et d'une taille egale
 				// a la taille demandee.
-				ft_putstr("recherche de zone cas 1\n");
+				// ft_putstr("recherche de zone cas 1\n");
 				//virer la zone de tab_free
 				return (i);
 			}
