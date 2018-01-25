@@ -1,6 +1,6 @@
 #include "../inc/malloc.h"
 
-t_vault vault = {};
+// t_vault vault = {};
 int	test_free_basic(void);
 int test_free_02(void);
 int test_defrag_merging_bf();
@@ -148,14 +148,14 @@ int test_defrag_merging_af()
 	
 	free(adr[1]);
 	free(adr[2]);
-	printAllTabMetaInfo(max + 4);
-	printAllTabFreeInfo(max + 4);
+	// printAllTabMetaInfo(max + 4);
+	// printAllTabFreeInfo(max + 4);
 	
 	free(adr[0]);
-	printAllTabMetaInfo(max + 4);
-	printAllTabFreeInfo(max + 4);
+	// printAllTabMetaInfo(max + 4);
+	// printAllTabFreeInfo(max + 4);
 	free(adr[3]);
-	printAllTabMetaInfo(max + 4);
-	printAllTabFreeInfo(max + 4);
+	// printAllTabMetaInfo(max + 4);
+	// printAllTabFreeInfo(max + 4);
 	return (1);
 }

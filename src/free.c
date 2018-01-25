@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/24 19:09:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/25 18:53:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int		search_and_free_subz(void *ptr)
 	return (-1);
 }
 
-void	free(void *ptr)
+void	ft_free(void *ptr)
 {
-	ft_putstr("call ft_free\n");
+	// ft_putstr("call ft_free\n");
 	if (ptr == NULL)
 		return;
 	if (vault.tab_free == NULL)
@@ -112,9 +112,10 @@ void	free(void *ptr)
 	}
 	if (search_and_free_subz(ptr) != 1) 
 	{
-		ft_putstr("0000\n");
+		// ft_putstr("0000\n");
 		// ft_printf("Error for object [%p]: pointer being freed was not allocated\n", ptr);
-		exit(-1);
+		// exit(-1);
 	}
 	tab_free_cleaner();
+	// ft_putstr("end call ft_free\n");
 }

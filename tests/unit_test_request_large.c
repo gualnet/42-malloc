@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 19:10:45 by galy              #+#    #+#             */
-/*   Updated: 2018/01/24 20:10:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/25 10:23:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,65 +20,65 @@ int test_2_malloc_free_large_x1000();
 
 int main(void)
 {
+	ft_putstr("A\n");
 
-	// int ret;
+	int ret;
 
-	// ret = 0;
+	ret = 0;
 
-	// if ((ret = test_0_malloc_large()) != 1)
-	// 	return (-1);
-	// // ft_putstr("\033[32mtest_0_malloc_large : OK\033[0m\n\n");
-
+	if ((ret = test_0_malloc_large()) != 1)
+		return (-1);
+	// ft_putstr("\033[32mtest_0_malloc_large : OK\033[0m\n\n");
 	
-	// // if ((ret = test_1_malloc_free_large()) != 1)
-	// // 	return (-1);
-	// // ft_putstr("\033[32mtest_1_malloc_free_large : OK\033[0m\n\n");
+	// if ((ret = test_1_malloc_free_large()) != 1)
+	// 	return (-1);
+	// ft_putstr("\033[32mtest_1_malloc_free_large : OK\033[0m\n\n");
 
-	// // if ((ret = test_2_malloc_free_large_x1000()) != 1)
-	// // 	return (-1);
-	// // ft_putstr("\033[32mtest_2_malloc_free_large_x1000 : OK\033[0m\n\n");
+	// if ((ret = test_2_malloc_free_large_x1000()) != 1)
+	// 	return (-1);
+	// ft_putstr("\033[32mtest_2_malloc_free_large_x1000 : OK\033[0m\n\n");
 
 	return (1);
 }
 
-// int test_0_malloc_large()
-// {
-// 	char	*ptr;
+int test_0_malloc_large()
+{
+	char	*ptr;
 
-// 	ptr = malloc(LARGE_ALLOC_MIN + 123456);
-// 	ptr[0] = 42;
-// 	if (ptr != NULL)
-// 		return (-1);
-// 	return (1);
-// }
+	ptr = malloc(LARGE_ALLOC_MIN + 123456);
+	ptr[0] = 42;
+	if (ptr != NULL)
+		return (-1);
+	return (1);
+}
 
-// int test_1_malloc_free_large()
-// {
-// 	// char	*ptr = NULL;
+int test_1_malloc_free_large()
+{
+	// char	*ptr = NULL;
 	
-// 	// ptr = malloc(LARGE_ALLOC_MIN + 123456);
-// 	// ptr[0] = 'x';
-// 	// if (ptr != NULL)
-// 	// 	return (-1);
-// 	// free(ptr);
-// 	return (1);
-// }
+	// ptr = malloc(LARGE_ALLOC_MIN + 123456);
+	// ptr[0] = 'x';
+	// if (ptr != NULL)
+	// 	return (-1);
+	// free(ptr);
+	return (1);
+}
 
-// int test_2_malloc_free_large_x1000()
-// {
-// 	// char	*adr = NULL;
-// 	// int		i;
-// 	// int		max;
+int test_2_malloc_free_large_x1000()
+{
+	// char	*adr = NULL;
+	// int		i;
+	// int		max;
 
-// 	// i = 0;
-// 	// max = 482;
+	// i = 0;
+	// max = 482;
 	
-// 	// while (i < max)
-// 	// {
-// 	// 	adr[i] = malloc(LARGE_ALLOC_MIN + 123456);
-// 	// 	adr[i][0] = 'c';
-// 	// 	i++;
-// 	// }
-// 	return 1;
+	// while (i < max)
+	// {
+	// 	adr[i] = malloc(LARGE_ALLOC_MIN + 123456);
+	// 	adr[i][0] = 'c';
+	// 	i++;
+	// }
+	return 1;
 	
-// }
+}

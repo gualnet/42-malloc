@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/24 19:00:09 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/25 18:31:24 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ unsigned int	request_tiny_small(size_t size)
 	
 	req_type = size_to_subz_type(size, 1);
 	
+	ft_putstr("MAX ITEMS[");
+	ft_putnbr(vault.meta_items_max);
+	ft_putstr("]\n");
 	while (1)
 	{
 		i = 0;
@@ -67,6 +70,9 @@ unsigned int	request_tiny_small(size_t size)
 			}
 			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size > size)
 			{
+				ft_putstr("|-I[");
+				ft_putnbr(i);
+				ft_putstr("] ");
 				//si une subzone du bon type est libre et d'une taille plus grande
 				// que la taille demandee.
 				// ft_printf("i = %d - recherche de zone cas 2\n", i);

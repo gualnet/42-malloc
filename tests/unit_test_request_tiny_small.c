@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:38:24 by galy              #+#    #+#             */
-/*   Updated: 2018/01/16 11:55:35 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/25 10:53:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/malloc.h"
 
-t_vault vault = {};
+// t_vault vault = {};
 int test_0_request_tiny();
 int test_1_request_small();
 
