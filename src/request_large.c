@@ -6,16 +6,16 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:02:14 by galy              #+#    #+#             */
-/*   Updated: 2018/01/24 18:57:25 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 17:59:24 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
 // unsigned int	request_large(size_t size)
 void	*request_large(size_t size)
 {
-	unsigned int	bloc_idx;
+	long	bloc_idx;
 
 	bloc_idx = get_free_meta_block();
 	vault.tab_meta[bloc_idx].adr = mmap(NULL, size_to_zone_size(size), \
@@ -25,13 +25,12 @@ void	*request_large(size_t size)
 	vault.tab_meta[bloc_idx].size = size;
 	vault.tab_meta[bloc_idx].type = LARGE_ZONE;
 	return (vault.tab_meta[bloc_idx].adr);
-	// return (bloc_idx);
 }
 
 void	unmap_large(void *ptr)
 {
-	unsigned int	i;
-	int				found;
+	long	i;
+	int		found;
 
 	i = 0;
 	found = 0;

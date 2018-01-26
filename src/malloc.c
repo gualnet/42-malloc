@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
 t_vault vault = {};
 
@@ -19,9 +19,10 @@ void    *ft_malloc(size_t size)
 	ft_putstr("call malloc\n");
 	pthread_mutex_t	mutex;
 	void			*adr;
-	int				idx;
-	adr = NULL;
+	long			idx;
+
 	idx = 0;
+	adr = NULL;
 	if (pthread_mutex_init(&mutex, 0) != 0 || size <= 0)
 		return (adr);
 
@@ -45,7 +46,7 @@ void    *ft_malloc(size_t size)
 		adr = request_large(size);
 	}
 //----------//----------//----------//----------//
-	// tab_free_cleaner();
+	// tab_free_cleaner(); // mef a virer
 //----------//----------//----------//----------//
 	// pthread unlock
 //----------//----------//----------//----------//

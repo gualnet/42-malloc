@@ -1,12 +1,12 @@
-#include "stdlib.h"
-#include "unistd.h"
+// #include "stdlib.h"
+// #include "unistd.h"
 #include "../inc/malloc.h"
 
 int main(void)
 {
 	int		i;
 	char	*adr;
-	
+	ft_printf("hi\n");
 	i = 0;
 	while(i < 1024)
 	{

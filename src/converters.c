@@ -6,11 +6,11 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:33:26 by galy              #+#    #+#             */
-/*   Updated: 2018/01/12 18:06:28 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 15:29:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
 /*
 ** Return the defined subz-type which will contain the data.

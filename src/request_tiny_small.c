@@ -6,20 +6,20 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/25 18:31:24 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 18:37:57 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
 
 int		map_new_zone(size_t size)
 {
 	// ft_putstr("MAP NEW ZONE\n");
-	unsigned int	zone_bloc_idx;
-	unsigned int	subz_bloc_idx;
-	unsigned int	free_subz_bloc_idx;
-	void			*new_zone;
+	void	*new_zone;
+	long	zone_bloc_idx;
+	long	subz_bloc_idx;
+	long	free_subz_bloc_idx;
 
 	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
@@ -45,9 +45,9 @@ int		map_new_zone(size_t size)
 	return (1);
 }
 
-unsigned int	request_tiny_small(size_t size)
+long	request_tiny_small(size_t size)
 {
-	unsigned int	i;
+	long			i;
 	t_meta_type		req_type;
 	
 	req_type = size_to_subz_type(size, 1);
@@ -70,9 +70,6 @@ unsigned int	request_tiny_small(size_t size)
 			}
 			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size > size)
 			{
-				ft_putstr("|-I[");
-				ft_putnbr(i);
-				ft_putstr("] ");
 				//si une subzone du bon type est libre et d'une taille plus grande
 				// que la taille demandee.
 				// ft_printf("i = %d - recherche de zone cas 2\n", i);

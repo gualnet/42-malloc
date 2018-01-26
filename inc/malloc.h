@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/25 18:55:49 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 18:31:54 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include <pthread.h>
 #include <limits.h>
 
-#include "../inc/ft_printf.h"
-#include "../inc/get_next_line.h"
-#include "../inc/libft.h"
+#include "ft_printf.h"
+#include "get_next_line.h"
+#include "libft.h"
 
 
 #define DEBUG_MALLOC 1
@@ -56,7 +56,7 @@ typedef enum			e_meta_size //from osx implem
 typedef struct			s_meta_data
 {
 	void				*adr;
-	unsigned int		idx;
+	long				idx;
 	t_meta_type			type;
 	t_meta_size			capacity; //zone: max cap - subz: not applic.
 	size_t				size; //zone: size occupied - subz: max cap
@@ -71,10 +71,10 @@ typedef struct			s_vault
 {
 	t_meta_data			*tab_meta;
 	t_free_block		*tab_free;
-	unsigned int		tab_meta_npage;
-	unsigned int		meta_items_max;
-	unsigned int		tab_free_npage;
-	unsigned int		free_items_max;
+	long				tab_meta_npage;
+	long				meta_items_max;
+	long				tab_free_npage;
+	long				free_items_max;
 }						t_vault;
 
 //global
@@ -87,12 +87,12 @@ void    *ft_malloc(size_t size);
 int		meta_data_initializer();
 int		create_tab_meta(void);	//interne - test
 int		create_tab_free(void);	//interne - test
-unsigned int	get_free_meta_block();
 int		resize_free_data();
-unsigned int	get_free_free_block();
+long	get_free_meta_block();
+long	get_free_free_block();
 
 //request_tiny_small.c
-unsigned int	request_tiny_small(size_t size);
+long	request_tiny_small(size_t size);
 
 //converter.c
 t_meta_type	size_to_subz_type(size_t size, int flag_free);
@@ -101,7 +101,7 @@ t_meta_size	size_to_zone_size(size_t size);
 size_t	    size_to_subz_size(size_t size);
 
 //subz_func.c
-unsigned int	split_subz(unsigned int idx_1, size_t size);
+long		split_subz(long idx_1, size_t size);
 
 //request_large.c
 void	*request_large(size_t size);
@@ -120,10 +120,10 @@ void	*realloc(void *ptr, size_t size);
 //dev_func.c
 void	printCreateMetaTabCR();
 void	printCreateFreeTabCR();
-void	printMetaBlocInfo(unsigned int id);
-void	printAllTabMetaInfo(unsigned int interMax);
-void	printAllTabFreeInfo(unsigned int interMax);
-void	printFreeBlocInfo(unsigned int id);
+void	printMetaBlocInfo(long id);
+void	printAllTabMetaInfo(long interMax);
+void	printAllTabFreeInfo(long interMax);
+void	printFreeBlocInfo(long id);
 
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/01/24 19:08:48 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 18:59:19 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
 int		create_tab_meta(void)
 {
@@ -98,9 +98,9 @@ int		resize_meta_data()
 /*
 ** return an empty struct to store meta infos
 */
-unsigned int	get_free_meta_block()
+long	get_free_meta_block()
 {
-	unsigned int i;
+	long i;
 
 	i = 0;
 	while (i < vault.meta_items_max)
@@ -122,12 +122,16 @@ unsigned int	get_free_meta_block()
 	return (i);
 }
 
+/*
+**	extends tab_free
+**	return 1 if ok or -1 if Nok
+*/
 int		resize_free_data()
 {
-	int		cur_npage;
-	void	*curtab;
-	int		curtabsize;
 	void	*newtab;
+	void	*curtab;
+	long	cur_npage;
+	long	curtabsize;
 
 	cur_npage = vault.tab_free_npage;
 	curtab = vault.tab_free;
@@ -141,16 +145,16 @@ int		resize_free_data()
 	munmap(curtab, curtabsize);
 
 	vault.tab_free = newtab;
-	vault.tab_meta_npage += META_INCRE_ALLOC_PAGE;
+	vault.tab_free_npage += META_INCRE_ALLOC_PAGE;
 	vault.free_items_max = \
 	(getpagesize() * vault.tab_free_npage) / sizeof(t_free_block);
 	// ft_printf("New max free items[%d]\n", vault.meta_items_max);
 	return (1);
 }
 
-unsigned int	get_free_free_block()
+long	get_free_free_block()
 {
-	unsigned int i;
+	long	i;
 
 	i = 0;
 	while (i < vault.free_items_max)
@@ -162,13 +166,28 @@ unsigned int	get_free_free_block()
 	}
 	if (i != 0 && i == vault.free_items_max && vault.tab_free[i - 1].ptr != NULL && vault.tab_free[i - 1].ptr->type != FREE_BLOCK)
 	{
-		// ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
+		ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
 		if (resize_free_data() != 1)
+		{
+			ft_printf("\ncas1\n");
 			return (-1);
-		if (vault.tab_meta[i + 1].type == FREE_BLOCK)
+		}
+		ft_printf("i = %d\n", i);
+		printAllTabFreeInfo(520);
+		if (vault.tab_free[i + 1].ptr != NULL && vault.tab_free[i + 1].ptr->type == FREE_BLOCK)
+		{
+			ft_printf("\ncas2\n");
 			return (i + 1);
+		}
 		else
+		{
+			ft_printf("\ncas3\n");
 			return (-1);
+		}
 	}
 	return (i);
 }
+
+
+
+

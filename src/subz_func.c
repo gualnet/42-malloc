@@ -6,21 +6,18 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 17:01:51 by galy              #+#    #+#             */
-/*   Updated: 2018/01/25 18:52:21 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 18:52:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
-unsigned int	split_subz(unsigned int idx_1, size_t size)
+long	split_subz(long idx_1, size_t size)
 {
-	ft_putstr("01 ");
+	long idx_2;
+	long free_subz_bloc_idx;
 
-	unsigned int idx_2;
-	unsigned int free_subz_bloc_idx;
-
-	ft_putstr("02 ");
-	if ((idx_2 = get_free_meta_block()) == (unsigned int)-1)
+	if ((idx_2 = get_free_meta_block()) == -1)
 	{
 		if (DEBUG_MALLOC)
 			ft_putstr("error: in subz_func.c line 19\n");
@@ -33,12 +30,12 @@ unsigned int	split_subz(unsigned int idx_1, size_t size)
 
 	vault.tab_meta[idx_1].type = size_to_subz_type(size, 0);
 	vault.tab_meta[idx_1].size = size;
-	
-	ft_putstr("03 ");
-	free_subz_bloc_idx = get_free_free_block();
-	ft_putstr("04 ");
-	
+
+	if ((free_subz_bloc_idx = get_free_free_block()) == -1)
+	{
+		ft_printf("PANIC 001 idx1[%d] - idx2[%d]: subz_func\n", idx_1, idx_2);
+		exit(-1);
+	}
 	vault.tab_free[free_subz_bloc_idx].ptr = &vault.tab_meta[idx_2];
-	ft_putstr("05 ");
 	return (idx_1);
 }

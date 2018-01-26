@@ -6,13 +6,13 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/25 18:53:28 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/26 18:01:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/malloc.h"
+#include "malloc.h"
 
-void	defrag_merge_bf_subz(unsigned int m_id, unsigned int f_id)
+void	defrag_merge_bf_subz(long m_id, long f_id)
 {
 	vault.tab_free[f_id].ptr->size += vault.tab_meta[m_id].size;
 	vault.tab_meta[m_id].size = 0;
@@ -20,20 +20,18 @@ void	defrag_merge_bf_subz(unsigned int m_id, unsigned int f_id)
 	vault.tab_meta[m_id].adr = NULL;
 }
 
-void	defrag_merge_af_subz(unsigned int m_id, unsigned int f_id)
+void	defrag_merge_af_subz(long m_id, long f_id)
 {
 	vault.tab_meta[m_id].size += vault.tab_free[f_id].ptr->size;
 	vault.tab_free[f_id].ptr->size = 0;
 	vault.tab_free[f_id].ptr->type = FREE_BLOCK;
 }
 
-void	defrag(unsigned int m_id)
+void	defrag(long m_id)
 {
-	unsigned int	i;
-	unsigned int	j;
+	long	i;
 
 	i = 0;
-	j = 0;
 	while (i < vault.free_items_max)
 	{
 		if (vault.tab_free[i].ptr != NULL && \
@@ -54,7 +52,7 @@ void	defrag(unsigned int m_id)
 
 void	tab_free_cleaner(void)
 {
-	unsigned int	i;
+	long	i;
 
 	i = 0;
 	while (i < vault.free_items_max)
@@ -70,7 +68,7 @@ void	tab_free_cleaner(void)
 
 int		search_and_free_subz(void *ptr)
 {
-	unsigned int	i;
+	long	i;
 
 	i = 0;
 	while (i < vault.meta_items_max)
