@@ -46,8 +46,8 @@ int	test_free_basic(void)
 {
 	void *adr = (void*)12;
 
-	adr = malloc(123);
-	free(adr);
+	adr = ft_malloc(123);
+	ft_free(adr);
 
 	return (1);
 }
@@ -62,7 +62,7 @@ int test_free_02(void)
 	nbr = 3;
 	while (i < nbr)
 	{
-		adr[i] = malloc(123);
+		adr[i] = ft_malloc(123);
 		i++;
 	}
 	// printAllTabMetaInfo(12);
@@ -72,7 +72,7 @@ int test_free_02(void)
 	{
 		if (i % 2 == 0)
 		{
-			free(adr[i]);
+			ft_free(adr[i]);
 			ft_printf("0-->%d - %p\n", i, adr[i]);
 			adr[i] = NULL;
 		}
@@ -85,7 +85,7 @@ int test_free_02(void)
 	{
 		if (adr[i] != NULL)
 		{
-			free(adr[i]);
+			ft_free(adr[i]);
 			ft_printf("1-->%d - %p\n", i, adr[i]);
 			adr[i] = NULL;
 		}
@@ -106,27 +106,27 @@ int test_defrag_merging_bf()
 	max = 4;
 	while (i < max)
 	{
-		adr[i] = malloc(28);
+		adr[i] = ft_malloc(28);
 		i++;
 	}
 	// printAllTabMetaInfo(max + 4);
 	// printAllTabFreeInfo(max + 4);
-	free(adr[1]);
+	ft_free(adr[1]);
 	// printAllTabMetaInfo(max + 4);
 	// printAllTabFreeInfo(max + 4);
 	ft_printf("0000\n");
 
-	adr[1] = malloc(4);
-	free(adr[1]);
+	adr[1] = ft_malloc(4);
+	ft_free(adr[1]);
 	adr[1] = NULL;
-	free(adr[2]);
+	ft_free(adr[2]);
 	adr[2] = NULL;
 	// printAllTabMetaInfo(max + 4);
 	// printAllTabFreeInfo(max + 4);
 	i = 0;
 	while (i < max)
 	{
-		free(adr[i]);
+		ft_free(adr[i]);
 		i++;
 	}
 	return (1);
@@ -141,20 +141,20 @@ int test_defrag_merging_af()
 	i = 0;
 	max = 4;
 	
-	adr[0] = malloc(1);
-	adr[1] = malloc(2);
-	adr[2] = malloc(3);
-	adr[3] = malloc(4);
+	adr[0] = ft_malloc(1);
+	adr[1] = ft_malloc(2);
+	adr[2] = ft_malloc(3);
+	adr[3] = ft_malloc(4);
 	
-	free(adr[1]);
-	free(adr[2]);
+	ft_free(adr[1]);
+	ft_free(adr[2]);
 	// printAllTabMetaInfo(max + 4);
 	// printAllTabFreeInfo(max + 4);
 	
-	free(adr[0]);
+	ft_free(adr[0]);
 	// printAllTabMetaInfo(max + 4);
 	// printAllTabFreeInfo(max + 4);
-	free(adr[3]);
+	ft_free(adr[3]);
 	// printAllTabMetaInfo(max + 4);
 	// printAllTabFreeInfo(max + 4);
 	return (1);

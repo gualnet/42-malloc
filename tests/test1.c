@@ -6,7 +6,7 @@ int main(void)
 {
 	int		i;
 	char	*adr;
-	ft_printf("hi\n");
+	
 	i = 0;
 	while(i < 1024)
 	{

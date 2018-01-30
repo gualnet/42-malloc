@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/26 18:37:57 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/29 19:10:30 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ long	request_tiny_small(size_t size)
 	t_meta_type		req_type;
 	
 	req_type = size_to_subz_type(size, 1);
-	
-	ft_putstr("MAX ITEMS[");
-	ft_putnbr(vault.meta_items_max);
-	ft_putstr("]\n");
 	while (1)
 	{
 		i = 0;

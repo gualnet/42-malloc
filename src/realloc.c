@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:34:17 by galy              #+#    #+#             */
-/*   Updated: 2018/01/26 17:58:56 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/29 18:26:23 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			*go_realloc(size_t size, long old_idx)
 	return (new_ptr);
 }
 
-void			*realloc(void *ptr, size_t size)
+void			*ft_realloc(void *ptr, size_t size)
 {
 	// ft_putstr("CALL REALLOC\n");
 

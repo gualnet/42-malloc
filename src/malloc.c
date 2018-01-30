@@ -16,7 +16,7 @@ t_vault vault = {};
 
 void    *ft_malloc(size_t size)
 {
-	ft_putstr("call malloc\n");
+	// ft_putstr("call malloc\n");
 	pthread_mutex_t	mutex;
 	void			*adr;
 	long			idx;
@@ -51,6 +51,6 @@ void    *ft_malloc(size_t size)
 	// pthread unlock
 //----------//----------//----------//----------//
 	// printAllTabMetaInfo(5);
-	ft_putstr("end call malloc\n");
+	// ft_putstr("end call malloc\n");
 	return adr;
 }

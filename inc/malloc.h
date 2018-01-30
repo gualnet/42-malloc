@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/26 18:31:54 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/29 19:09:14 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 
 #define DEBUG_MALLOC 1
-#define META_INCRE_ALLOC_PAGE 1 //size tab-meta = META_ALLOC_STEP * pagesize
+#define META_INCRE_ALLOC_PAGE 8 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
@@ -42,9 +42,12 @@ typedef enum			e_meta_size //from osx implem
 {
 	NULL_SIZE			= 0,
 	TINY_ALLOC_MIN		= 1,
-	TINY_ALLOC_MAX		= 992, //(xx% of zone size -> 992o)
-	TINY_ZONE_SIZE		= 2097152, //(256 * 4096 -> 2mo)
-	SMALL_ALLOC_MIN		= 993,
+	TINY_ALLOC_MAX		= 2048, //(xx% of zone size -> 992o)
+	// TINY_ALLOC_MAX		= 992, //(xx% of zone size -> 992o)
+	TINY_ZONE_SIZE		= 1048576, //(256 * 4096 -> 2mo)
+	// TINY_ZONE_SIZE		= 2097152, //(256 * 4096 -> 2mo)
+	SMALL_ALLOC_MIN		= 2049,
+	// SMALL_ALLOC_MIN		= 993,
 	SMALL_ALLOC_MAX		= 130048, //(xx% of zone size->127ko)
 	SMALL_ZONE_SIZE		= 16777216, //(128 * 16384 -> 16mo)
 	LARGE_ALLOC_MIN		= 1572865,
@@ -113,7 +116,7 @@ void	tab_free_cleaner(void);
 int		search_and_free_subz(void *ptr);
 
 //realloc.c
-void	*realloc(void *ptr, size_t size);
+void	*ft_realloc(void *ptr, size_t size);
 
 
 

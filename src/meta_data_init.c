@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/01/26 18:59:19 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/29 19:02:06 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,22 +166,20 @@ long	get_free_free_block()
 	}
 	if (i != 0 && i == vault.free_items_max && vault.tab_free[i - 1].ptr != NULL && vault.tab_free[i - 1].ptr->type != FREE_BLOCK)
 	{
-		ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
+		// ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
 		if (resize_free_data() != 1)
 		{
-			ft_printf("\ncas1\n");
+			// ft_printf("\ncas1\n");
 			return (-1);
 		}
-		ft_printf("i = %d\n", i);
-		printAllTabFreeInfo(520);
-		if (vault.tab_free[i + 1].ptr != NULL && vault.tab_free[i + 1].ptr->type == FREE_BLOCK)
+		if (vault.tab_free[i].ptr == NULL)
 		{
-			ft_printf("\ncas2\n");
+			// ft_printf("\ncas2\n");
 			return (i + 1);
 		}
 		else
 		{
-			ft_printf("\ncas3\n");
+			// ft_printf("\ncas3\n");
 			return (-1);
 		}
 	}
