@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/29 19:09:14 by galy             ###   ########.fr       */
+/*   Updated: 2018/01/30 09:53:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef enum			e_meta_size //from osx implem
 	TINY_ALLOC_MIN		= 1,
 	TINY_ALLOC_MAX		= 2048, //(xx% of zone size -> 992o)
 	// TINY_ALLOC_MAX		= 992, //(xx% of zone size -> 992o)
-	TINY_ZONE_SIZE		= 1048576, //(256 * 4096 -> 2mo)
-	// TINY_ZONE_SIZE		= 2097152, //(256 * 4096 -> 2mo)
+	// TINY_ZONE_SIZE		= 1048576, //(256 * 4096 -> 2mo)
+	TINY_ZONE_SIZE		= 2097152, //(256 * 4096 -> 2mo)
 	SMALL_ALLOC_MIN		= 2049,
 	// SMALL_ALLOC_MIN		= 993,
 	SMALL_ALLOC_MAX		= 130048, //(xx% of zone size->127ko)
