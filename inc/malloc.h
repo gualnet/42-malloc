@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/01/30 09:53:28 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/01 16:06:47 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 
 
 #define DEBUG_MALLOC 1
-#define META_INCRE_ALLOC_PAGE 8 //size tab-meta = META_ALLOC_STEP * pagesize
+#define META_INCRE_ALLOC_PAGE 1 // pour test sur la liberation des espace inutiles des tab_meta
+// #define META_INCRE_ALLOC_PAGE 8 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
@@ -42,11 +43,11 @@ typedef enum			e_meta_size //from osx implem
 {
 	NULL_SIZE			= 0,
 	TINY_ALLOC_MIN		= 1,
-	TINY_ALLOC_MAX		= 2048, //(xx% of zone size -> 992o)
 	// TINY_ALLOC_MAX		= 992, //(xx% of zone size -> 992o)
-	// TINY_ZONE_SIZE		= 1048576, //(256 * 4096 -> 2mo)
-	TINY_ZONE_SIZE		= 2097152, //(256 * 4096 -> 2mo)
-	SMALL_ALLOC_MIN		= 2049,
+	TINY_ALLOC_MAX		= 4096, //(xx% of zone size -> 992o) test
+	// TINY_ZONE_SIZE		= 1048576, //(... -> 1mo)
+	TINY_ZONE_SIZE		= 2097152, //(... -> 2mo) test
+	SMALL_ALLOC_MIN		= 4097, // test
 	// SMALL_ALLOC_MIN		= 993,
 	SMALL_ALLOC_MAX		= 130048, //(xx% of zone size->127ko)
 	SMALL_ZONE_SIZE		= 16777216, //(128 * 16384 -> 16mo)
@@ -109,6 +110,9 @@ long		split_subz(long idx_1, size_t size);
 //request_large.c
 void	*request_large(size_t size);
 
+//tabs_usage_funcs.c
+void	check_tabmeta_usage();
+
 
 //free.c
 void	ft_free(void *ptr);
@@ -117,6 +121,8 @@ int		search_and_free_subz(void *ptr);
 
 //realloc.c
 void	*ft_realloc(void *ptr, size_t size);
+
+
 
 
 

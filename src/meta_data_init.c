@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/01/29 19:02:06 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/01 16:11:49 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		create_tab_meta(void)
 {
-	unsigned int	i;
+	long	i;
 
 	vault.tab_meta = mmap(NULL, (getpagesize() * META_INCRE_ALLOC_PAGE),\
 	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
@@ -38,7 +38,7 @@ int		create_tab_meta(void)
 
 int		create_tab_free(void)
 {
-	unsigned int	i;
+	long	i;
 	vault.tab_free = mmap(NULL, (getpagesize() * (META_INCRE_ALLOC_PAGE)),\
 	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	vault.tab_free_npage = META_INCRE_ALLOC_PAGE;

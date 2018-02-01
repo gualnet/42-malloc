@@ -14,10 +14,12 @@ int main(void)
 	{
 		adr = (char*)ft_malloc(1024);
 		adr[0] = 42;
-		// printAllTabMetaInfo(0);
-		// printAllTabFreeInfo(0);
+		printAllTabMetaInfo(10);
+		printAllTabFreeInfo(10);
+		ft_free(adr);
+		printAllTabMetaInfo(10);
+		printAllTabFreeInfo(10);
 		i++;
 	}
-	// ft_printf("i = %d\n", i);
 	return (0);
 }

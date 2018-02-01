@@ -46,6 +46,7 @@ void    *ft_malloc(size_t size)
 		adr = request_large(size);
 	}
 //----------//----------//----------//----------//
+	check_tabmeta_usage();
 	// tab_free_cleaner(); // mef a virer
 //----------//----------//----------//----------//
 	// pthread unlock

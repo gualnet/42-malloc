@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/26 18:01:09 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/01 20:05:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,27 @@ void	tab_free_cleaner(void)
 	long	i;
 
 	i = 0;
+	// ft_putstr("free_items_max[");
+	// ft_putnbr(vault.free_items_max);
+	// ft_putstr("]\n");
 	while (i < vault.free_items_max)
 	{
+		// if (i < 10)
+		// {
+		// 	ft_putstr("i[");
+		// 	ft_putnbr(i);
+		// 	ft_putstr("] - ");
+		// 	ft_putnbr((int)vault.tab_free[i].ptr);
+		// 	ft_putstr("test0 ok - ");
+		// 	if (vault.tab_free[i].ptr != NULL)
+		// 	{
+		// 		ft_putnbr(vault.tab_free[i].ptr->type);
+		// 		ft_putstr("test1 ok\n");
+		// 	} else {
+		// 		ft_putstr("test1 sauté\n");
+		// 	}
+		// }
+		problem ici
 		if (vault.tab_free[i].ptr != NULL && vault.tab_free[i].ptr->type != TINY_SUBZ_FREE\
 		&& vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
 		{
@@ -64,6 +83,7 @@ void	tab_free_cleaner(void)
 		}
 		i++;
 	}
+	// ft_putstr("-----\n");
 }
 
 int		search_and_free_subz(void *ptr)

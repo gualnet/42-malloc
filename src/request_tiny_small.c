@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/01/30 09:53:29 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/01 19:27:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		map_new_zone(size_t size)
 	long	subz_bloc_idx;
 	long	free_subz_bloc_idx;
 
-	ft_printf("`\n");
 	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (new_zone == MAP_FAILED)
