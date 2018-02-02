@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/02/01 16:10:00 by galy             ###   ########.fr        #
+#    Updated: 2018/02/02 16:04:51 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,9 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 
 make_lib	:
 	@make -C $(LIBDIR)
+
+make_tests	:
+	
 
 OBJD		:
 	@mkdir -p $(OBJDIR)

@@ -47,7 +47,7 @@ void    *ft_malloc(size_t size)
 	}
 //----------//----------//----------//----------//
 	check_tabmeta_usage();
-	// tab_free_cleaner(); // mef a virer
+	tab_free_cleaner(); // mef a virer
 //----------//----------//----------//----------//
 	// pthread unlock
 //----------//----------//----------//----------//

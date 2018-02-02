@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/01 20:05:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/02 16:01:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	tab_free_cleaner(void)
 	// ft_putstr("free_items_max[");
 	// ft_putnbr(vault.free_items_max);
 	// ft_putstr("]\n");
-	while (i < vault.free_items_max)
+	while (i < vault.free_items_max - 1)
 	{
 		// if (i < 10)
 		// {
@@ -75,7 +75,7 @@ void	tab_free_cleaner(void)
 		// 		ft_putstr("test1 sauté\n");
 		// 	}
 		// }
-		problem ici
+		
 		if (vault.tab_free[i].ptr != NULL && vault.tab_free[i].ptr->type != TINY_SUBZ_FREE\
 		&& vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
 		{
