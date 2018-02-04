@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:52:42 by galy              #+#    #+#             */
-/*   Updated: 2018/02/01 18:53:18 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/02 18:35:39 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	printAllTabMetaInfo(long interMax)
 	if (interMax == 0)
 		interMax = vault.meta_items_max;
 
-	while (i < interMax - 1)
+	while (i < interMax)
 	{
 		if (vault.tab_meta[i].adr == NULL)
 			ft_printf("[%p]tab_meta[%d] : adr:0x000000000 - ", &vault.tab_meta[i], i);
@@ -131,21 +131,21 @@ void	printAllTabFreeInfo(long interMax)
 	long i = 0;
 	if (interMax == 0)
 		interMax = vault.free_items_max;
-	ft_printf("0000\n");
+	// ft_printf("0000\n");
 	while (i < interMax - 1)
 	{
 		if (vault.tab_free[i].ptr == NULL)
 			ft_printf("[%p]tab_free[%d] : ptr:0x000000000 > 0x000000000 - ", &vault.tab_free[i], i);
 		if (vault.tab_free[i].ptr != NULL)
 		{
-			ft_printf("0000\n");
-			ft_printf("[%p]tab_free[%d] : ptr:%p > %p - ", &vault.tab_free[i], i, \
-			vault.tab_free[i].ptr, 0);
+			// ft_printf("0000\n");
+			// ft_printf("[%p]tab_free[%d] : ptr:%p > %p - ", &vault.tab_free[i], i, \
+			// vault.tab_free[i].ptr, 0);
 
 			// ---> Probleme ICI <---
 			// ft_printf("[%p]tab_free[%d] : ptr:%p > %p - ", &vault.tab_free[i], i, \
 			// vault.tab_free[i].ptr, vault.tab_free[i].ptr->adr);
-			// ft_printf("0000\n");
+			// ft_printf("\n0000\n");
 			if (vault.tab_free[i].ptr->type == FREE_BLOCK)
 				ft_printf("Type: FREE_BLOCK - ");
 			if (vault.tab_free[i].ptr->type == TINY_ZONE)

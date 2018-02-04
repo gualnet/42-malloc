@@ -6,11 +6,11 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/02 16:01:42 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/02 18:35:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc.h"
+#include "../inc/malloc.h"
 
 void	defrag_merge_bf_subz(long m_id, long f_id)
 {
@@ -53,37 +53,31 @@ void	defrag(long m_id)
 void	tab_free_cleaner(void)
 {
 	long	i;
+	int		found;
 
+	found = 0;
 	i = 0;
-	// ft_putstr("free_items_max[");
-	// ft_putnbr(vault.free_items_max);
-	// ft_putstr("]\n");
-	while (i < vault.free_items_max - 1)
+	while (i < vault.free_items_max)
 	{
-		// if (i < 10)
-		// {
-		// 	ft_putstr("i[");
-		// 	ft_putnbr(i);
-		// 	ft_putstr("] - ");
-		// 	ft_putnbr((int)vault.tab_free[i].ptr);
-		// 	ft_putstr("test0 ok - ");
-		// 	if (vault.tab_free[i].ptr != NULL)
-		// 	{
-		// 		ft_putnbr(vault.tab_free[i].ptr->type);
-		// 		ft_putstr("test1 ok\n");
-		// 	} else {
-		// 		ft_putstr("test1 sauté\n");
-		// 	}
-		// }
-		
-		if (vault.tab_free[i].ptr != NULL && vault.tab_free[i].ptr->type != TINY_SUBZ_FREE\
-		&& vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
+		ft_putstr("i = ");
+		ft_putnbr(i);
+		ft_putstr(" -> ");
+		if (vault.tab_free[i].ptr != NULL)
 		{
-			vault.tab_free[i].ptr = NULL;
+			ft_putstr("step 1");
+			ft_putstr(" -> ");
+			// if (vault.tab_free[i].ptr->type != TINY_SUBZ_FREE \
+			// && vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
+			// {
+			// 	ft_putstr("step 2");
+			// 	ft_putstr(" -> ");
+			// 	vault.tab_free[i].ptr = NULL;
+			// }
 		}
+		ft_putstr("step 3");
+		ft_putstr("\n");
 		i++;
 	}
-	// ft_putstr("-----\n");
 }
 
 int		search_and_free_subz(void *ptr)
