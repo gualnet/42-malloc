@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/02/02 17:07:52 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/04 19:24:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 
 #define DEBUG_MALLOC 1
-#define META_INCRE_ALLOC_PAGE 1 // pour test sur la liberation des espace inutiles des tab_meta
-// #define META_INCRE_ALLOC_PAGE 8 //size tab-meta = META_ALLOC_STEP * pagesize
+// #define META_INCRE_ALLOC_PAGE 1 // pour test sur la liberation des espace inutiles des tab_meta
+#define META_INCRE_ALLOC_PAGE 8 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
