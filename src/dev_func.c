@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 16:52:42 by galy              #+#    #+#             */
-/*   Updated: 2018/02/02 18:35:39 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/04 17:10:02 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ void	printAllTabFreeInfo(long interMax)
 			// vault.tab_free[i].ptr, 0);
 
 			// ---> Probleme ICI <---
-			// ft_printf("[%p]tab_free[%d] : ptr:%p > %p - ", &vault.tab_free[i], i, \
-			// vault.tab_free[i].ptr, vault.tab_free[i].ptr->adr);
+			ft_printf("[%p]tab_free[%d] : ptr:%p > %p - ", &vault.tab_free[i], i, \
+			vault.tab_free[i].ptr, vault.tab_free[i].ptr->adr);
 			// ft_printf("\n0000\n");
 			if (vault.tab_free[i].ptr->type == FREE_BLOCK)
 				ft_printf("Type: FREE_BLOCK - ");

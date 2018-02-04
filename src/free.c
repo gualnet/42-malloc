@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/02 18:35:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/04 18:56:41 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,30 @@ void	tab_free_cleaner(void)
 	i = 0;
 	while (i < vault.free_items_max)
 	{
-		ft_putstr("i = ");
-		ft_putnbr(i);
-		ft_putstr(" -> ");
+		// ft_putstr("i = ");
+		// ft_putnbr(i);
+		// ft_putstr(" -> ");
+		// printAllTabFreeInfo(10);
 		if (vault.tab_free[i].ptr != NULL)
 		{
-			ft_putstr("step 1");
-			ft_putstr(" -> ");
-			// if (vault.tab_free[i].ptr->type != TINY_SUBZ_FREE \
-			// && vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
-			// {
-			// 	ft_putstr("step 2");
-			// 	ft_putstr(" -> ");
-			// 	vault.tab_free[i].ptr = NULL;
-			// }
+			// ft_putstr("step 1");
+			// ft_putstr(" -> ");
+			// printAllTabMetaInfo(0);
+			// ft_printf("vault.tab_free[0].ptr[%p]\n", vault.tab_free[0].ptr);
+			// ft_printf("vault.tab_free[1].ptr[%p]\n", vault.tab_free[1].ptr);
+			// printMetaBlocInfo(127 - 1);
+			// printMetaBlocInfo(127);
+			// printMetaBlocInfo(127 + 1);
+			if (vault.tab_free[i].ptr->type != TINY_SUBZ_FREE \
+			&& vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
+			{
+				// ft_putstr("step 2");
+				// ft_putstr(" -> ");
+				vault.tab_free[i].ptr = NULL;
+			}
 		}
-		ft_putstr("step 3");
-		ft_putstr("\n");
+		// ft_putstr("step 3");
+		// ft_putstr("\n");
 		i++;
 	}
 }
