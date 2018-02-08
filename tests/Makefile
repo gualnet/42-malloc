@@ -42,6 +42,16 @@ tests	:
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
 -o _test2
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./test3.c \
+../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
+../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
+../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
+-o _test3
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./test4.c \
+../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
+../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
+../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
+-o _test4
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_meta_data_initializer.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
@@ -77,8 +87,9 @@ tests	:
 
 fclean	:
 	rm -rf $(OBJDIR)
-	@rm		_test0		_test1		_test2			_test_meta_data_initializer	\
-	_test_malloc		_test_request_tiny_small	_test_free		_test_request_large	_test_subz_func
+	@rm		_test0		_test1		_test2		_test3		_test4 \
+	_test_meta_data_initializer		_test_malloc		_test_request_tiny_small\
+	_test_free		_test_request_large	_test_subz_func
 
 ####MORE_RULEZ####
 

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/02/01 19:27:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/08 15:13:46 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		map_new_zone(size_t size)
 	if (new_zone == MAP_FAILED)
 	{
 		if (DEBUG_MALLOC)
-			ft_putstr("mmap error 000: in request_tiny_small.c line 21\n");
+			ft_putstr("\033[31mError[000]: MAP_FAILED in request_tiny_small.c line 21\n\033[0m");
 		return (-1);
 	}
 	zone_bloc_idx = get_free_meta_block();

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/04 19:19:36 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/08 18:27:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,12 @@ int		search_and_free_subz(void *ptr)
 			defrag(i);
 			return (1);
 		}
+		if (vault.tab_meta[i].adr == ptr && \
+		vault.tab_meta[i].type == LARGE_ZONE)
+		{
+			unmap_large(i);
+			return (1);
+		}
 		i++;
 	}
 	return (-1);
@@ -111,13 +117,15 @@ void	ft_free(void *ptr)
 		// ft_printf("Before:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
 		// meta_data_initializer();
 		// ft_printf("After:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
-		return;
+		ft_putstr("\033[33mWARNING - vault.tab_free = NULL !!!\n\033[0m");
+		exit(-1);
 	}
 	if (search_and_free_subz(ptr) != 1) 
 	{
 		// ft_putstr("0000\n");
-		// ft_printf("Error for object [%p]: pointer being freed was not allocated\n", ptr);
-		// exit(-1);
+		ft_printf("\033[31mError for object [%p]: pointer being freed was not allocated\n\033[0m", ptr);
+		// ft_putstr("\033[31mErr in free.c line 120\n\033[0m");
+		exit(-1);
 	}
 	tab_free_cleaner();
 	// ft_putstr("end call ft_free\n");

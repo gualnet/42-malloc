@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/02/04 19:24:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/08 18:55:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef enum			e_meta_size //from osx implem
 	TINY_ZONE_SIZE		= 2097152, //(... -> 2mo) test
 	SMALL_ALLOC_MIN		= 4097, // test
 	// SMALL_ALLOC_MIN		= 993,
-	SMALL_ALLOC_MAX		= 130048, //(xx% of zone size->127ko)
-	SMALL_ZONE_SIZE		= 16777216, //(128 * 16384 -> 16mo)
-	LARGE_ALLOC_MIN		= 1572865,
+	SMALL_ALLOC_MAX		= 1048576, //(->1mo)
+	SMALL_ZONE_SIZE		= 16777216, //(-> 16mo)
+	LARGE_ALLOC_MIN		= 1048577,
 }						t_meta_size;
 
 /*
@@ -109,6 +109,7 @@ long		split_subz(long idx_1, size_t size);
 
 //request_large.c
 void	*request_large(size_t size);
+void	unmap_large(long i);
 
 //tabs_usage_funcs.c
 void	check_tabmeta_usage();
