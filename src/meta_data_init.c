@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/02/04 20:32:16 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/04 20:49:18 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	rebuild_tab_free() // local
 	i = 0;
 	// munmap(vault.tab_free, vault.tab_free_npage * getpagesize());
 	// vault.tab_free = mmap(NULL, (vault.tab_free_npage * getpagesize()),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	// PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	while (i < vault.free_items_max)
 	{
 		vault.tab_free[i].ptr = NULL;
