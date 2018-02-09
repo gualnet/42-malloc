@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 17:01:51 by galy              #+#    #+#             */
-/*   Updated: 2018/01/29 18:58:31 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 11:00:44 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ long	split_subz(long idx_1, size_t size)
 
 	if ((idx_2 = get_free_meta_block()) == -1)
 	{
-		if (DEBUG_MALLOC)
+		if (getenv("DEBUG_MALLOC"))
 			ft_putstr("error: in subz_func.c line 19\n");
 		return (-1);
 	}
@@ -33,7 +33,7 @@ long	split_subz(long idx_1, size_t size)
 
 	if ((free_subz_bloc_idx = get_free_free_block()) == -1)
 	{
-		if (DEBUG_MALLOC == 1)
+		if (getenv("DEBUG_MALLOC"))
 		{
 			ft_printf("PANIC 001 idx1[%d] - idx2[%d]: subz_func\n", idx_1, idx_2);
 			exit(-1);

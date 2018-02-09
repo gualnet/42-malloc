@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 18:39:52 by galy              #+#    #+#             */
-/*   Updated: 2018/01/29 18:22:05 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 10:59:38 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int test_malloc_0()
 
 	if (ret != NULL)
 	{
-		if (DEBUG_MALLOC)
+		if (getenv("DEBUG_MALLOC"))
 			ft_printf("malloc(0) = [%p]\n", ret);
 		return (-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:34:17 by galy              #+#    #+#             */
-/*   Updated: 2018/02/08 18:51:17 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 11:01:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ void			*ft_realloc(void *ptr, size_t size)
 	// ft_putstr("step1\n");
 	if ((long)(old_idx = get_ptr_idx(ptr)) == -1)
 	{
-		ft_printf("\033[31mError for object [%p]: pointer being realloc'd was not allocated\n\033[0m", ptr);
+		if (getenv("DEBUG_MALLOC"))
+		{
+			ft_printf("\033[31mError for object [%p]: pointer being realloc'd was not allocated\n\033[0m", ptr);
+			exit (-1);
+		}
 		return (NULL);
 	}
 	// ft_putstr("step2\n");

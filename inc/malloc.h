@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/02/08 18:55:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 18:19:05 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,20 @@
 #include "libft.h"
 
 
-#define DEBUG_MALLOC 1
+// #define DEBUG_MALLOC 1 - replaced by varenv
+
 // #define META_INCRE_ALLOC_PAGE 1 // pour test sur la liberation des espace inutiles des tab_meta
 #define META_INCRE_ALLOC_PAGE 8 //size tab-meta = META_ALLOC_STEP * pagesize
 
 typedef enum			e_meta_type
 {
-	FREE_BLOCK,
+	FREE_BLOCK,//0
 	TINY_ZONE,
-	SMALL_ZONE,
+	SMALL_ZONE,//2
 	LARGE_ZONE,
-	TINY_SUBZ_FREE,
+	TINY_SUBZ_FREE,//4
 	TINY_SUBZ,
-	SMALL_SUBZ_FREE,
+	SMALL_SUBZ_FREE,//6
 	SMALL_SUBZ,
 }						t_meta_type;
 
@@ -103,6 +104,7 @@ t_meta_type	size_to_subz_type(size_t size, int flag_free);
 t_meta_type	size_to_zone_type(size_t size);
 t_meta_size	size_to_zone_size(size_t size);
 size_t	    size_to_subz_size(size_t size);
+size_t		zone_type_to_size(t_meta_type type);
 
 //subz_func.c
 long		split_subz(long idx_1, size_t size);
@@ -123,6 +125,11 @@ int		search_and_free_subz(void *ptr);
 //realloc.c
 void	*ft_realloc(void *ptr, size_t size);
 
+//show_alloc_mem.c
+void	show_alloc_mem(void);
+
+//order_tab_show.c
+void	order_tab_show(t_meta_data *tab_show);
 
 
 

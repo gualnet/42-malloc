@@ -1,7 +1,6 @@
-// #include "unistd.h"
-
-
+#include <unistd.h>
 #include "../inc/malloc.h"
+
 int main(void)
 {
 	int		i;

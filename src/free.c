@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/08 18:27:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 10:59:00 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	ft_free(void *ptr)
 		ft_putstr("\033[33mWARNING - vault.tab_free = NULL !!!\n\033[0m");
 		exit(-1);
 	}
-	if (search_and_free_subz(ptr) != 1) 
+	if (search_and_free_subz(ptr) != 1 && getenv("DEBUG_MALLOC"))
 	{
 		// ft_putstr("0000\n");
 		ft_printf("\033[31mError for object [%p]: pointer being freed was not allocated\n\033[0m", ptr);

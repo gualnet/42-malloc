@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:24:29 by galy              #+#    #+#             */
-/*   Updated: 2018/01/25 10:53:24 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 11:00:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int test1()
 		return (-1);
 	if (vault.tab_meta == NULL)
 		return (-1);
-	if (DEBUG_MALLOC)
+	if (getenv("DEBUG_MALLOC"))
 		printCreateMetaTabCR();
 	// ft_printf("tab adress : %p\n", vault.tab_meta);
 	
@@ -77,7 +77,7 @@ int test2()
 		return (-1);
 	if (vault.tab_free == NULL)
 		return (-1);
-	if (DEBUG_MALLOC)
+	if (getenv("DEBUG_MALLOC"))
 		printCreateFreeTabCR();
 	return (1);
 }

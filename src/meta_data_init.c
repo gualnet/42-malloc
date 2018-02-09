@@ -6,11 +6,11 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/02/08 17:57:56 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 16:21:04 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "malloc.h"
+#include "../inc/malloc.h"
 
 int		create_tab_meta(void)
 {

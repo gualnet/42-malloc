@@ -1,7 +1,6 @@
-// #include "unistd.h"
-
-
+#include "unistd.h"
 #include "../inc/malloc.h"
+
 int main(void)
 {
 	int		i;
@@ -18,7 +17,7 @@ int main(void)
 		// printAllTabFreeInfo(10);
 		i++;
 	}
-	// ft_printf("i = %d\n", i);
+
 	return (0);
 }
 

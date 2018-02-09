@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/02/08 15:13:46 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/09 16:04:02 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		map_new_zone(size_t size)
 	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (new_zone == MAP_FAILED)
 	{
-		if (DEBUG_MALLOC)
+		if (getenv("DEBUG_MALLOC"))
 			ft_putstr("\033[31mError[000]: MAP_FAILED in request_tiny_small.c line 21\n\033[0m");
 		return (-1);
 	}
@@ -62,6 +62,7 @@ long	request_tiny_small(size_t size)
 				// a la taille demandee.
 				// ft_putstr("recherche de zone cas 1\n");
 				//virer la zone de tab_free
+				vault.tab_meta[i].type = size_to_subz_type(size, 0);
 				return (i);
 			}
 			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size > size)
