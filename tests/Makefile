@@ -37,67 +37,78 @@ tests	:
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test1
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./test2.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test2
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./test3.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test3
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./test4.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test4
 	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./test5.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test5
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_meta_data_initializer.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test_meta_data_initializer
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_malloc.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test_malloc
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_request_tiny_small.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test_request_tiny_small
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_free.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test_free
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_request_large.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test_request_large
 #	@$(CC) $(CFLAGS) -I$(INCDIR) $(LIBFLAG) ./unit_test_subz_func.c \
 ../src/malloc.c ../src/free.c ../src/realloc.c ../src/converters.c \
 ../src/meta_data_init.c ../src/subz_func.c ../src/request_tiny_small.c \
 ../src/request_large.c ../src/dev_func.c ../src/tabs_usage_funcs.c \
-../src/show_alloc_mem.c ../src/order_tab_show.c \
+../src/show_alloc_mem.c ../src/order_tab_show.c ../src/free_func.c \
+../src/tabs_resizers.c ../src/print_tab_show.c \
 -o _test_subz_func
 
 

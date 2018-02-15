@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/02/02 16:04:51 by galy             ###   ########.fr        #
+#    Updated: 2018/02/15 18:30:27 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC			=	\
 				malloc.c				free.c				realloc.c\
 				converters.c			meta_data_init.c	subz_func.c\
 				request_tiny_small.c 	request_large.c		tabs_usage_funcs.c\
+				free_func.c				tabs_resizers.c		print_tab_show.c
 
 
 ####FUNC####

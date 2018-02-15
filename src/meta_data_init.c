@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/02/09 16:21:04 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/15 17:26:41 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int		create_tab_meta(void)
 	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (vault.tab_meta == MAP_FAILED)
 		return (-1);
-	vault.tab_meta_npage = 1;
-	// vault.tab_meta_npage = META_INCRE_ALLOC_PAGE;
+	vault.tab_meta_npage = META_INCRE_ALLOC_PAGE;
 	vault.meta_items_max = \
 	(getpagesize() * vault.tab_meta_npage) / sizeof(t_meta_data);
 	i = 0;
@@ -39,7 +38,7 @@ int		create_tab_meta(void)
 int		create_tab_free(void)
 {
 	long	i;
-	
+
 	vault.tab_free = mmap(NULL, (getpagesize() * (META_INCRE_ALLOC_PAGE)),\
 	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	vault.tab_free_npage = 1;
@@ -55,7 +54,7 @@ int		create_tab_free(void)
 	return (1);
 }
 
-int		meta_data_initializer()
+int		meta_data_initializer(void)
 {
 	if (vault.tab_meta == NULL)
 	{
@@ -66,65 +65,15 @@ int		meta_data_initializer()
 	{
 		if (create_tab_free() != 1)
 			return (-1);
-	}	
-	return (1);
-}
-
-void	rebuild_tab_free() // local
-{
-	long			i;
-
-	i = 0;
-	// munmap(vault.tab_free, vault.tab_free_npage * getpagesize());
-	// vault.tab_free = mmap(NULL, (vault.tab_free_npage * getpagesize()),\
-	// PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	while (i < vault.free_items_max)
-	{
-		vault.tab_free[i].ptr = NULL;
-		i++;
 	}
-	i = 0;
-	while (i < vault.meta_items_max)
-	{
-		if (vault.tab_meta[i].type == TINY_SUBZ_FREE ||\
-		vault.tab_meta[i].type == SMALL_SUBZ_FREE)
-		{
-			vault.tab_free[get_free_free_block()].ptr = &vault.tab_meta[i];
-		}
-		i++;
-	}
-}
-
-int		resize_meta_data()
-{
-	int		cur_npage;
-	void	*curtab;
-	int		curtabsize;
-	void	*newtab;
-
-	cur_npage = vault.tab_meta_npage;
-	curtab = vault.tab_meta;
-	curtabsize = getpagesize() * cur_npage;
-
-	newtab = mmap(NULL, curtabsize + (getpagesize() * META_INCRE_ALLOC_PAGE),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	if (newtab == MAP_FAILED)
-		return (-1);
-	ft_memcpy(newtab, curtab, curtabsize);
-	munmap(curtab, curtabsize);
-	vault.tab_meta = newtab;
-	vault.tab_meta_npage += META_INCRE_ALLOC_PAGE;
-	vault.meta_items_max = \
-	(getpagesize() * vault.tab_meta_npage) / sizeof(t_meta_data);
-	rebuild_tab_free();
-	// ft_printf("New max meta items[%d]\n", vault.meta_items_max);
 	return (1);
 }
 
 /*
 ** return an empty struct to store meta infos
 */
-long	get_free_meta_block()
+
+long	get_free_meta_block(void)
 {
 	long i;
 
@@ -132,12 +81,12 @@ long	get_free_meta_block()
 	while (i < vault.meta_items_max)
 	{
 		if (vault.tab_meta[i].type == FREE_BLOCK)
-			break;
+			break ;
 		i++;
 	}
-	if (i != 0 && i == vault.meta_items_max && vault.tab_meta[i - 1].type != FREE_BLOCK)
+	if (i != 0 && i == vault.meta_items_max && \
+	vault.tab_meta[i - 1].type != FREE_BLOCK)
 	{
-		// ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabmeta+_+_+_+_+_\n\n");
 		if (resize_meta_data() != 1)
 			return (-1);
 		if (vault.tab_meta[i + 1].type == FREE_BLOCK)
@@ -148,69 +97,27 @@ long	get_free_meta_block()
 	return (i);
 }
 
-/*
-**	extends tab_free
-**	return 1 if ok or -1 if Nok
-*/
-int		resize_free_data()
-{
-	void	*newtab;
-	void	*curtab;
-	long	cur_npage;
-	long	curtabsize;
-
-	cur_npage = vault.tab_free_npage;
-	curtab = vault.tab_free;
-	curtabsize = getpagesize() * cur_npage;
-
-	newtab = mmap(NULL, curtabsize + (getpagesize() * META_INCRE_ALLOC_PAGE),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	if (newtab == MAP_FAILED)
-		return (-1);
-	ft_memcpy(newtab, curtab, curtabsize);
-	munmap(curtab, curtabsize);
-
-	vault.tab_free = newtab;
-	vault.tab_free_npage += META_INCRE_ALLOC_PAGE;
-	vault.free_items_max = \
-	(getpagesize() * vault.tab_free_npage) / sizeof(t_free_block);
-	return (1);
-}
-
-long	get_free_free_block()
+long	get_free_free_block(void)
 {
 	long	i;
 
 	i = 0;
 	while (i < vault.free_items_max)
 	{
-		// ft_printf("i:%d - vault.tab_free[i].ptr {%p}\n", i, vault.tab_free[i].ptr);
 		if (vault.tab_free[i].ptr == NULL)
-			break;
+			break ;
 		i++;
 	}
-	if (i != 0 && i == vault.free_items_max && vault.tab_free[i - 1].ptr != NULL && vault.tab_free[i - 1].ptr->type != FREE_BLOCK)
+	if (i != 0 && i == vault.free_items_max && \
+	vault.tab_free[i - 1].ptr != NULL && \
+	vault.tab_free[i - 1].ptr->type != FREE_BLOCK)
 	{
-		// ft_putstr("\n\n+_+_+_+_+ JAI BESOIN DE NOUVELLE ESPACE tabfree+_+_+_+_+_\n\n");
 		if (resize_free_data() != 1)
-		{
-			// ft_printf("\ncas1\n");
 			return (-1);
-		}
 		if (vault.tab_free[i].ptr == NULL)
-		{
-			// ft_printf("\ncas2\n");
 			return (i + 1);
-		}
 		else
-		{
-			// ft_printf("\ncas3\n");
 			return (-1);
-		}
 	}
 	return (i);
 }
-
-
-
-

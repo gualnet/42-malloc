@@ -6,29 +6,18 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/02/09 16:04:02 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/15 17:42:35 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-
-int		map_new_zone(size_t size)
+void	mnz_2(size_t size, void *new_zone)
 {
-	// ft_putstr("MAP NEW ZONE\n");
-	void	*new_zone;
 	long	zone_bloc_idx;
 	long	subz_bloc_idx;
 	long	free_subz_bloc_idx;
 
-	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
-	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	if (new_zone == MAP_FAILED)
-	{
-		if (getenv("DEBUG_MALLOC"))
-			ft_putstr("\033[31mError[000]: MAP_FAILED in request_tiny_small.c line 21\n\033[0m");
-		return (-1);
-	}
 	zone_bloc_idx = get_free_meta_block();
 	vault.tab_meta[zone_bloc_idx].adr = new_zone;
 	vault.tab_meta[zone_bloc_idx].type = size_to_zone_type(size);
@@ -38,38 +27,50 @@ int		map_new_zone(size_t size)
 	vault.tab_meta[subz_bloc_idx].adr = new_zone;
 	vault.tab_meta[subz_bloc_idx].type = size_to_subz_type(size, 1);
 	vault.tab_meta[subz_bloc_idx].capacity = NULL_SIZE;
-	
 	vault.tab_meta[subz_bloc_idx].size = size_to_subz_size(size);
 	free_subz_bloc_idx = get_free_free_block();
 	vault.tab_free[free_subz_bloc_idx].ptr = &vault.tab_meta[subz_bloc_idx];
+}
+
+int		map_new_zone(size_t size)
+{
+	void	*new_zone;
+
+	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
+	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	if (new_zone == MAP_FAILED)
+	{
+		if (getenv("DEBUG_MALLOC"))
+			ft_putstr("\033[31mError[000]: \
+			MAP_FAILED in request_tiny_small.c line 21\n\033[0m");
+		return (-1);
+	}
+	mnz_2(size, new_zone);
 	return (1);
 }
+
+/*
+** rqt => requested type
+*/
 
 long	request_tiny_small(size_t size)
 {
 	long			i;
-	t_meta_type		req_type;
-	
-	req_type = size_to_subz_type(size, 1);
+	t_meta_type		rqt;
+
+	rqt = size_to_subz_type(size, 1);
 	while (1)
 	{
 		i = 0;
 		while (i < vault.meta_items_max)
 		{
-			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size == size)
+			if (vault.tab_meta[i].type == rqt && vault.tab_meta[i].size == size)
 			{
-				//si une subzone du bon type est libre et d'une taille egale
-				// a la taille demandee.
-				// ft_putstr("recherche de zone cas 1\n");
-				//virer la zone de tab_free
 				vault.tab_meta[i].type = size_to_subz_type(size, 0);
 				return (i);
 			}
-			if (vault.tab_meta[i].type == req_type && vault.tab_meta[i].size > size)
+			if (vault.tab_meta[i].type == rqt && vault.tab_meta[i].size > size)
 			{
-				//si une subzone du bon type est libre et d'une taille plus grande
-				// que la taille demandee.
-				// ft_printf("i = %d - recherche de zone cas 2\n", i);
 				i = split_subz(i, size);
 				return (i);
 			}
