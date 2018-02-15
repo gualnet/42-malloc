@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/09 10:59:00 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/15 15:08:28 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		search_and_free_subz(void *ptr)
 	return (-1);
 }
 
-void	ft_free(void *ptr)
+void	free(void *ptr)
 {
 	// ft_putstr("call ft_free\n");
 	if (ptr == NULL)
@@ -117,10 +117,12 @@ void	ft_free(void *ptr)
 		// ft_printf("Before:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
 		// meta_data_initializer();
 		// ft_printf("After:\nvault.tab_free == [%p] && vault.tab_meta == [%p]\n", vault.tab_free, vault.tab_meta);
-		ft_putstr("\033[33mWARNING - vault.tab_free = NULL !!!\n\033[0m");
-		exit(-1);
+		if (ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)
+			ft_putstr("\033[33mWARNING - vault.tab_free = NULL !!!\n\033[0m");
+		// exit(-1);
+		return;
 	}
-	if (search_and_free_subz(ptr) != 1 && getenv("DEBUG_MALLOC"))
+	if (search_and_free_subz(ptr) != 1 && ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)
 	{
 		// ft_putstr("0000\n");
 		ft_printf("\033[31mError for object [%p]: pointer being freed was not allocated\n\033[0m", ptr);

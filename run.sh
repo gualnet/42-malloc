@@ -2,7 +2,7 @@
 
 
 #export DEBUG_MALLOC=[TRUE|FALSE]
-export DEBUG_MALLOC=TRUE
+export DEBUG_MALLOC=FALSE
 
 export DYLD_LIBRARY_PATH=.
 export DYLD_INSERT_LIBRARIES="libft_malloc_x86_64_Darwin.so"

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:34:17 by galy              #+#    #+#             */
-/*   Updated: 2018/02/09 11:01:12 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/15 13:58:18 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			*go_realloc(size_t size, long old_idx)
 	if (vault.tab_meta[old_idx].size < size)
 	{
 		// ft_putstr("A001\n");
-		if ((new_ptr = ft_malloc(size)) == NULL)
+		if ((new_ptr = malloc(size)) == NULL)
 		{
 			// ft_printf("realloc new_ptr[%p]\n", new_ptr);
 			return (NULL);
@@ -50,7 +50,7 @@ void			*go_realloc(size_t size, long old_idx)
 	else if (vault.tab_meta[old_idx].size > size)
 	{
 		// ft_putstr("A002\n");
-		if ((new_ptr = ft_malloc(size)) == NULL)
+		if ((new_ptr = malloc(size)) == NULL)
 			return (NULL);
 		// printAllTabMetaInfo(5);
 		// ft_printf("new_ptr[%p] - vault.tab_meta[old_idx].adr[%p] - size[%d]\n", new_ptr, vault.tab_meta[old_idx].adr, size);
@@ -60,11 +60,11 @@ void			*go_realloc(size_t size, long old_idx)
 	{
 		new_ptr = NULL;
 	}
-	ft_free(vault.tab_meta[old_idx].adr);
+	free(vault.tab_meta[old_idx].adr);
 	return (new_ptr);
 }
 
-void			*ft_realloc(void *ptr, size_t size)
+void			*realloc(void *ptr, size_t size)
 {
 	// ft_putstr("CALL REALLOC\n");
 

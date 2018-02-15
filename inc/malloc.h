@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/02/09 18:19:05 by galy             ###   ########.fr       */
+/*   Updated: 2018/02/15 13:57:12 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct			s_vault
 extern t_vault	vault;
 
 //malloc.c
-void    *ft_malloc(size_t size);
+void    *malloc(size_t size);
 
 //meta_data_init.c
 int		meta_data_initializer();
@@ -118,12 +118,12 @@ void	check_tabmeta_usage();
 
 
 //free.c
-void	ft_free(void *ptr);
+void	free(void *ptr);
 void	tab_free_cleaner(void);
 int		search_and_free_subz(void *ptr);
 
 //realloc.c
-void	*ft_realloc(void *ptr, size_t size);
+void	*realloc(void *ptr, size_t size);
 
 //show_alloc_mem.c
 void	show_alloc_mem(void);

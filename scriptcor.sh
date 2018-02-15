@@ -1,16 +1,17 @@
 #  !/bin/sh
 
+make
 make -C ./tests/
-# echo 'Make tests : ok\n'
+echo 'Makefile : ok\n'
 
-# /usr/bin/time -l ./tests/test0
-# echo 'test 0 : ok - (a vide)\n'
+sh run.sh /usr/bin/time -l ./tests/_test0
+echo 'test 0 : ok - (a vide)\n'
 
-# /usr/bin/time -l ./tests/test1
-# echo 'test 1 : ok - (malloc sys)\n'
+sh run.sh /usr/bin/time -l ./tests/_test1
+echo 'test 1 : ok - \n'
 
-# ./run.sh /usr/bin/time -l ./tests/test0
-# echo 'test 0 : ok - (a vide)\n'
+./run.sh /usr/bin/time -l ./tests/_test2
+echo 'test 2 : ok -\n'
 
-./run.sh /usr/bin/time -l ./tests/test1
-# echo 'test 1 : ok - (malloc ft)\n'
+# ./run.sh /usr/bin/time -l ./tests/_test3
+# echo 'test 3 : ok - (malloc ft)\n'

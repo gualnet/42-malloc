@@ -14,7 +14,7 @@
 
 t_vault vault = {};
 
-void    *ft_malloc(size_t size)
+void    *malloc(size_t size)
 {
 	// ft_putstr("call malloc\n");
 	pthread_mutex_t	mutex;
