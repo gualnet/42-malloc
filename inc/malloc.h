@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 18:31:45 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/05 11:40:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct			s_free_block
 
 typedef struct			s_vault
 {
+	pthread_mutex_t		mutex;
 	t_meta_data			*tab_meta;
 	t_free_block		*tab_free;
 	long				tab_meta_npage;

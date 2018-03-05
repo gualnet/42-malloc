@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 11:13:25 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 18:29:12 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/05 13:53:44 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ void	show_alloc_mem(void)
 	s_state = 1;
 	i = 0;
 	total = 0;
+	pthread_mutex_lock(&vault.mutex);
 	tab_show = my_mmap(getpagesize() * vault.tab_meta_npage);
-	while (i < vault.meta_items_max || st_state == 3)
+	while (i < vault.meta_items_max || s_state == 3)
 	{
 		if (vault.tab_meta[i].type == TINY_ZONE && s_state == 1)
 			s_state = loop_tiny_small(tab_show, vault.tab_meta[i].adr, i, 1);
@@ -106,4 +107,5 @@ void	show_alloc_mem(void)
 		i++;
 	}
 	sam_2(tab_show, total);
+	pthread_mutex_unlock(&vault.mutex);
 }

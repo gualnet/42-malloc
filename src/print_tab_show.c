@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 18:29:28 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 18:37:07 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/05 12:10:15 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ long	print_tab_show_nfo(t_meta_data *tab_show)
 	total = 0;
 	while (i < vault.meta_items_max)
 	{
-		ptsn_2(i, tab_show);
+		ptsn_2(i, tab_show, i);
 		total += tab_show[i].size;
 		tab_show[i].adr = NULL;
 		tab_show[i].idx = 0;

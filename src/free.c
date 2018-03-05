@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 16:59:17 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/05 12:09:00 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free(void *ptr)
 {
 	if (ptr == NULL)
 		return ;
+	pthread_mutex_lock(&vault.mutex);	
 	if (vault.tab_free == NULL)
 	{
 		if (ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)
@@ -30,6 +31,7 @@ void	free(void *ptr)
 		exit(-1);
 	}
 	tab_free_cleaner();
+	pthread_mutex_unlock(&vault.mutex);	
 }
 
 void	tab_free_cleaner(void)

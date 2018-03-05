@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/02/15 18:30:27 by galy             ###   ########.fr        #
+#    Updated: 2018/03/05 12:04:31 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 all			:	make_lib OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
-	@$(CC) $(CFLAGS) -shared -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME)
+	@$(CC) $(CFLAGS) -shared -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME) -lpthread
 	@ln -s $(NAME) $(SYMLINK)
 	@printf "$(CUR_RST)$(CGREEN)BUILD MALLOC : SUCCESS$(CRESET)$(CUR_CLR)\n"
 
