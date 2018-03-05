@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 11:13:25 by galy              #+#    #+#             */
-/*   Updated: 2018/03/05 13:53:44 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/05 15:39:32 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	sam_2(t_meta_data *tab_show, long total)
 	total += print_tab_show_nfo(tab_show);
 	ft_printf("Total : %ld octet(s)\n", total);
 	munmap(tab_show, getpagesize() * vault.tab_meta_npage);
+	pthread_mutex_unlock(&vault.mutex);
 }
 
 void	show_alloc_mem(void)
@@ -107,5 +108,4 @@ void	show_alloc_mem(void)
 		i++;
 	}
 	sam_2(tab_show, total);
-	pthread_mutex_unlock(&vault.mutex);
 }
