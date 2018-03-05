@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/02/02 16:04:51 by galy             ###   ########.fr        #
+#    Updated: 2018/03/05 12:04:31 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC			=	\
 				malloc.c				free.c				realloc.c\
 				converters.c			meta_data_init.c	subz_func.c\
 				request_tiny_small.c 	request_large.c		tabs_usage_funcs.c\
+				free_func.c				tabs_resizers.c		print_tab_show.c
 
 
 ####FUNC####
@@ -68,7 +69,7 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 all			:	make_lib OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
-	@$(CC) $(CFLAGS) -shared -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME)
+	@$(CC) $(CFLAGS) -shared -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME) -lpthread
 	@ln -s $(NAME) $(SYMLINK)
 	@printf "$(CUR_RST)$(CGREEN)BUILD MALLOC : SUCCESS$(CRESET)$(CUR_CLR)\n"
 

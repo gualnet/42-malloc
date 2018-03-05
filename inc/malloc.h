@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 13:57:12 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/05 11:40:31 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct			s_free_block
 
 typedef struct			s_vault
 {
+	pthread_mutex_t		mutex;
 	t_meta_data			*tab_meta;
 	t_free_block		*tab_free;
 	long				tab_meta_npage;
@@ -87,14 +88,18 @@ extern t_vault	vault;
 
 //malloc.c
 void    *malloc(size_t size);
+void	*my_mmap(size_t size);
 
 //meta_data_init.c
 int		meta_data_initializer();
 int		create_tab_meta(void);	//interne - test
 int		create_tab_free(void);	//interne - test
-int		resize_free_data();
 long	get_free_meta_block();
 long	get_free_free_block();
+
+//tabs_resizers.c
+int		resize_free_data();
+int		resize_meta_data();
 
 //request_tiny_small.c
 long	request_tiny_small(size_t size);
@@ -116,10 +121,11 @@ void	unmap_large(long i);
 //tabs_usage_funcs.c
 void	check_tabmeta_usage();
 
-
 //free.c
 void	free(void *ptr);
 void	tab_free_cleaner(void);
+
+//free_func.c
 int		search_and_free_subz(void *ptr);
 
 //realloc.c
@@ -127,6 +133,9 @@ void	*realloc(void *ptr, size_t size);
 
 //show_alloc_mem.c
 void	show_alloc_mem(void);
+
+//print_tab_show.c
+long	print_tab_show_nfo(t_meta_data *tab_show);
 
 //order_tab_show.c
 void	order_tab_show(t_meta_data *tab_show);
