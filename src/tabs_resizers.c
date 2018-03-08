@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 17:15:06 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 17:27:21 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/08 20:41:09 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int		resize_free_data(void)
 	cur_npage = vault.tab_free_npage;
 	curtab = vault.tab_free;
 	curtabsize = getpagesize() * cur_npage;
-	newtab = mmap(NULL, curtabsize + (getpagesize() * META_INCRE_ALLOC_PAGE),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	newtab = my_mmap(curtabsize + (getpagesize() * META_INCRE_ALLOC_PAGE));
 	if (newtab == MAP_FAILED)
 		return (-1);
 	ft_memcpy(newtab, curtab, curtabsize);
@@ -72,8 +71,7 @@ int		resize_meta_data(void)
 	cur_npage = vault.tab_meta_npage;
 	curtab = vault.tab_meta;
 	curtabsize = getpagesize() * cur_npage;
-	newtab = mmap(NULL, curtabsize + (getpagesize() * META_INCRE_ALLOC_PAGE),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	newtab = my_mmap(curtabsize + (getpagesize() * META_INCRE_ALLOC_PAGE));
 	if (newtab == MAP_FAILED)
 		return (-1);
 	ft_memcpy(newtab, curtab, curtabsize);

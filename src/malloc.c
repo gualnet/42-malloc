@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:14:26 by galy              #+#    #+#             */
-/*   Updated: 2018/03/05 12:15:36 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/08 20:38:42 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ void	*my_mmap(size_t size)
 	adr = NULL;
 	adr = mmap(NULL, size, \
 	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-	if (adr == NULL || adr == MAP_FAILED)
-		return (NULL);
 	return (adr);
 }

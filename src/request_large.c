@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:02:14 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 17:34:16 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/08 20:39:13 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	*request_large(size_t size)
 	long	bloc_idx;
 
 	bloc_idx = get_free_meta_block();
-	vault.tab_meta[bloc_idx].adr = mmap(NULL, size, \
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	vault.tab_meta[bloc_idx].adr = my_mmap(size);
 	if (vault.tab_meta[bloc_idx].adr == MAP_FAILED)
 	{
 		if (ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)

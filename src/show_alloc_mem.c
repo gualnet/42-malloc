@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 11:13:25 by galy              #+#    #+#             */
-/*   Updated: 2018/03/05 15:39:32 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/08 20:40:51 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ void	show_alloc_mem(void)
 	total = 0;
 	pthread_mutex_lock(&vault.mutex);
 	tab_show = my_mmap(getpagesize() * vault.tab_meta_npage);
+	if (tab_show == MAP_FAILED) // a foutre au propre avec var la var env
+	{
+		ft_putstr("BAD MMAP IN SHOW ALLOC MEM");
+		exit(-1);
+	}
 	while (i < vault.meta_items_max || s_state == 3)
 	{
 		if (vault.tab_meta[i].type == TINY_ZONE && s_state == 1)

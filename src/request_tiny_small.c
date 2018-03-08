@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 17:42:35 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/08 20:39:34 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int		map_new_zone(size_t size)
 {
 	void	*new_zone;
 
-	new_zone = mmap(NULL, size_to_zone_size(size), PROT_READ | PROT_WRITE,\
-	MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	new_zone = my_mmap(size_to_zone_size(size));
 	if (new_zone == MAP_FAILED)
 	{
 		if (getenv("DEBUG_MALLOC"))

@@ -30,7 +30,7 @@ int main(void)
 	char	*adr;
 	
 	i = 0;
-	max = 4000;
+	max = 1024;
 	while(i < max)
 	{
 		adr = (char*)malloc(1024);

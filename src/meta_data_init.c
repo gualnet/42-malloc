@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 15:13:58 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 17:26:41 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/08 20:38:55 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ int		create_tab_meta(void)
 {
 	long	i;
 
-	vault.tab_meta = mmap(NULL, (getpagesize() * META_INCRE_ALLOC_PAGE),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	vault.tab_meta = my_mmap(getpagesize() * 1);
 	if (vault.tab_meta == MAP_FAILED)
 		return (-1);
-	vault.tab_meta_npage = META_INCRE_ALLOC_PAGE;
+	vault.tab_meta_npage = 1;
 	vault.meta_items_max = \
 	(getpagesize() * vault.tab_meta_npage) / sizeof(t_meta_data);
 	i = 0;
@@ -39,10 +38,10 @@ int		create_tab_free(void)
 {
 	long	i;
 
-	vault.tab_free = mmap(NULL, (getpagesize() * (META_INCRE_ALLOC_PAGE)),\
-	PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	vault.tab_free = my_mmap(getpagesize() * 1);
+	if (vault.tab_free == MAP_FAILED)
+		return (-1);
 	vault.tab_free_npage = 1;
-	vault.tab_free_npage = META_INCRE_ALLOC_PAGE;
 	vault.free_items_max = \
 	(getpagesize() * vault.tab_free_npage) / sizeof(t_free_block);
 	i = 0;
