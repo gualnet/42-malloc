@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:34:17 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 17:33:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 18:20:00 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ long	get_ptr_idx(void *ptr)
 	long i;
 
 	i = 0;
-	while (i < vault.meta_items_max)
+	while (i < g_vault.meta_items_max)
 	{
-		if (vault.tab_meta[i].adr == ptr)
+		if (g_vault.tab_meta[i].adr == ptr)
 			return (i);
 		i++;
 	}
@@ -30,22 +30,22 @@ void	*go_realloc(size_t size, long old_idx)
 {
 	void	*new_ptr;
 
-	if (vault.tab_meta[old_idx].size < size)
+	if (g_vault.tab_meta[old_idx].size < size)
 	{
 		if ((new_ptr = malloc(size)) == NULL)
 			return (NULL);
-		ft_memcpy(new_ptr, vault.tab_meta[old_idx].adr, \
-		vault.tab_meta[old_idx].size);
+		ft_memcpy(new_ptr, g_vault.tab_meta[old_idx].adr, \
+		g_vault.tab_meta[old_idx].size);
 	}
-	else if (vault.tab_meta[old_idx].size > size)
+	else if (g_vault.tab_meta[old_idx].size > size)
 	{
 		if ((new_ptr = malloc(size)) == NULL)
 			return (NULL);
-		ft_memcpy(new_ptr, vault.tab_meta[old_idx].adr, size);
+		ft_memcpy(new_ptr, g_vault.tab_meta[old_idx].adr, size);
 	}
 	else
 		new_ptr = NULL;
-	free(vault.tab_meta[old_idx].adr);
+	free(g_vault.tab_meta[old_idx].adr);
 	return (new_ptr);
 }
 
@@ -63,7 +63,7 @@ void	*realloc(void *ptr, size_t size)
 		}
 		return (NULL);
 	}
-	if (vault.tab_meta[old_idx].size == size)
+	if (g_vault.tab_meta[old_idx].size == size)
 	{
 		ft_putstr("end2\n");
 		return (ptr);

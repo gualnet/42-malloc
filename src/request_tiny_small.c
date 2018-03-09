@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/03/08 20:39:34 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 18:44:13 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	mnz_2(size_t size, void *new_zone)
 	long	free_subz_bloc_idx;
 
 	zone_bloc_idx = get_free_meta_block();
-	vault.tab_meta[zone_bloc_idx].adr = new_zone;
-	vault.tab_meta[zone_bloc_idx].type = size_to_zone_type(size);
-	vault.tab_meta[zone_bloc_idx].capacity = size_to_zone_size(size);
-	vault.tab_meta[zone_bloc_idx].size = 0;
+	g_vault.tab_meta[zone_bloc_idx].adr = new_zone;
+	g_vault.tab_meta[zone_bloc_idx].type = size_to_zone_type(size);
+	g_vault.tab_meta[zone_bloc_idx].capacity = size_to_zone_size(size);
+	g_vault.tab_meta[zone_bloc_idx].size = 0;
 	subz_bloc_idx = get_free_meta_block();
-	vault.tab_meta[subz_bloc_idx].adr = new_zone;
-	vault.tab_meta[subz_bloc_idx].type = size_to_subz_type(size, 1);
-	vault.tab_meta[subz_bloc_idx].capacity = NULL_SIZE;
-	vault.tab_meta[subz_bloc_idx].size = size_to_subz_size(size);
+	g_vault.tab_meta[subz_bloc_idx].adr = new_zone;
+	g_vault.tab_meta[subz_bloc_idx].type = size_to_subz_type(size, 1);
+	g_vault.tab_meta[subz_bloc_idx].capacity = NULL_SIZE;
+	g_vault.tab_meta[subz_bloc_idx].size = size_to_subz_size(size);
 	free_subz_bloc_idx = get_free_free_block();
-	vault.tab_free[free_subz_bloc_idx].ptr = &vault.tab_meta[subz_bloc_idx];
+	g_vault.tab_free[free_subz_bloc_idx].ptr = &g_vault.tab_meta[subz_bloc_idx];
 }
 
 int		map_new_zone(size_t size)
@@ -52,6 +52,21 @@ int		map_new_zone(size_t size)
 ** rqt => requested type
 */
 
+long	inner_loop(int step)
+{
+	if (step == 1)
+	{
+		g_vault.tab_meta[i].type = size_to_subz_type(size, 0);
+		return (i);
+	}
+	if (step == 2)
+	{
+		i = split_subz(i, size);
+		return (i);
+	}
+	return (-1);
+}
+
 long	request_tiny_small(size_t size)
 {
 	long			i;
@@ -61,18 +76,14 @@ long	request_tiny_small(size_t size)
 	while (1)
 	{
 		i = 0;
-		while (i < vault.meta_items_max)
+		while (i < g_vault.meta_items_max)
 		{
-			if (vault.tab_meta[i].type == rqt && vault.tab_meta[i].size == size)
-			{
-				vault.tab_meta[i].type = size_to_subz_type(size, 0);
-				return (i);
-			}
-			if (vault.tab_meta[i].type == rqt && vault.tab_meta[i].size > size)
-			{
-				i = split_subz(i, size);
-				return (i);
-			}
+			if (g_vault.tab_meta[i].type == rqt && \
+			g_vault.tab_meta[i].size == size)
+				return (inner_loop(1));
+			if (g_vault.tab_meta[i].type == rqt && \
+			g_vault.tab_meta[i].size > size)
+				return (inner_loop(2));
 			i++;
 		}
 		if (map_new_zone(size) == -1)

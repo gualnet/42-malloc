@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 17:01:51 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 18:38:17 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 18:20:40 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ long	split_subz(long idx_1, size_t size)
 			ft_putstr("error: in subz_func.c line 19\n");
 		return (-1);
 	}
-	vault.tab_meta[idx_2].adr = vault.tab_meta[idx_1].adr + size;
-	vault.tab_meta[idx_2].type = size_to_subz_type(size, 1);
-	vault.tab_meta[idx_2].size = vault.tab_meta[idx_1].size - size;
-	vault.tab_meta[idx_1].type = size_to_subz_type(size, 0);
-	vault.tab_meta[idx_1].size = size;
+	g_vault.tab_meta[idx_2].adr = g_vault.tab_meta[idx_1].adr + size;
+	g_vault.tab_meta[idx_2].type = size_to_subz_type(size, 1);
+	g_vault.tab_meta[idx_2].size = g_vault.tab_meta[idx_1].size - size;
+	g_vault.tab_meta[idx_1].type = size_to_subz_type(size, 0);
+	g_vault.tab_meta[idx_1].size = size;
 	if ((free_subz_bloc_idx = get_free_free_block()) == -1)
 	{
 		if (getenv("DEBUG_MALLOC"))
@@ -37,6 +37,6 @@ long	split_subz(long idx_1, size_t size)
 			exit(-1);
 		}
 	}
-	vault.tab_free[free_subz_bloc_idx].ptr = &vault.tab_meta[idx_2];
+	g_vault.tab_free[free_subz_bloc_idx].ptr = &g_vault.tab_meta[idx_2];
 	return (idx_1);
 }

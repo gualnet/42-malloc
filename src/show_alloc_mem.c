@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 11:13:25 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 16:44:22 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 18:57:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	duplic_bloc(t_meta_data *tab_show, long id_meta)
 	long	i;
 
 	i = 0;
-	while (i < vault.meta_items_max && tab_show[i].type != FREE_BLOCK)
+	while (i < g_vault.meta_items_max && tab_show[i].type != FREE_BLOCK)
 		i++;
-	tab_show[i].adr = vault.tab_meta[id_meta].adr;
+	tab_show[i].adr = g_vault.tab_meta[id_meta].adr;
 	tab_show[i].idx = i;
-	tab_show[i].type = vault.tab_meta[id_meta].type;
-	tab_show[i].size = vault.tab_meta[id_meta].size;
-	tab_show[i].capacity = vault.tab_meta[id_meta].capacity;
+	tab_show[i].type = g_vault.tab_meta[id_meta].type;
+	tab_show[i].size = g_vault.tab_meta[id_meta].size;
+	tab_show[i].capacity = g_vault.tab_meta[id_meta].capacity;
 }
 
 /*
@@ -37,16 +37,17 @@ long id_start, int flag_ts)
 	size_t	z_size;
 
 	i = 0;
-	z_size = zone_type_to_size(vault.tab_meta[i].type);
+	z_size = zone_type_to_size(g_vault.tab_meta[i].type);
 	duplic_bloc(tab_show, id_start);
-	while (i < vault.meta_items_max)
+	while (i < g_vault.meta_items_max)
 	{
-		if (vault.tab_meta[i].adr >= z_start && i != id_start &&\
-		vault.tab_meta[i].adr < z_start + z_size)
+		if (g_vault.tab_meta[i].adr >= z_start && i != id_start &&\
+		g_vault.tab_meta[i].adr < z_start + z_size)
 		{
-			if (flag_ts == 1 && vault.tab_meta[i].type != TINY_SUBZ_FREE)
+			if (flag_ts == 1 && g_vault.tab_meta[i].type != TINY_SUBZ_FREE)
 				duplic_bloc(tab_show, i);
-			else if (flag_ts == 2 && vault.tab_meta[i].type != SMALL_SUBZ_FREE)
+			else if (flag_ts == 2 && \
+			g_vault.tab_meta[i].type != SMALL_SUBZ_FREE)
 				duplic_bloc(tab_show, i);
 		}
 		i++;
@@ -63,9 +64,9 @@ void	loop_large(t_meta_data *tab_show)
 	long	i;
 
 	i = 0;
-	while (i < vault.meta_items_max)
+	while (i < g_vault.meta_items_max)
 	{
-		if (vault.tab_meta[i].type == LARGE_ZONE)
+		if (g_vault.tab_meta[i].type == LARGE_ZONE)
 			duplic_bloc(tab_show, i);
 		i++;
 	}
@@ -77,8 +78,8 @@ void	sam_2(t_meta_data *tab_show, long total)
 	loop_large(tab_show);
 	total += print_tab_show_nfo(tab_show);
 	ft_printf("Total : %ld octet(s)\n", total);
-	munmap(tab_show, getpagesize() * vault.tab_meta_npage);
-	pthread_mutex_unlock(&vault.mutex);
+	munmap(tab_show, getpagesize() * g_vault.tab_meta_npage);
+	pthread_mutex_unlock(&g_vault.mutex);
 }
 
 void	show_alloc_mem(void)
@@ -91,35 +92,24 @@ void	show_alloc_mem(void)
 	s_state = 1;
 	i = 0;
 	total = 0;
-	pthread_mutex_lock(&vault.mutex);
-	tab_show = my_mmap(getpagesize() * vault.tab_meta_npage);
-	if (tab_show == MAP_FAILED) // a foutre au propre avec var la var env
+	pthread_mutex_lock(&g_vault.mutex);
+	tab_show = my_mmap(getpagesize() * g_vault.tab_meta_npage);
+	if (tab_show == MAP_FAILED)
+		sam_err();
+	while (i < g_vault.meta_items_max && s_state < 3)
 	{
-		ft_putstr("BAD MMAP IN SHOW ALLOC MEM");
-		exit(-1);
-	}
-	while (i < vault.meta_items_max && s_state < 3)
-	{
-		// ft_putstr("[i:");
-		// ft_putnbr(i);
-		// ft_putstr("]-");
-		if (vault.tab_meta[i].type == TINY_ZONE && s_state == 1)
-			s_state = loop_tiny_small(tab_show, vault.tab_meta[i].adr, i, 1);
-		else if (vault.tab_meta[i].type == SMALL_ZONE && s_state == 2)
-			s_state = loop_tiny_small(tab_show, vault.tab_meta[i].adr, i, 2);
-		if (i == vault.meta_items_max - 1)
+		// if (s_state == 1 && g_vault.tab_meta[i].type == TINY_ZONE)
+		// 	s_state = loop_tiny_small(tab_show, g_vault.tab_meta[i].adr, i, 1);
+		// else if (s_state == 2 && g_vault.tab_meta[i].type == SMALL_ZONE)
+		// 	s_state = loop_tiny_small(tab_show, g_vault.tab_meta[i].adr, i, 2);
+		s_state = sam_inner_loop(i, s_state, tab_show);
+		if (i == g_vault.meta_items_max - 1)
 		{
 			total += print_tab_show_nfo(tab_show);
 			s_state += 1;
-			// ft_putstr("\n s_state: ");
-			// ft_putnbr(s_state);
-			// ft_putstr("\n\n");
-
 			i = -1;
 		}
 		i++;
-		if (s_state == 10)
-			exit(-1);
 	}
 	sam_2(tab_show, total);
 }

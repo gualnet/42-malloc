@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/03/05 15:37:40 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 18:19:08 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	free(void *ptr)
 {
 	if (ptr == NULL)
 		return ;
-	pthread_mutex_lock(&vault.mutex);
-	if (vault.tab_free == NULL)
+	pthread_mutex_lock(&g_vault.mutex);
+	if (g_vault.tab_free == NULL)
 	{
 		if (ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)
-			ft_putstr("\033[33mWARNING - vault.tab_free = NULL !!!\n\033[0m");
+			ft_putstr("\033[33mWARNING - g_vault.tab_free = NULL !!!\n\033[0m");
 		return ;
 	}
 	if (search_and_free_subz(ptr) != 1 && \
@@ -31,7 +31,8 @@ void	free(void *ptr)
 		exit(-1);
 	}
 	tab_free_cleaner();
-	pthread_mutex_unlock(&vault.mutex);
+	check_tabmeta_usage();
+	pthread_mutex_unlock(&g_vault.mutex);
 }
 
 void	tab_free_cleaner(void)
@@ -41,14 +42,14 @@ void	tab_free_cleaner(void)
 
 	found = 0;
 	i = 0;
-	while (i < vault.free_items_max)
+	while (i < g_vault.free_items_max)
 	{
-		if (vault.tab_free[i].ptr != NULL)
+		if (g_vault.tab_free[i].ptr != NULL)
 		{
-			if (vault.tab_free[i].ptr->type != TINY_SUBZ_FREE \
-			&& vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
+			if (g_vault.tab_free[i].ptr->type != TINY_SUBZ_FREE \
+			&& g_vault.tab_free[i].ptr->type != SMALL_SUBZ_FREE)
 			{
-				vault.tab_free[i].ptr = NULL;
+				g_vault.tab_free[i].ptr = NULL;
 			}
 		}
 		i++;

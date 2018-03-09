@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 18:15:09 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 17:28:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 18:19:38 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	order_tab_show(t_meta_data *tab_show)
 	i = 0;
 	while (again == 1)
 	{
-		if (i < vault.meta_items_max - 1)
+		if (i < g_vault.meta_items_max - 1)
 		{
 			if (tab_show[i].type != FREE_BLOCK && \
 			tab_show[i + 1].type != FREE_BLOCK && \
