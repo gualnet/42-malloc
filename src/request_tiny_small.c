@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:26:00 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 18:44:13 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 19:02:33 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		map_new_zone(size_t size)
 ** rqt => requested type
 */
 
-long	inner_loop(int step)
+long	inner_loop(size_t size, long i, int step)
 {
 	if (step == 1)
 	{
@@ -80,10 +80,10 @@ long	request_tiny_small(size_t size)
 		{
 			if (g_vault.tab_meta[i].type == rqt && \
 			g_vault.tab_meta[i].size == size)
-				return (inner_loop(1));
+				return (inner_loop(size, i, 1));
 			if (g_vault.tab_meta[i].type == rqt && \
 			g_vault.tab_meta[i].size > size)
-				return (inner_loop(2));
+				return (inner_loop(size, i, 2));
 			i++;
 		}
 		if (map_new_zone(size) == -1)

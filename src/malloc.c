@@ -6,13 +6,14 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:14:26 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 18:23:11 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 19:04:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-// t_g_vault g_vault = {};
+t_vault g_vault;
+
 void	*malloc(size_t size)
 {
 	void			*adr;

@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/03/05 12:04:31 by galy             ###   ########.fr        #
+#    Updated: 2018/03/09 20:43:06 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,12 @@ CUR_CLR		=	\033[K
 ####FILES####
 
 SRC			=	\
-				malloc.c				free.c				realloc.c\
-				converters.c			meta_data_init.c	subz_func.c\
-				request_tiny_small.c 	request_large.c		tabs_usage_funcs.c\
-				free_func.c				tabs_resizers.c		print_tab_show.c
+				converters.c         order_tab_show.c     show_alloc_mem2.c \
+				meta_data_init.c     print_tab_show.c     show_alloc_mem_err.c \
+				free.c               realloc.c            subz_func.c \
+				free_func.c          request_large.c      tabs_resizers.c \
+				malloc.c             request_tiny_small.c tabs_usage_funcs.c \
+				show_alloc_mem.c
 
 
 ####FUNC####
@@ -66,24 +68,29 @@ OBJP		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 ####RULEZ####
 
-all			:	make_lib OBJD $(NAME)
+all			:	reset_cursor make_lib OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
 	@$(CC) $(CFLAGS) -shared -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME) -lpthread
 	@ln -s $(NAME) $(SYMLINK)
-	@printf "$(CUR_RST)$(CGREEN)BUILD MALLOC : SUCCESS$(CRESET)$(CUR_CLR)\n"
+	@printf "$(CUR_RST)$(CGREEN)BUILD MALLOC		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 
 clean		:
 	@make clean -C $(LIBDIR)
-	@rm -f $(OBJP)
-	@rm -rf $(OBJDIR)
-	@printf "$(CYELLOW)ASM OBJECTS DIR CLEARED$(CRESET)\n"
+	@$(RM) -f $(OBJP)
+	@$(RM) -rf $(OBJDIR)
+	@printf "$(CYELLOW)MALLOC	: CLEANED$(CRESET)\n"
 
-fclean		: clean
+mini_clean	:
+	@$(RM) -f $(OBJP)
+	@$(RM) -rf $(OBJDIR)
+
+fclean		: mini_clean
 	@make fclean -C $(LIBDIR)
-	@rm -f $(NAME)
-	@rm $(SYMLINK)
-	@printf "$(CYELLOW)$(NAME) CLEARED$(CRESET)\n"
+	@printf "$(CYELLOW)RAZ MALLOC	: Ok$(CRESET)\n"
+	@$(RM) $(SYMLINK)
+	@$(RM) $(NAME)
+	@printf "\n"
 
 re			: fclean all
 
@@ -92,13 +99,13 @@ re			: fclean all
 
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD ASM OBJECTS : $<$(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)BUILD MALLOC		: $<$(CRESET)$(CUR_CLR)"
 
 make_lib	:
 	@make -C $(LIBDIR)
 
-make_tests	:
-	
+reset_cursor :
+	@printf "$(CUR_SVE)"
 
 OBJD		:
 	@mkdir -p $(OBJDIR)

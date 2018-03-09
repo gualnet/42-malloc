@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 18:36:35 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 19:23:26 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,12 @@ int						search_and_free_subz(void *ptr);
 void					*realloc(void *ptr, size_t size);
 void					show_alloc_mem(void);
 void					sam_err(void);
+void					loop_large(t_meta_data *tab_show);
 long					print_tab_show_nfo(t_meta_data *tab_show);
 void					order_tab_show(t_meta_data *tab_show);
+int						loop_tiny_small(t_meta_data *tab_show, void *z_start, \
+long id_start, int flag_ts);
+int						sam_inner_loop(long i, int s_state, \
+t_meta_data *tab_show);
 
 #endif
