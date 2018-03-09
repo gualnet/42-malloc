@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 18:39:52 by galy              #+#    #+#             */
-/*   Updated: 2018/02/09 10:59:38 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 16:08:52 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int test_malloc_0()
 {
 	void	*ret;
 
-	ret = ft_malloc(0);
+	ret = malloc(0);
 
 	if (ret != NULL)
 	{
@@ -51,9 +51,9 @@ int test_malloc_0()
 
 int test_malloc_tiny_min_and_max()
 {
-	if (ft_malloc(TINY_ALLOC_MIN) == NULL)
+	if (malloc(TINY_ALLOC_MIN) == NULL)
 		return (-1);
-	if (ft_malloc(TINY_ALLOC_MAX) == NULL)
+	if (malloc(TINY_ALLOC_MAX) == NULL)
 		return (-2);
 	return (1);
 }

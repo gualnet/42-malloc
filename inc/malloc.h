@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/03/08 20:33:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 16:01:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ long	get_free_free_block();
 //tabs_resizers.c
 int		resize_free_data();
 int		resize_meta_data();
+void	rebuild_tab_free(void);
 
 //request_tiny_small.c
 long	request_tiny_small(size_t size);

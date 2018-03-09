@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 19:10:45 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 11:09:55 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 16:48:10 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,17 @@ int test_2_malloc_free_large_x1000();
 
 int main(void)
 {
-	ft_putstr("A\n");
-
 	int ret;
 
 	ret = 0;
 
-	if ((ret = test_0_malloc_large()) != 1)
-		return (-1);
-	ft_putstr("\033[32mtest_0_malloc_large : OK\033[0m\n\n");
+	// if ((ret = test_0_malloc_large()) != 1)
+	// 	return (-1);
+	// ft_putstr("\033[32mtest_0_malloc_large : OK\033[0m\n\n");
 	
-	if ((ret = test_1_malloc_free_large()) != 1)
-		return (-1);
-	ft_putstr("\033[32mtest_1_malloc_free_large : OK\033[0m\n\n");
+	// if ((ret = test_1_malloc_free_large()) != 1)
+	// 	return (-1);
+	// ft_putstr("\033[32mtest_1_malloc_free_large : OK\033[0m\n\n");
 
 	if ((ret = test_2_malloc_free_large_x1000()) != 1)
 		return (-1);
@@ -66,12 +64,12 @@ int test_1_malloc_free_large()
 
 int test_2_malloc_free_large_x1000()
 {
-	char	**adr = NULL;
+	char	*adr[5000];
 	int		i;
 	int		max;
 
 	i = 0;
-	max = 1000;
+	max = 1000;		
 	
 	while (i < max)
 	{
@@ -80,10 +78,11 @@ int test_2_malloc_free_large_x1000()
 		i++;
 	}
 	i = 0;
-	while (i < max)
+	while (i < max * 0.8)
 	{
 		free(adr[i]);
 		i++;
 	}
+	adr[i] = malloc(LARGE_ALLOC_MIN + 123456);
 	return 1;
 }

@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 11:13:25 by galy              #+#    #+#             */
-/*   Updated: 2018/03/08 20:40:51 by galy             ###   ########.fr       */
+/*   Updated: 2018/03/09 16:44:22 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,11 @@ void	show_alloc_mem(void)
 		ft_putstr("BAD MMAP IN SHOW ALLOC MEM");
 		exit(-1);
 	}
-	while (i < vault.meta_items_max || s_state == 3)
+	while (i < vault.meta_items_max && s_state < 3)
 	{
+		// ft_putstr("[i:");
+		// ft_putnbr(i);
+		// ft_putstr("]-");
 		if (vault.tab_meta[i].type == TINY_ZONE && s_state == 1)
 			s_state = loop_tiny_small(tab_show, vault.tab_meta[i].adr, i, 1);
 		else if (vault.tab_meta[i].type == SMALL_ZONE && s_state == 2)
@@ -108,9 +111,15 @@ void	show_alloc_mem(void)
 		{
 			total += print_tab_show_nfo(tab_show);
 			s_state += 1;
+			// ft_putstr("\n s_state: ");
+			// ft_putnbr(s_state);
+			// ft_putstr("\n\n");
+
 			i = -1;
 		}
 		i++;
+		if (s_state == 10)
+			exit(-1);
 	}
 	sam_2(tab_show, total);
 }
