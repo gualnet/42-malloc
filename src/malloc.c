@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:14:26 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 19:04:56 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/04 17:13:01 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@ t_vault g_vault;
 
 void	*malloc(size_t size)
 {
+	ft_putchar('A');
 	void			*adr;
 	long			idx;
 
+	if (getenv("DEBUG_MALLOC") == NULL)
+	{
+		ft_printf("Env var not set :\"DEBUG_MALLOC\" (TRUE | FALSE)\n");
+		return (NULL);
+	}
 	idx = 0;
 	adr = NULL;
 	if (pthread_mutex_init(&g_vault.mutex, 0) != 0 || size <= 0)

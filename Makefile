@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/03/09 20:43:06 by galy             ###   ########.fr        #
+#    Updated: 2018/05/03 19:29:37 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ NAME		=	libft_malloc_$(HOSTTYPE).so
 SYMLINK		=	libft_malloc.so
 CC			=	gcc
 
-# CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
+# CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFLAG		=	-L./libft -lftall
 
@@ -29,10 +29,10 @@ DIRFTPRINTF	=	./ft_printf
 
 ####DIRECTORY####
 
-SRCDIR		=	src
-OBJDIR		=	objs
+SRCDIR		=	./src
+OBJDIR		=	./objs
 INCDIR		=	./inc
-LIBDIR		=	libft
+LIBDIR		=	./libft
 
 ####COLOR-SET####
 
@@ -103,6 +103,23 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 
 make_lib	:
 	@make -C $(LIBDIR)
+
+mk_test		:
+	gcc ./tests/test0.c -o ./tests/test0
+	gcc ./tests/test1.c -o ./tests/test1
+	gcc ./tests/test2.c -o ./tests/test2
+	gcc ./tests/test3.c -o ./tests/test3
+	gcc ./tests/test3+.c -o ./tests/test3+
+	gcc ./tests/test4.c -o ./tests/test4
+	# gcc ./tests/test5.c -o ./tests/test5
+rm_test		:
+	rm ./tests/test0
+	rm ./tests/test1
+	rm ./tests/test2
+	rm ./tests/test3
+	rm ./tests/test3+
+	rm ./tests/test4
+	# rm ./tests/test5
 
 reset_cursor :
 	@printf "$(CUR_SVE)"

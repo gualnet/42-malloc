@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2018/03/09 20:50:31 by galy             ###   ########.fr        #
+#    Updated: 2018/05/04 17:15:54 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,6 @@ clean :
 	@printf "$(CYELLOW)LIBFT	: CLEANED $(CRESET)\n"
 
 fclean :
-	@printf "$(CMAGENTA) call fclean libftall $(CRESET)\n"
 	@make fclean -C ./libft
 	@make fclean -C ./get_next_line
 	@make fclean -C ./ft_printf
