@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 20:33:26 by galy              #+#    #+#             */
-/*   Updated: 2018/02/15 16:39:18 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/07 18:32:02 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ size_t		size_to_subz_size(size_t size)
 		return ((size_t)TINY_ZONE_SIZE);
 	if (size >= SMALL_ALLOC_MIN && size <= SMALL_ALLOC_MAX)
 		return ((size_t)SMALL_ZONE_SIZE);
-	if (getenv("DEBUG_MALLOC"))
-	{
-		ft_putstr("\n\n\033[31mError convert size_to_subz_size\033[0m\n\n");
-		exit(-1);
-	}
 	return (0);
 }
 

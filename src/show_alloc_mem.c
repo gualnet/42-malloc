@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 11:13:25 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 19:15:27 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/07 18:25:56 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ void	show_alloc_mem(void)
 	total = 0;
 	pthread_mutex_lock(&g_vault.mutex);
 	tab_show = my_mmap(getpagesize() * g_vault.tab_meta_npage);
-	if (tab_show == MAP_FAILED)
-		sam_err();
-	while (i < g_vault.meta_items_max && s_state < 3)
+	if (tab_show != MAP_FAILED)
 	{
-		s_state = sam_inner_loop(i, s_state, tab_show);
-		if (i == g_vault.meta_items_max - 1)
+		while (i < g_vault.meta_items_max && s_state < 3)
 		{
-			total += print_tab_show_nfo(tab_show);
-			s_state += 1;
-			i = -1;
+			s_state = sam_inner_loop(i, s_state, tab_show);
+			if (i == g_vault.meta_items_max - 1)
+			{
+				total += print_tab_show_nfo(tab_show);
+				s_state += 1;
+				i = -1;
+			}
+			i++;
 		}
-		i++;
+		sam_2(tab_show, total);
 	}
-	sam_2(tab_show, total);
 }

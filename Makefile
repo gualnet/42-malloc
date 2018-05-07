@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:59:30 by galy              #+#    #+#              #
-#    Updated: 2018/05/03 19:29:37 by galy             ###   ########.fr        #
+#    Updated: 2018/05/07 18:35:02 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ NAME		=	libft_malloc_$(HOSTTYPE).so
 SYMLINK		=	libft_malloc.so
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-# CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFLAG		=	-L./libft -lftall
 
@@ -54,7 +53,7 @@ CUR_CLR		=	\033[K
 
 SRC			=	\
 				converters.c         order_tab_show.c     show_alloc_mem2.c \
-				meta_data_init.c     print_tab_show.c     show_alloc_mem_err.c \
+				meta_data_init.c     print_tab_show.c \
 				free.c               realloc.c            subz_func.c \
 				free_func.c          request_large.c      tabs_resizers.c \
 				malloc.c             request_tiny_small.c tabs_usage_funcs.c \
@@ -72,7 +71,7 @@ all			:	reset_cursor make_lib OBJD $(NAME)
 
 $(NAME)		: $(OBJP)
 	@$(CC) $(CFLAGS) -shared -I$(INCDIR) $(LIBFLAG) $^ -o $(NAME) -lpthread
-	@ln -s $(NAME) $(SYMLINK)
+	@ln -sf $(NAME) $(SYMLINK)
 	@printf "$(CUR_RST)$(CGREEN)BUILD MALLOC		: SUCCESS$(CRESET)$(CUR_CLR)\n"
 
 clean		:
@@ -90,7 +89,6 @@ fclean		: mini_clean
 	@printf "$(CYELLOW)RAZ MALLOC	: Ok$(CRESET)\n"
 	@$(RM) $(SYMLINK)
 	@$(RM) $(NAME)
-	@printf "\n"
 
 re			: fclean all
 
@@ -103,23 +101,6 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 
 make_lib	:
 	@make -C $(LIBDIR)
-
-mk_test		:
-	gcc ./tests/test0.c -o ./tests/test0
-	gcc ./tests/test1.c -o ./tests/test1
-	gcc ./tests/test2.c -o ./tests/test2
-	gcc ./tests/test3.c -o ./tests/test3
-	gcc ./tests/test3+.c -o ./tests/test3+
-	gcc ./tests/test4.c -o ./tests/test4
-	# gcc ./tests/test5.c -o ./tests/test5
-rm_test		:
-	rm ./tests/test0
-	rm ./tests/test1
-	rm ./tests/test2
-	rm ./tests/test3
-	rm ./tests/test3+
-	rm ./tests/test4
-	# rm ./tests/test5
 
 reset_cursor :
 	@printf "$(CUR_SVE)"

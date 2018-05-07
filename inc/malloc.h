@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:01:34 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 19:23:26 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/07 18:31:15 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "get_next_line.h"
 # include "libft.h"
 
-# define META_INCRE_ALLOC_PAGE 8
+# define META_INCRE_ALLOC_PAGE 1
 
 typedef enum			e_meta_type
 {
@@ -43,12 +43,12 @@ typedef enum			e_meta_size
 {
 	NULL_SIZE = 0,
 	TINY_ALLOC_MIN = 1,
-	TINY_ALLOC_MAX = 4096,
-	TINY_ZONE_SIZE = 1048576,
-	SMALL_ALLOC_MIN = 4097,
-	SMALL_ALLOC_MAX = 131072,
-	SMALL_ZONE_SIZE = 16777216,
-	LARGE_ALLOC_MIN = 131073,
+	TINY_ALLOC_MAX = 1024,
+	TINY_ZONE_SIZE = 134072,
+	SMALL_ALLOC_MIN = 2049,
+	SMALL_ALLOC_MAX = 8192,
+	SMALL_ZONE_SIZE = 1048576,
+	LARGE_ALLOC_MIN = 8193,
 }						t_meta_size;
 
 /*

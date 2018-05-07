@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 16:05:34 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 18:20:59 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/07 18:34:17 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	check_tabmeta_usage(void)
 	while (i < g_vault.meta_items_max)
 	{
 		if (g_vault.tab_meta[i].type != FREE_BLOCK)
-		{
 			nb_used++;
-		}
 		i++;
 	}
 	if (g_vault.tab_meta_npage > 1 && nb_used < g_vault.meta_items_max * 0.4)

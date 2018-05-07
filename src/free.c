@@ -6,7 +6,7 @@
 /*   By: galy <galy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:49:52 by galy              #+#    #+#             */
-/*   Updated: 2018/03/09 18:19:08 by galy             ###   ########.fr       */
+/*   Updated: 2018/05/07 18:55:49 by galy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,8 @@ void	free(void *ptr)
 		return ;
 	pthread_mutex_lock(&g_vault.mutex);
 	if (g_vault.tab_free == NULL)
-	{
-		if (ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)
-			ft_putstr("\033[33mWARNING - g_vault.tab_free = NULL !!!\n\033[0m");
 		return ;
-	}
-	if (search_and_free_subz(ptr) != 1 && \
-	ft_strcmp(getenv("DEBUG_MALLOC"), "TRUE") == 0)
-	{
-		ft_printf("\033[31mError for object [%p]: \
-		pointer being freed was not allocated\n\033[0m", ptr);
-		exit(-1);
-	}
+	search_and_free_subz(ptr);
 	tab_free_cleaner();
 	check_tabmeta_usage();
 	pthread_mutex_unlock(&g_vault.mutex);
