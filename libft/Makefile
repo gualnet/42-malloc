@@ -6,7 +6,7 @@
 #    By: galy <galy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:28:28 by galy              #+#    #+#              #
-#    Updated: 2017/03/22 15:20:03 by galy             ###   ########.fr        #
+#    Updated: 2018/05/04 17:15:54 by galy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,29 +72,29 @@ OBJLIBFT	=	$(addprefix $(DIRLIBFT)/, $(SRCLIBFT:.c=.o))
 OBJGNL	=	$(addprefix $(DIRGNL)/, $(SRCGNL:.c=.o))
 OBJFTPRINTF	=	$(addprefix $(DIRFTPRINTF)/, $(SRCFTPRINTF:.c=.o))
 
-all : $(NAME)
+all : reset_cursor $(NAME)
 
 $(NAME)	: make_libs
 	@ar -rc $(NAME) $(OBJLIBFT)
-	@printf "$(CUR_SVE)$(CYELLOW)Adding libft.a to $(NAME)$(CRESET)$(CUR_CLR)"
+#	@printf "$(CUR_SVE)$(CYELLOW)Adding libft.a to $(NAME)$(CRESET)$(CUR_CLR)"
 	@ar -rc $(NAME) $(OBJGNL)
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)Adding get_next_line.a to $(NAME)$(CRESET)$(CUR_CLR)"
+#	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)Adding get_next_line.a to $(NAME)$(CRESET)$(CUR_CLR)"
 	@ar -rc $(NAME) $(OBJFTPRINTF)
-	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)Adding ft_printf.a to $(NAME)$(CRESET)$(CUR_CLR)"
-	@printf "$(CUR_RST)$(CGREEN)LIBFT FULLY CHARGED : SUCCESS$(CRESET)$(CUR_CLR)\n"
+#	@printf "$(CUR_RST)$(CUR_SVE)$(CYELLOW)Adding ft_printf.a to $(NAME)$(CRESET)$(CUR_CLR)"
+	@printf "$(CUR_RST)$(CGREEN)MERGE FULL LIBFT 	: SUCCESS$(CRESET)\n"
 
 clean :
 	@make clean -C ./libft
 	@make clean -C ./get_next_line
 	@make clean -C ./ft_printf
+	@printf "$(CYELLOW)LIBFT	: CLEANED $(CRESET)\n"
 
-fclean : clean
+fclean :
 	@make fclean -C ./libft
 	@make fclean -C ./get_next_line
 	@make fclean -C ./ft_printf
 	@rm -f $(NAME)
-	@printf "$(CYELLOW)$(NAME) CLEARED$(CRESET)\n"
-
+	
 re : fclean all
 
 ####MORE_RULEZ####
